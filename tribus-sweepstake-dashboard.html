@@ -1,197 +1,222 @@
 <!DOCTYPE html>
-<!-- saved from url=(0059)file:///Users/nathanparks/Downloads/tribus-dashboard_4.html -->
+<!-- saved from url=(0059)file:///Users/nathanparks/Downloads/tribus-dashboard_8.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tribus World Cup Sweepstake — Dashboard</title>
 <style>
   :root{
-    --blue:#0000FF;
-    --blue-soft:#3a3aff;
-    --gold:#f5c542;
-    --gold-deep:#caa01f;
-    --navy-0:#05071a;
-    --navy-1:#080c24;
-    --navy-2:#0c1331;
-    --ink:#eef1ff;
-    --ink-dim:#9aa3c9;
-    --ink-faint:#646d99;
-    --line:rgba(120,140,255,.16);
-    --glass:rgba(20,28,66,.55);
-    --glass-2:rgba(28,38,84,.45);
-    --good:#34d399;
-    --bad:#f87171;
-    --live:#ff3b6b;
-    --radius:16px;
-    --mono:"SF Mono",ui-monospace,"Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
-    --disp:"Helvetica Neue",Arial,"Segoe UI",system-ui,sans-serif;
-    --body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    --blue:#0000FF; --blue-2:#5b6bff; --blue-ghost:rgba(60,80,255,.12);
+    --gold:#e7b54a; --gold-ghost:rgba(231,181,74,.14);
+    --bg-top:#0b0e1a; --bg-bot:#080a12;
+    --surface:rgba(255,255,255,.035);
+    --surface-2:rgba(255,255,255,.055);
+    --line:rgba(255,255,255,.08);
+    --line-2:rgba(255,255,255,.14);
+    --ink:#eef0f6; --ink-dim:#9aa1b8; --ink-faint:#646b85;
+    --good:#3ecf8e; --bad:#f06a6a; --live:#ff4d6d;
+    --r:12px; --r-sm:8px; --r-xs:6px;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --disp:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --body:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
-    font-family:var(--body);
-    color:var(--ink);
-    background:
-      radial-gradient(1200px 600px at 80% -10%, rgba(0,0,255,.28), transparent 60%),
-      radial-gradient(900px 500px at 0% 0%, rgba(0,0,255,.16), transparent 55%),
-      linear-gradient(180deg,var(--navy-1),var(--navy-0));
+    font-family:var(--body); color:var(--ink); -webkit-font-smoothing:antialiased;
     min-height:100vh;
-    -webkit-font-smoothing:antialiased;
-  }
-  /* faint pitch lines */
-  body::before{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
     background:
-      linear-gradient(90deg,transparent 49.85%,rgba(120,140,255,.07) 50%,transparent 50.15%),
-      repeating-linear-gradient(180deg,transparent 0 119px,rgba(120,140,255,.04) 119px 120px);
+      radial-gradient(1100px 520px at 80% -10%, rgba(0,0,255,.10), transparent 60%),
+      linear-gradient(180deg,var(--bg-top),var(--bg-bot));
   }
-  body::after{
-    content:"";position:fixed;top:50%;left:50%;width:280px;height:280px;margin:-140px 0 0 -140px;
-    border:1px solid rgba(120,140,255,.06);border-radius:50%;pointer-events:none;z-index:0;
-  }
-  .wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:26px 18px 80px}
+  .wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:34px 22px 90px}
 
-  header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:18px}
-  .brand{display:flex;flex-direction:column;gap:6px}
-  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--blue-soft)}
-  h1.title{
-    font-family:var(--disp);font-weight:800;letter-spacing:-.02em;line-height:.95;margin:0;
-    font-size:clamp(28px,5vw,46px);text-transform:uppercase;
-  }
-  h1.title b{color:var(--blue-soft)}
-  .sub{color:var(--ink-dim);font-size:13.5px;max-width:46ch}
-  .syncbox{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-bottom:26px}
+  .brand{display:flex;flex-direction:column;gap:10px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-2)}
+  .eyebrow::before{content:"";width:18px;height:2px;background:var(--blue);display:inline-block}
+  h1.title{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:1;margin:0;font-size:clamp(30px,4.6vw,48px);color:#fff}
+  h1.title b{font-weight:800;color:var(--blue-2)}
+  .sub{color:var(--ink-dim);font-size:14px;max-width:48ch;line-height:1.5}
+  .syncbox{display:flex;flex-direction:column;align-items:flex-end;gap:9px}
   .syncline{font-family:var(--mono);font-size:11px;color:var(--ink-faint);display:flex;align-items:center;gap:7px}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--ink-faint);box-shadow:0 0 0 0 rgba(0,0,0,0)}
-  .dot.ok{background:var(--good)}
-  .dot.warn{background:var(--gold)}
-  .dot.err{background:var(--bad)}
-  .dot.live{background:var(--live);animation:pulse 1.4s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,59,107,.5)}70%{box-shadow:0 0 0 8px rgba(255,59,107,0)}100%{box-shadow:0 0 0 0 rgba(255,59,107,0)}}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-faint)}
+  .dot.ok{background:var(--good)} .dot.warn{background:var(--gold)} .dot.err{background:var(--bad)}
+  .dot.live{background:var(--live);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,77,109,.45)}70%{box-shadow:0 0 0 6px rgba(255,77,109,0)}100%{box-shadow:0 0 0 0 rgba(255,77,109,0)}}
 
-  button{font-family:var(--body);cursor:pointer;border:none;border-radius:11px;font-size:13px;font-weight:600;color:var(--ink);transition:.15s}
-  button:focus-visible{outline:2px solid var(--blue-soft);outline-offset:2px}
-  .btn{background:var(--glass-2);border:1px solid var(--line);padding:9px 14px}
-  .btn:hover{border-color:var(--blue-soft);color:#fff}
-  .btn.primary{background:var(--blue);border:1px solid var(--blue-soft);box-shadow:0 6px 24px -8px rgba(0,0,255,.8)}
-  .btn.primary:hover{filter:brightness(1.12)}
+  button{font-family:var(--body);cursor:pointer;border:none;border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--ink);transition:background .15s,border-color .15s,color .15s,transform .05s}
+  button:focus-visible{outline:2px solid var(--blue-2);outline-offset:2px}
+  button:active{transform:translateY(1px)}
+  .btn{background:var(--surface-2);border:1px solid var(--line);padding:9px 15px}
+  .btn:hover{border-color:var(--line-2);color:#fff}
+  .btn.primary{background:var(--blue);border:1px solid transparent;color:#fff}
+  .btn.primary:hover{background:#2424ff}
   .btn.ghost{background:transparent}
   .btn[disabled]{opacity:.4;cursor:not-allowed}
-  .btn.sm{padding:6px 10px;font-size:12px;border-radius:9px}
+  .btn.sm{padding:6px 11px;font-size:12px}
+  .btn.danger{border-color:rgba(240,106,106,.35);color:var(--bad);background:transparent}
+  .btn.danger:hover{background:rgba(240,106,106,.1)}
 
-  nav.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 20px;border-bottom:1px solid var(--line);padding-bottom:0}
-  .tab{background:none;border:none;border-bottom:2px solid transparent;border-radius:0;padding:10px 14px;color:var(--ink-dim);font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-size:12.5px;font-family:var(--mono)}
+  nav.tabs{display:flex;gap:2px;flex-wrap:wrap;margin:0 0 26px;border-bottom:1px solid var(--line)}
+  .tab{background:none;border:none;border-bottom:2px solid transparent;border-radius:0;padding:11px 16px;color:var(--ink-dim);font-weight:600;font-size:14px;letter-spacing:-.01em}
   .tab:hover{color:var(--ink)}
-  .tab.active{color:#fff;border-bottom-color:var(--blue-soft)}
+  .tab.active{color:#fff;border-bottom-color:var(--blue)}
 
-  .panel{display:none;animation:fade .25s ease}
-  .panel.active{display:block}
-  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .panel{display:none}
+  .panel.active{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 
-  .card{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-  .pad{padding:16px 18px}
-  .grid{display:grid;gap:14px}
-  .g-3{grid-template-columns:repeat(3,1fr)}
-  .g-2{grid-template-columns:repeat(2,1fr)}
-  .g-auto{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
-  @media(max-width:720px){.g-3,.g-2{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+  .pad{padding:18px 20px}
+  .grid{display:grid;gap:16px}
+  .g-3{grid-template-columns:repeat(3,1fr)} .g-2{grid-template-columns:repeat(2,1fr)}
+  .g-auto{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  @media(max-width:760px){.g-3,.g-2{grid-template-columns:1fr}}
 
-  .sec-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 12px}
-  .sec-h h2{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-size:18px;margin:0}
-  .sec-h .hint{font-size:12px;color:var(--ink-faint)}
+  .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .sec-h h2{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;font-size:18px;margin:0}
+  .sec-h .hint{font-size:12.5px;color:var(--ink-faint)}
 
   /* prize strip */
-  .prizes{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
-  @media(max-width:720px){.prizes{grid-template-columns:repeat(2,1fr)}}
-  .prize{padding:14px;border-radius:14px;background:linear-gradient(180deg,var(--glass-2),rgba(10,16,40,.5));border:1px solid var(--line)}
-  .prize .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
-  .prize .who{font-family:var(--disp);font-weight:800;font-size:17px;margin-top:6px;line-height:1.1}
-  .prize .meta{font-size:12px;color:var(--ink-dim);margin-top:3px}
-  .prize.gold{border-color:rgba(245,197,66,.45);background:linear-gradient(180deg,rgba(245,197,66,.14),rgba(10,16,40,.5))}
+  .prizes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+  @media(max-width:760px){.prizes{grid-template-columns:repeat(2,1fr)}}
+  .prize{padding:16px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+  .prize .lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .prize .who{font-family:var(--disp);font-weight:700;font-size:18px;margin-top:8px;line-height:1.15;letter-spacing:-.01em}
+  .prize .meta{font-size:12.5px;color:var(--ink-dim);margin-top:4px}
+  .prize.lead-prize{border-color:rgba(60,80,255,.4)} .prize.lead-prize .who{color:var(--blue-2)}
+  .prize.gold{border-color:rgba(231,181,74,.4);background:linear-gradient(180deg,var(--gold-ghost),var(--surface))}
   .prize.gold .who{color:var(--gold)}
 
-  /* standings table */
+  /* standings */
   table.lead{width:100%;border-collapse:collapse}
-  table.lead th,table.lead td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
-  table.lead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
-  table.lead td.num,table.lead th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
-  table.lead tr:last-child td{border-bottom:none}
-  table.lead .rk{font-family:var(--mono);color:var(--ink-faint);width:34px}
-  table.lead .pts{font-family:var(--disp);font-weight:800;font-size:18px}
-  table.lead tr.me-top td{background:linear-gradient(90deg,rgba(0,0,255,.16),transparent)}
-  .teamchips{display:flex;gap:5px;flex-wrap:wrap;margin-top:3px}
-  .chip{font-size:11px;background:rgba(120,140,255,.12);border:1px solid var(--line);border-radius:999px;padding:2px 8px;display:inline-flex;gap:4px;align-items:center}
-  .chip.out{opacity:.42;text-decoration:line-through}
+  table.lead th,table.lead td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line)}
+  table.lead th{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+  table.lead td.num,table.lead th.num{text-align:right;font-variant-numeric:tabular-nums}
+  table.lead tbody tr:last-child td{border-bottom:none}
+  table.lead tbody tr:hover td{background:rgba(255,255,255,.02)}
+  table.lead .rk{font-family:var(--mono);color:var(--ink-faint);width:30px;font-variant-numeric:tabular-nums}
+  table.lead .pname{font-family:var(--disp);font-weight:600;letter-spacing:-.01em}
+  table.lead .pts{font-family:var(--disp);font-weight:800;font-size:19px;font-variant-numeric:tabular-nums}
+  table.lead tr.leader td{background:rgba(0,0,255,.08)}
+  table.lead tr.leader td:first-child{box-shadow:inset 3px 0 0 var(--blue)}
+  table.lead tr.knocked .pname{color:var(--ink-faint)}
+  .teamchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
+  .chip{font-size:11.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-xs);padding:3px 8px;display:inline-flex;gap:5px;align-items:center;color:var(--ink-dim)}
+  .chip.out{opacity:.4;text-decoration:line-through}
   .star{color:var(--gold)}
 
-  /* people cards */
-  .person{padding:0;overflow:hidden}
-  .person .ph{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(0,0,255,.10),transparent)}
-  .person .pname{font-family:var(--disp);font-weight:800;font-size:15.5px}
-  .person .pscore{font-family:var(--mono);font-size:13px;color:var(--gold);font-weight:700}
+  /* people */
+  .person{padding:0;overflow:hidden;position:relative}
+  .person .ph{display:flex;align-items:center;justify-content:space-between;padding:15px 17px;border-bottom:1px solid var(--line)}
+  .person .pname{font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:-.01em}
+  .person .pscore{font-family:var(--mono);font-size:13px;color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums}
   .person .teams{display:flex;flex-direction:column}
-  .trow{display:flex;align-items:center;gap:10px;padding:10px 15px;border-bottom:1px solid rgba(120,140,255,.07)}
+  .trow{display:flex;align-items:center;gap:12px;padding:11px 17px;border-bottom:1px solid rgba(255,255,255,.045)}
   .trow:last-child{border-bottom:none}
-  .trow .fl{font-size:20px;width:26px;text-align:center}
-  .trow .tn{font-weight:600;font-size:13.5px}
-  .trow .tmeta{font-size:11px;color:var(--ink-faint);font-family:var(--mono)}
-  .trow .tpts{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink-dim)}
-  .badge{font-size:10px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:2px 7px;border-radius:6px;border:1px solid var(--line)}
-  .badge.active{color:var(--good);border-color:rgba(52,211,153,.4)}
-  .badge.out{color:var(--bad);border-color:rgba(248,113,113,.35)}
-  .badge.win{color:var(--gold);border-color:rgba(245,197,66,.5);background:rgba(245,197,66,.1)}
-  .trow.elim .tn,.trow.elim .fl{opacity:.5}
+  .trow .fl{font-size:21px;width:26px;text-align:center}
+  .trow .tn{font-weight:600;font-size:14px}
+  .trow .tmeta{font-size:11px;color:var(--ink-faint);font-family:var(--mono);margin-top:1px}
+  .trow .tpts{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+  .badge{font-size:10px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;padding:3px 8px;border-radius:var(--r-xs);border:1px solid var(--line);white-space:nowrap}
+  .badge.active{color:var(--good);border-color:rgba(62,207,142,.35)}
+  .badge.out{color:var(--bad);border-color:rgba(240,106,106,.3)}
+  .badge.win{color:var(--gold);border-color:rgba(231,181,74,.45);background:var(--gold-ghost)}
+  .trow.elim .tn,.trow.elim .fl{opacity:.45}
+  .person.knocked{opacity:.62}
+  .person.knocked .ph{background:rgba(240,106,106,.06)}
+  .person.knocked .pname{text-decoration:line-through;text-decoration-color:rgba(240,106,106,.6)}
+  .knock-ribbon{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bad);border:1px solid rgba(240,106,106,.4);border-radius:var(--r-xs);padding:2px 7px}
 
-  /* teams admin */
+  /* teams */
   .teamgrid{width:100%;border-collapse:collapse;font-size:13px}
-  .teamgrid th,.teamgrid td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
-  .teamgrid th{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
-  .teamgrid input,.teamgrid select{background:rgba(8,12,32,.7);border:1px solid var(--line);color:var(--ink);border-radius:7px;padding:5px 6px;font-family:var(--mono);font-size:12px;width:54px}
+  .teamgrid th,.teamgrid td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+  .teamgrid th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;position:sticky;top:0;background:#0c0f1a;z-index:1}
+  .teamgrid tbody tr:hover td{background:rgba(255,255,255,.02)}
+  .teamgrid input,.teamgrid select{background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--ink);border-radius:var(--r-xs);padding:5px 7px;font-family:var(--mono);font-size:12px;width:52px}
   .teamgrid select{width:auto}
-  .teamgrid input:focus,.teamgrid select:focus{outline:1px solid var(--blue-soft);border-color:var(--blue-soft)}
-  .scroll{overflow:auto;max-height:62vh;border-radius:12px}
-  .owner-tag{font-size:11px;color:var(--ink-dim)}
+  .teamgrid input:focus,.teamgrid select:focus{outline:none;border-color:var(--blue-2)}
+  .teamgrid td[data-pts]{font-family:var(--disp);font-weight:700;font-variant-numeric:tabular-nums}
+  .scroll{overflow:auto;max-height:64vh;border-radius:var(--r-sm);border:1px solid var(--line)}
+  .owner-tag{font-size:12px;color:var(--ink-dim);font-variant-numeric:tabular-nums}
 
   /* fixtures */
-  .fix{display:flex;align-items:center;gap:12px;padding:12px 15px;border-bottom:1px solid var(--line)}
+  .fix{display:flex;align-items:center;gap:14px;padding:13px 17px;border-bottom:1px solid var(--line)}
   .fix:last-child{border-bottom:none}
-  .fix .when{width:118px;font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
-  .fix .side{flex:1;display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
-  .fix .side.right{justify-content:flex-end;text-align:right}
-  .fix .sc{font-family:var(--disp);font-weight:800;font-size:18px;min-width:64px;text-align:center}
-  .fix .vs{font-family:var(--mono);font-size:11px;color:var(--ink-faint);min-width:64px;text-align:center}
-  .fix.clash{background:linear-gradient(90deg,transparent,rgba(0,0,255,.12),transparent)}
-  .clashtag{font-size:10px;font-family:var(--mono);color:var(--blue-soft);text-transform:uppercase;letter-spacing:.1em}
-  .livetag{font-size:10px;font-family:var(--mono);color:var(--live);text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+  .fix .when{flex:0 0 96px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);line-height:1.45}
+  .fix .spacer{flex:0 0 96px}
+  .fix .match{flex:1;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;min-width:0}
+  .fix .team{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .fix .team.home{justify-self:end;align-items:flex-end;text-align:right}
+  .fix .team.away{justify-self:start;align-items:flex-start;text-align:left}
+  .fix .tname{font-weight:600;font-size:14px;display:flex;align-items:center;gap:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .fix .tname .fl{font-size:18px;flex:0 0 auto}
+  .fix .towner{font-size:11px;color:var(--ink-faint);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .fix .towner.none{opacity:.45}
+  .fix .score{font-family:var(--disp);font-weight:800;font-size:19px;width:64px;text-align:center;font-variant-numeric:tabular-nums;color:#fff;justify-self:center}
+  .fix .score.pending{font-family:var(--mono);font-size:12px;color:var(--ink-faint);font-weight:500}
+  .fix.clash{background:rgba(255,255,255,.085)}
+  .livetag{font-size:10px;font-family:var(--mono);color:var(--live);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+  #fixPast{max-height:62vh;overflow:auto}
+  .loadmore{padding:12px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
 
-  .empty{padding:34px 20px;text-align:center;color:var(--ink-dim)}
-  .empty h3{font-family:var(--disp);text-transform:uppercase;color:var(--ink);margin:0 0 6px}
-  .empty p{margin:0 auto 14px;max-width:42ch;font-size:13.5px}
+  /* chart / wall chart */
+  .chart-section{margin-bottom:26px}
+  .chart-section > h2{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;font-size:18px;margin:0 0 14px}
+  .groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .grp{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .grp h3{margin:0;padding:10px 13px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-2);border-bottom:1px solid var(--line)}
+  .grp table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .grp td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.045)}
+  .grp tr:last-child td{border-bottom:none}
+  .grp .gt{font-weight:600}
+  .grp .go{font-size:10px;color:var(--ink-faint);font-family:var(--mono)}
+  .grp .gp{text-align:right;font-family:var(--disp);font-weight:800;font-variant-numeric:tabular-nums}
+  .grp tr.qual{background:rgba(0,0,255,.08)}
+  .grp tr.qual td:first-child{box-shadow:inset 3px 0 0 var(--blue)}
+  .grp tr.elimrow{opacity:.5}
+  .bracket{display:flex;gap:18px;overflow-x:auto;padding-bottom:8px}
+  .bcol{flex:0 0 200px;display:flex;flex-direction:column}
+  .bcol-h{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px;text-align:center}
+  .bcol-body{display:flex;flex-direction:column;justify-content:space-around;gap:10px;flex:1}
+  .tie{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+  .tie .tl{display:flex;align-items:center;gap:8px;padding:8px 10px;font-size:12.5px}
+  .tie .tl+.tl{border-top:1px solid var(--line)}
+  .tie .tl .fl{font-size:15px}
+  .tie .tl .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tie .tl .ow{font-size:10px;color:var(--ink-faint);font-family:var(--mono)}
+  .tie .tl .sc{margin-left:auto;font-family:var(--disp);font-weight:800;font-variant-numeric:tabular-nums}
+  .tie .tl.win{color:#fff} .tie .tl.win .sc{color:var(--blue-2)}
+  .tie .tl.lose{opacity:.5}
+  .tie.empty{border-style:dashed;opacity:.5}
+  .tie.empty .tl{color:var(--ink-faint);justify-content:center;font-family:var(--mono);font-size:11px}
+  .champ{flex:0 0 200px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:8px}
+  .champ .cup{font-size:34px}
+  .champ .ct{font-family:var(--disp);font-weight:800;font-size:20px;color:var(--gold);letter-spacing:-.01em}
+  .champ .co{font-size:12px;color:var(--ink-dim);font-family:var(--mono)}
+  .champ .pending{color:var(--ink-faint);font-family:var(--mono);font-size:12px}
+  .thirdwrap{margin-top:18px;max-width:240px}
 
-  label.field{display:block;margin-bottom:12px}
-  label.field span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:5px}
-  input.txt,textarea.txt,select.txt{width:100%;background:rgba(8,12,32,.7);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:10px 12px;font-family:var(--mono);font-size:13px}
-  textarea.txt{min-height:120px;resize:vertical;line-height:1.5}
-  input.txt:focus,textarea.txt:focus,select.txt:focus{outline:1px solid var(--blue-soft);border-color:var(--blue-soft)}
-  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .empty{padding:40px 22px;text-align:center;color:var(--ink-dim)}
+  .empty h3{font-family:var(--disp);font-weight:700;letter-spacing:-.01em;color:var(--ink);margin:0 0 7px;font-size:16px}
+  .empty p{margin:0 auto 16px;max-width:44ch;font-size:13.5px;line-height:1.5}
+
+  label.field{display:block;margin-bottom:14px}
+  label.field span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
+  input.txt,textarea.txt,select.txt{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--ink);border-radius:var(--r-sm);padding:11px 13px;font-family:var(--mono);font-size:13px}
+  input.txt:focus,textarea.txt:focus,select.txt:focus{outline:none;border-color:var(--blue-2)}
+  .row{display:flex;gap:13px;flex-wrap:wrap}
   .row>*{flex:1;min-width:140px}
-  .note{font-size:12px;color:var(--ink-faint);line-height:1.5}
-  .warn{color:var(--gold)}
-  .scoregrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-  @media(max-width:560px){.scoregrid{grid-template-columns:1fr}}
-  .scorecell{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(8,12,32,.5);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
-  .scorecell span{font-size:12.5px;color:var(--ink-dim)}
-  .scorecell input{width:64px;background:rgba(8,12,32,.7);border:1px solid var(--line);color:var(--ink);border-radius:7px;padding:6px;font-family:var(--mono);text-align:right}
-  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--blue);color:#fff;padding:11px 18px;border-radius:12px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:50;box-shadow:0 10px 40px -10px rgba(0,0,255,.9)}
+  .note{font-size:12.5px;color:var(--ink-faint);line-height:1.6}
+  .warn{color:var(--gold)} .danger{color:var(--bad)}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--blue);color:#fff;padding:12px 20px;border-radius:var(--r-sm);font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.22s;z-index:50}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-  .danger{color:var(--bad)}
-  .btn.danger{border-color:rgba(248,113,113,.4);color:var(--bad)}
-  .btn.danger:hover{background:rgba(248,113,113,.12)}
-  details.help{margin-top:10px}
-  details.help summary{cursor:pointer;font-size:12px;color:var(--blue-soft);font-family:var(--mono)}
-  details.help div{font-size:12.5px;color:var(--ink-dim);line-height:1.6;padding:8px 0}
-  a{color:var(--blue-soft)}
+  details.help{margin-top:12px}
+  details.help summary{cursor:pointer;font-size:12px;color:var(--blue-2);font-family:var(--mono)}
+  details.help div{font-size:12.5px;color:var(--ink-dim);line-height:1.65;padding:9px 0}
+  a{color:var(--blue-2)}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -203,8 +228,8 @@
       <span class="sub">Twelve players, forty-eight teams, one trophy. Standings update as results come in.</span>
     </div>
     <div class="syncbox">
-      <button class="btn primary" id="syncBtn">Sync results</button>
-      <div class="syncline"><span class="dot ok" id="syncDot"></span><span id="syncMsg">Synced Thu 18 Jun 09:39</span></div>
+      <button class="btn primary" id="syncBtn">Sync</button>
+      <div class="syncline"><span class="dot ok" id="syncDot"></span><span id="syncMsg">Synced Thu 18 Jun 11:22</span></div>
     </div>
   </header>
 
@@ -213,101 +238,102 @@
     <button class="tab" data-tab="people">People</button>
     <button class="tab" data-tab="teams">Teams</button>
     <button class="tab" data-tab="fixtures">Fixtures</button>
+    <button class="tab" data-tab="chart">Chart</button>
     <button class="tab" data-tab="setup">Setup</button>
   </nav>
 
   <!-- STANDINGS -->
   <section class="panel active" id="panel-standings">
-    <div class="prizes" id="prizeStrip"><div class="prize gold"><div class="lab">Leading player</div><div class="who">Richard Blyth</div><div class="meta">5 pts</div></div><div class="prize "><div class="lab">Champions</div><div class="who">Up for grabs</div><div class="meta">Awaiting the final</div></div><div class="prize "><div class="lab">Most goals</div><div class="who">Adam Spry</div><div class="meta">7 scored</div></div><div class="prize "><div class="lab">Most red cards</div><div class="who">—</div><div class="meta">0 reds</div></div></div>
+    <div class="prizes" id="prizeStrip"><div class="prize lead-prize"><div class="lab">Leading player</div><div class="who">Adam Spry</div><div class="meta">10 pts</div></div><div class="prize "><div class="lab">Champions</div><div class="who">Up for grabs</div><div class="meta">Awaiting the final</div></div><div class="prize "><div class="lab">Most goals</div><div class="who">Adam Spry</div><div class="meta">14 scored</div></div><div class="prize "><div class="lab">Most red cards</div><div class="who">Charlotte Dickinson</div><div class="meta">2 reds</div></div></div>
     <div class="card">
-      <div class="pad sec-h"><h2>Prize standings</h2><span class="hint" id="standHint">Last synced Thu 18 Jun 09:39</span></div>
+      <div class="pad sec-h"><h2>Prize standings</h2><span class="hint" id="standHint">Last synced Thu 18 Jun 11:22</span></div>
       <div id="standBody"><table class="lead"><thead><tr>
       <th class="rk">#</th><th>Player</th><th>Teams</th>
       <th class="num">GF</th><th class="num">🟥</th><th class="num">Alive</th><th class="num">Pts</th>
-    </tr></thead><tbody><tr class="me-top">
+    </tr></thead><tbody><tr class="leader ">
       <td class="rk">1</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Richard Blyth</div></td>
+      <td><div class="pname">Adam Spry</div></td>
+      <td><div class="teamchips"><span class="chip ">🇮🇷 IR Iran</span> <span class="chip ">🇩🇪 Germany</span> <span class="chip ">🇳🇴 Norway</span> <span class="chip ">🇬🇭 Ghana</span></div></td>
+      <td class="num">14</td><td class="num">0</td>
+      <td class="num">4/4</td>
+      <td class="num"><span class="pts">10</span></td>
+    </tr><tr class=" ">
+      <td class="rk">2</td>
+      <td><div class="pname">Dan Welsh</div></td>
+      <td><div class="teamchips"><span class="chip ">🇨🇩 Congo DR</span> <span class="chip ">🇫🇷 France <span class="star">★</span></span> <span class="chip ">🇵🇹 Portugal <span class="star">★</span></span> <span class="chip ">🇺🇸 United States</span></div></td>
+      <td class="num">9</td><td class="num">0</td>
+      <td class="num">4/4</td>
+      <td class="num"><span class="pts">8</span></td>
+    </tr><tr class=" ">
+      <td class="rk">3</td>
+      <td><div class="pname">Mark Spilsbury</div></td>
+      <td><div class="teamchips"><span class="chip ">🇨🇦 Canada</span> <span class="chip ">🇦🇹 Austria</span> <span class="chip ">🇨🇴 Colombia</span> <span class="chip ">🇧🇪 Belgium</span></div></td>
+      <td class="num">8</td><td class="num">0</td>
+      <td class="num">4/4</td>
+      <td class="num"><span class="pts">8</span></td>
+    </tr><tr class=" ">
+      <td class="rk">4</td>
+      <td><div class="pname">Chris Richards</div></td>
+      <td><div class="teamchips"><span class="chip ">🇮🇶 Iraq</span> <span class="chip ">🇩🇿 Algeria</span> <span class="chip ">🏴 Scotland</span> <span class="chip ">🏴 England <span class="star">★</span></span></div></td>
+      <td class="num">6</td><td class="num">0</td>
+      <td class="num">4/4</td>
+      <td class="num"><span class="pts">6</span></td>
+    </tr><tr class=" ">
+      <td class="rk">5</td>
+      <td><div class="pname">Charlotte Dickinson</div></td>
+      <td><div class="teamchips"><span class="chip ">🇿🇦 South Africa</span> <span class="chip ">🇳🇿 New Zealand</span> <span class="chip ">🇶🇦 Qatar</span> <span class="chip ">🇰🇷 Korea Republic</span></div></td>
+      <td class="num">5</td><td class="num">2</td>
+      <td class="num">4/4</td>
+      <td class="num"><span class="pts">5</span></td>
+    </tr><tr class=" ">
+      <td class="rk">6</td>
+      <td><div class="pname">Richard Blyth</div></td>
       <td><div class="teamchips"><span class="chip ">🇳🇱 Netherlands</span> <span class="chip ">🇨🇼 Curaçao</span> <span class="chip ">🇨🇮 Côte d’Ivoire</span> <span class="chip ">🇨🇻 Cabo Verde</span></div></td>
       <td class="num">4</td><td class="num">0</td>
       <td class="num">4/4</td>
       <td class="num"><span class="pts">5</span></td>
-    </tr><tr class="">
-      <td class="rk">2</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Oliver Padgett-Blackburn</div></td>
+    </tr><tr class=" ">
+      <td class="rk">7</td>
+      <td><div class="pname">Oliver Padgett-Blackburn</div></td>
       <td><div class="teamchips"><span class="chip ">🇭🇹 Haiti</span> <span class="chip ">🇧🇷 Brazil</span> <span class="chip ">🇲🇽 Mexico</span> <span class="chip ">🇪🇸 Spain <span class="star">★</span></span></div></td>
-      <td class="num">3</td><td class="num">0</td>
+      <td class="num">3</td><td class="num">1</td>
       <td class="num">4/4</td>
       <td class="num"><span class="pts">5</span></td>
-    </tr><tr class="">
-      <td class="rk">3</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Elliott Holmes</div></td>
+    </tr><tr class=" ">
+      <td class="rk">8</td>
+      <td><div class="pname">Elliott Holmes</div></td>
       <td><div class="teamchips"><span class="chip ">🇸🇪 Sweden</span> <span class="chip ">🇪🇨 Ecuador</span> <span class="chip ">🇺🇾 Uruguay</span> <span class="chip ">🇯🇴 Jordan</span></div></td>
-      <td class="num">6</td><td class="num">0</td>
+      <td class="num">7</td><td class="num">0</td>
       <td class="num">4/4</td>
       <td class="num"><span class="pts">4</span></td>
-    </tr><tr class="">
-      <td class="rk">4</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Sean Smith</div></td>
+    </tr><tr class=" ">
+      <td class="rk">9</td>
+      <td><div class="pname">Nathan Parks</div></td>
+      <td><div class="teamchips"><span class="chip ">🇨🇿 Czechia</span> <span class="chip ">🇦🇺 Australia</span> <span class="chip ">🇲🇦 Morocco</span> <span class="chip ">🇺🇿 Uzbekistan</span></div></td>
+      <td class="num">5</td><td class="num">0</td>
+      <td class="num">4/4</td>
+      <td class="num"><span class="pts">4</span></td>
+    </tr><tr class=" ">
+      <td class="rk">10</td>
+      <td><div class="pname">Sean Smith</div></td>
       <td><div class="teamchips"><span class="chip ">🇯🇵 Japan</span> <span class="chip ">🇨🇭 Switzerland</span> <span class="chip ">🇸🇦 Saudi Arabia</span> <span class="chip ">🇪🇬 Egypt</span></div></td>
       <td class="num">5</td><td class="num">0</td>
       <td class="num">4/4</td>
       <td class="num"><span class="pts">4</span></td>
-    </tr><tr class="">
-      <td class="rk">5</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Nathan Parks</div></td>
-      <td><div class="teamchips"><span class="chip ">🇨🇿 Czechia</span> <span class="chip ">🇦🇺 Australia</span> <span class="chip ">🇲🇦 Morocco</span> <span class="chip ">🇺🇿 Uzbekistan</span></div></td>
-      <td class="num">4</td><td class="num">0</td>
-      <td class="num">4/4</td>
-      <td class="num"><span class="pts">4</span></td>
-    </tr><tr class="">
-      <td class="rk">6</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Charlotte Dickinson</div></td>
-      <td><div class="teamchips"><span class="chip ">🇿🇦 South Africa</span> <span class="chip ">🇳🇿 New Zealand</span> <span class="chip ">🇶🇦 Qatar</span> <span class="chip ">🇰🇷 Korea Republic</span></div></td>
-      <td class="num">3</td><td class="num">0</td>
-      <td class="num">4/4</td>
-      <td class="num"><span class="pts">4</span></td>
-    </tr><tr class="">
-      <td class="rk">7</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Adam Spry</div></td>
-      <td><div class="teamchips"><span class="chip ">🇮🇷 IR Iran</span> <span class="chip ">🇩🇪 Germany</span> <span class="chip ">🇳🇴 Norway</span> <span class="chip ">🇬🇭 Ghana</span></div></td>
-      <td class="num">7</td><td class="num">0</td>
-      <td class="num">4/4</td>
-      <td class="num"><span class="pts">3</span></td>
-    </tr><tr class="">
-      <td class="rk">8</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Dan Welsh</div></td>
-      <td><div class="teamchips"><span class="chip ">🇨🇩 Congo DR</span> <span class="chip ">🇫🇷 France <span class="star">★</span></span> <span class="chip ">🇵🇹 Portugal <span class="star">★</span></span> <span class="chip ">🇺🇸 United States</span></div></td>
+    </tr><tr class=" ">
+      <td class="rk">11</td>
+      <td><div class="pname">Laura Barker</div></td>
+      <td><div class="teamchips"><span class="chip ">🇦🇷 Argentina <span class="star">★</span></span> <span class="chip ">🇹🇷 Türkiye</span> <span class="chip ">🇵🇦 Panama</span> <span class="chip ">🇵🇾 Paraguay</span></div></td>
       <td class="num">4</td><td class="num">0</td>
       <td class="num">4/4</td>
       <td class="num"><span class="pts">3</span></td>
-    </tr><tr class="">
-      <td class="rk">9</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Chris Richards</div></td>
-      <td><div class="teamchips"><span class="chip ">🇮🇶 Iraq</span> <span class="chip ">🇩🇿 Algeria</span> <span class="chip ">🏴 Scotland</span> <span class="chip ">🏴 England <span class="star">★</span></span></div></td>
-      <td class="num">1</td><td class="num">0</td>
-      <td class="num">4/4</td>
-      <td class="num"><span class="pts">3</span></td>
-    </tr><tr class="">
-      <td class="rk">10</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Mark Spilsbury</div></td>
-      <td><div class="teamchips"><span class="chip ">🇨🇦 Canada</span> <span class="chip ">🇦🇹 Austria</span> <span class="chip ">🇨🇴 Colombia</span> <span class="chip ">🇧🇪 Belgium</span></div></td>
-      <td class="num">1</td><td class="num">0</td>
+    </tr><tr class=" ">
+      <td class="rk">12</td>
+      <td><div class="pname">Laura Ellis</div></td>
+      <td><div class="teamchips"><span class="chip ">🇧🇦 Bosnia and Herzegovina</span> <span class="chip ">🇭🇷 Croatia</span> <span class="chip ">🇹🇳 Tunisia</span> <span class="chip ">🇸🇳 Senegal</span></div></td>
+      <td class="num">5</td><td class="num">0</td>
       <td class="num">4/4</td>
       <td class="num"><span class="pts">1</span></td>
-    </tr><tr class="">
-      <td class="rk">11</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Laura Barker</div></td>
-      <td><div class="teamchips"><span class="chip ">🇦🇷 Argentina <span class="star">★</span></span> <span class="chip ">🇹🇷 Türkiye</span> <span class="chip ">🇵🇦 Panama</span> <span class="chip ">🇵🇾 Paraguay</span></div></td>
-      <td class="num">1</td><td class="num">0</td>
-      <td class="num">4/4</td>
-      <td class="num"><span class="pts">0</span></td>
-    </tr><tr class="">
-      <td class="rk">12</td>
-      <td><div style="font-family:var(--disp);font-weight:700">Laura Ellis</div></td>
-      <td><div class="teamchips"><span class="chip ">🇧🇦 Bosnia and Herzegovina</span> <span class="chip ">🇭🇷 Croatia</span> <span class="chip ">🇹🇳 Tunisia</span> <span class="chip ">🇸🇳 Senegal</span></div></td>
-      <td class="num">1</td><td class="num">0</td>
-      <td class="num">4/4</td>
-      <td class="num"><span class="pts">0</span></td>
     </tr></tbody></table></div>
     </div>
   </section>
@@ -315,13 +341,14 @@
   <!-- PEOPLE -->
   <section class="panel" id="panel-people">
     <div class="sec-h"><h2 style="font-family:var(--disp)">The players</h2></div>
-    <div class="grid g-auto" id="peopleGrid"><div class="card person">
-      <div class="ph"><div class="pname">Adam Spry</div><div class="pscore">3 pts</div></div>
+    <div class="grid g-auto" id="peopleGrid"><div class="card person ">
+      <div class="ph"><div class="pname">Adam Spry</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">10 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇮🇷</div>
         <div><div class="tn">IR Iran</div>
           <div class="tmeta">World Ranking #22</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇩🇪</div>
         <div><div class="tn">Germany</div>
@@ -331,15 +358,16 @@
         <div class="fl">🇳🇴</div>
         <div><div class="tn">Norway</div>
           <div class="tmeta">World Ranking #27</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇬🇭</div>
         <div><div class="tn">Ghana</div>
           <div class="tmeta">World Ranking #32</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Charlotte Dickinson</div><div class="pscore">4 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Charlotte Dickinson</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">5 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇿🇦</div>
         <div><div class="tn">South Africa</div>
@@ -349,7 +377,7 @@
         <div class="fl">🇳🇿</div>
         <div><div class="tn">New Zealand</div>
           <div class="tmeta">World Ranking #89</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇶🇦</div>
         <div><div class="tn">Qatar</div>
@@ -361,8 +389,9 @@
           <div class="tmeta">World Ranking #23</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Chris Richards</div><div class="pscore">3 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Chris Richards</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">6 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇮🇶</div>
         <div><div class="tn">Iraq</div>
@@ -382,33 +411,35 @@
         <div class="fl">🏴</div>
         <div><div class="tn">England <span class="star">★</span></div>
           <div class="tmeta">World Ranking #4</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Dan Welsh</div><div class="pscore">3 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Dan Welsh</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">8 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇨🇩</div>
         <div><div class="tn">Congo DR</div>
           <div class="tmeta">World Ranking #60</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇫🇷</div>
         <div><div class="tn">France <span class="star">★</span></div>
           <div class="tmeta">World Ranking #1</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇵🇹</div>
         <div><div class="tn">Portugal <span class="star">★</span></div>
           <div class="tmeta">World Ranking #5</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇺🇸</div>
         <div><div class="tn">United States</div>
           <div class="tmeta">World Ranking #16</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Elliott Holmes</div><div class="pscore">4 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Elliott Holmes</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">4 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇸🇪</div>
         <div><div class="tn">Sweden</div>
@@ -430,13 +461,14 @@
           <div class="tmeta">World Ranking #62</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Laura Ellis</div><div class="pscore">0 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Laura Ellis</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">1 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇧🇦</div>
         <div><div class="tn">Bosnia and Herzegovina</div>
           <div class="tmeta">World Ranking #74</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇭🇷</div>
         <div><div class="tn">Croatia</div>
@@ -453,13 +485,14 @@
           <div class="tmeta">World Ranking #15</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Laura Barker</div><div class="pscore">0 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Laura Barker</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">3 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇦🇷</div>
         <div><div class="tn">Argentina <span class="star">★</span></div>
           <div class="tmeta">World Ranking #3</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇹🇷</div>
         <div><div class="tn">Türkiye</div>
@@ -476,31 +509,33 @@
           <div class="tmeta">World Ranking #36</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Mark Spilsbury</div><div class="pscore">1 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Mark Spilsbury</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">8 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇨🇦</div>
         <div><div class="tn">Canada</div>
           <div class="tmeta">World Ranking #30</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇦🇹</div>
         <div><div class="tn">Austria</div>
           <div class="tmeta">World Ranking #21</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇨🇴</div>
         <div><div class="tn">Colombia</div>
           <div class="tmeta">World Ranking #14</div></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇧🇪</div>
         <div><div class="tn">Belgium</div>
           <div class="tmeta">World Ranking #9</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Nathan Parks</div><div class="pscore">4 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Nathan Parks</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">4 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇨🇿</div>
         <div><div class="tn">Czechia</div>
@@ -522,8 +557,9 @@
           <div class="tmeta">World Ranking #57</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Oliver Padgett-Blackburn</div><div class="pscore">5 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Oliver Padgett-Blackburn</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">5 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇭🇹</div>
         <div><div class="tn">Haiti</div>
@@ -545,8 +581,9 @@
           <div class="tmeta">World Ranking #2</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Richard Blyth</div><div class="pscore">5 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Richard Blyth</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">5 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇳🇱</div>
         <div><div class="tn">Netherlands</div>
@@ -568,8 +605,9 @@
           <div class="tmeta">World Ranking #71</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div></div>
-    </div><div class="card person">
-      <div class="ph"><div class="pname">Sean Smith</div><div class="pscore">4 pts</div></div>
+    </div><div class="card person ">
+      <div class="ph"><div class="pname">Sean Smith</div>
+        <div style="display:flex;align-items:center;gap:10px"><div class="pscore">4 pts</div></div></div>
       <div class="teams"><div class="trow ">
         <div class="fl">🇯🇵</div>
         <div><div class="tn">Japan</div>
@@ -610,13 +648,209 @@
       <td><input data-k="group" value="" style="width:42px"></td>
       <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
       <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
       <td><input type="number" data-k="gd" value="0"></td>
       <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
+      <td><input type="number" data-k="gf" value="3"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Argentina">
+      <td>🇦🇷 Argentina <span class="star">★</span></td>
+      <td class="owner-tag">#3</td>
+      <td class="owner-tag">Laura Barker</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="3"></td>
       <td><input type="number" data-k="ga" value="0"></td>
       <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="England">
+      <td>🏴 England <span class="star">★</span></td>
+      <td class="owner-tag">#4</td>
+      <td class="owner-tag">Chris Richards</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="4"></td>
+      <td><input type="number" data-k="ga" value="2"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Germany">
+      <td>🇩🇪 Germany</td>
+      <td class="owner-tag">#10</td>
+      <td class="owner-tag">Adam Spry</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="7"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Colombia">
+      <td>🇨🇴 Colombia</td>
+      <td class="owner-tag">#14</td>
+      <td class="owner-tag">Mark Spilsbury</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="3"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="United States">
+      <td>🇺🇸 United States</td>
+      <td class="owner-tag">#16</td>
+      <td class="owner-tag">Dan Welsh</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="4"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Mexico">
+      <td>🇲🇽 Mexico</td>
+      <td class="owner-tag">#17</td>
+      <td class="owner-tag">Oliver Padgett-Blackburn</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="2"></td>
+      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="red" value="1"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Austria">
+      <td>🇦🇹 Austria</td>
+      <td class="owner-tag">#21</td>
+      <td class="owner-tag">Mark Spilsbury</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="3"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Korea Republic">
+      <td>🇰🇷 Korea Republic</td>
+      <td class="owner-tag">#23</td>
+      <td class="owner-tag">Charlotte Dickinson</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="2"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Australia">
+      <td>🇦🇺 Australia</td>
+      <td class="owner-tag">#25</td>
+      <td class="owner-tag">Nathan Parks</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="2"></td>
+      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Norway">
+      <td>🇳🇴 Norway</td>
+      <td class="owner-tag">#27</td>
+      <td class="owner-tag">Adam Spry</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="4"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Sweden">
+      <td>🇸🇪 Sweden</td>
+      <td class="owner-tag">#31</td>
+      <td class="owner-tag">Elliott Holmes</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="5"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Ghana">
+      <td>🇬🇭 Ghana</td>
+      <td class="owner-tag">#32</td>
+      <td class="owner-tag">Adam Spry</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Scotland">
+      <td>🏴 Scotland</td>
+      <td class="owner-tag">#39</td>
+      <td class="owner-tag">Chris Richards</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
+    </tr><tr data-team="Côte d’Ivoire">
+      <td>🇨🇮 Côte d’Ivoire</td>
+      <td class="owner-tag">#43</td>
+      <td class="owner-tag">Richard Blyth</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="1"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">3</td>
     </tr><tr data-team="Spain">
       <td>🇪🇸 Spain <span class="star">★</span></td>
       <td class="owner-tag">#2</td>
@@ -631,34 +865,6 @@
       <td><input type="number" data-k="ga" value="0"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Argentina">
-      <td>🇦🇷 Argentina <span class="star">★</span></td>
-      <td class="owner-tag">#3</td>
-      <td class="owner-tag">Laura Barker</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="England">
-      <td>🏴 England <span class="star">★</span></td>
-      <td class="owner-tag">#4</td>
-      <td class="owner-tag">Chris Richards</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="Portugal">
       <td>🇵🇹 Portugal <span class="star">★</span></td>
       <td class="owner-tag">#5</td>
@@ -667,12 +873,12 @@
       <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
       <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
       <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
       <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
       <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
+      <td class="owner-tag" data-pts="">1</td>
     </tr><tr data-team="Brazil">
       <td>🇧🇷 Brazil</td>
       <td class="owner-tag">#6</td>
@@ -729,34 +935,6 @@
       <td><input type="number" data-k="ga" value="1"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Germany">
-      <td>🇩🇪 Germany</td>
-      <td class="owner-tag">#10</td>
-      <td class="owner-tag">Adam Spry</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="7"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Croatia">
-      <td>🇭🇷 Croatia</td>
-      <td class="owner-tag">#11</td>
-      <td class="owner-tag">Laura Ellis</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="Uruguay">
       <td>🇺🇾 Uruguay</td>
       <td class="owner-tag">#13</td>
@@ -771,62 +949,6 @@
       <td><input type="number" data-k="ga" value="1"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Colombia">
-      <td>🇨🇴 Colombia</td>
-      <td class="owner-tag">#14</td>
-      <td class="owner-tag">Mark Spilsbury</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Senegal">
-      <td>🇸🇳 Senegal</td>
-      <td class="owner-tag">#15</td>
-      <td class="owner-tag">Laura Ellis</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="United States">
-      <td>🇺🇸 United States</td>
-      <td class="owner-tag">#16</td>
-      <td class="owner-tag">Dan Welsh</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="4"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Mexico">
-      <td>🇲🇽 Mexico</td>
-      <td class="owner-tag">#17</td>
-      <td class="owner-tag">Oliver Padgett-Blackburn</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
     </tr><tr data-team="Switzerland">
       <td>🇨🇭 Switzerland</td>
       <td class="owner-tag">#18</td>
@@ -855,20 +977,6 @@
       <td><input type="number" data-k="ga" value="2"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Austria">
-      <td>🇦🇹 Austria</td>
-      <td class="owner-tag">#21</td>
-      <td class="owner-tag">Mark Spilsbury</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="IR Iran">
       <td>🇮🇷 IR Iran</td>
       <td class="owner-tag">#22</td>
@@ -877,26 +985,152 @@
       <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
       <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
       <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
       <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="gf" value="2"></td>
+      <td><input type="number" data-k="ga" value="2"></td>
       <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Korea Republic">
-      <td>🇰🇷 Korea Republic</td>
-      <td class="owner-tag">#23</td>
+      <td class="owner-tag" data-pts="">1</td>
+    </tr><tr data-team="Canada">
+      <td>🇨🇦 Canada</td>
+      <td class="owner-tag">#30</td>
+      <td class="owner-tag">Mark Spilsbury</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">1</td>
+    </tr><tr data-team="Egypt">
+      <td>🇪🇬 Egypt</td>
+      <td class="owner-tag">#33</td>
+      <td class="owner-tag">Sean Smith</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">1</td>
+    </tr><tr data-team="Qatar">
+      <td>🇶🇦 Qatar</td>
+      <td class="owner-tag">#42</td>
       <td class="owner-tag">Charlotte Dickinson</td>
       <td><input data-k="group" value="" style="width:42px"></td>
       <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
       <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
       <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
       <td><input type="number" data-k="ga" value="1"></td>
       <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
+      <td class="owner-tag" data-pts="">1</td>
+    </tr><tr data-team="Saudi Arabia">
+      <td>🇸🇦 Saudi Arabia</td>
+      <td class="owner-tag">#50</td>
+      <td class="owner-tag">Sean Smith</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">1</td>
+    </tr><tr data-team="Congo DR">
+      <td>🇨🇩 Congo DR</td>
+      <td class="owner-tag">#60</td>
+      <td class="owner-tag">Dan Welsh</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">1</td>
+    </tr><tr data-team="Cabo Verde">
+      <td>🇨🇻 Cabo Verde</td>
+      <td class="owner-tag">#71</td>
+      <td class="owner-tag">Richard Blyth</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="0"></td>
+      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">1</td>
+    </tr><tr data-team="Bosnia and Herzegovina">
+      <td>🇧🇦 Bosnia and Herzegovina</td>
+      <td class="owner-tag">#74</td>
+      <td class="owner-tag">Laura Ellis</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="1"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">1</td>
+    </tr><tr data-team="New Zealand">
+      <td>🇳🇿 New Zealand</td>
+      <td class="owner-tag">#89</td>
+      <td class="owner-tag">Charlotte Dickinson</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="1"></td>
+      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gf" value="2"></td>
+      <td><input type="number" data-k="ga" value="2"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">1</td>
+    </tr><tr data-team="Croatia">
+      <td>🇭🇷 Croatia</td>
+      <td class="owner-tag">#11</td>
+      <td class="owner-tag">Laura Ellis</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="1"></td>
+      <td><input type="number" data-k="gf" value="2"></td>
+      <td><input type="number" data-k="ga" value="4"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">0</td>
+    </tr><tr data-team="Senegal">
+      <td>🇸🇳 Senegal</td>
+      <td class="owner-tag">#15</td>
+      <td class="owner-tag">Laura Ellis</td>
+      <td><input data-k="group" value="" style="width:42px"></td>
+      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
+      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
+      <td><input type="number" data-k="gw" value="0"></td>
+      <td><input type="number" data-k="gd" value="0"></td>
+      <td><input type="number" data-k="gl" value="1"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="3"></td>
+      <td><input type="number" data-k="red" value="0"></td>
+      <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="Ecuador">
       <td>🇪🇨 Ecuador</td>
       <td class="owner-tag">#24</td>
@@ -909,34 +1143,6 @@
       <td><input type="number" data-k="gl" value="1"></td>
       <td><input type="number" data-k="gf" value="0"></td>
       <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Australia">
-      <td>🇦🇺 Australia</td>
-      <td class="owner-tag">#25</td>
-      <td class="owner-tag">Nathan Parks</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Norway">
-      <td>🇳🇴 Norway</td>
-      <td class="owner-tag">#27</td>
-      <td class="owner-tag">Adam Spry</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="Türkiye">
@@ -962,67 +1168,11 @@
       <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
       <td><input type="number" data-k="gw" value="0"></td>
       <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gl" value="1"></td>
       <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Canada">
-      <td>🇨🇦 Canada</td>
-      <td class="owner-tag">#30</td>
-      <td class="owner-tag">Mark Spilsbury</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Sweden">
-      <td>🇸🇪 Sweden</td>
-      <td class="owner-tag">#31</td>
-      <td class="owner-tag">Elliott Holmes</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="5"></td>
       <td><input type="number" data-k="ga" value="1"></td>
       <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Ghana">
-      <td>🇬🇭 Ghana</td>
-      <td class="owner-tag">#32</td>
-      <td class="owner-tag">Adam Spry</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Egypt">
-      <td>🇪🇬 Egypt</td>
-      <td class="owner-tag">#33</td>
-      <td class="owner-tag">Sean Smith</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
     </tr><tr data-team="Paraguay">
       <td>🇵🇾 Paraguay</td>
       <td class="owner-tag">#36</td>
@@ -1046,25 +1196,11 @@
       <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
       <td><input type="number" data-k="gw" value="0"></td>
       <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
+      <td><input type="number" data-k="gl" value="1"></td>
       <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="ga" value="3"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Scotland">
-      <td>🏴 Scotland</td>
-      <td class="owner-tag">#39</td>
-      <td class="owner-tag">Chris Richards</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
     </tr><tr data-team="Czechia">
       <td>🇨🇿 Czechia</td>
       <td class="owner-tag">#40</td>
@@ -1079,34 +1215,6 @@
       <td><input type="number" data-k="ga" value="2"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Qatar">
-      <td>🇶🇦 Qatar</td>
-      <td class="owner-tag">#42</td>
-      <td class="owner-tag">Charlotte Dickinson</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Côte d’Ivoire">
-      <td>🇨🇮 Côte d’Ivoire</td>
-      <td class="owner-tag">#43</td>
-      <td class="owner-tag">Richard Blyth</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
     </tr><tr data-team="Tunisia">
       <td>🇹🇳 Tunisia</td>
       <td class="owner-tag">#44</td>
@@ -1121,20 +1229,6 @@
       <td><input type="number" data-k="ga" value="5"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Saudi Arabia">
-      <td>🇸🇦 Saudi Arabia</td>
-      <td class="owner-tag">#50</td>
-      <td class="owner-tag">Sean Smith</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
     </tr><tr data-team="South Africa">
       <td>🇿🇦 South Africa</td>
       <td class="owner-tag">#56</td>
@@ -1147,7 +1241,7 @@
       <td><input type="number" data-k="gl" value="1"></td>
       <td><input type="number" data-k="gf" value="0"></td>
       <td><input type="number" data-k="ga" value="2"></td>
-      <td><input type="number" data-k="red" value="0"></td>
+      <td><input type="number" data-k="red" value="2"></td>
       <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="Uzbekistan">
       <td>🇺🇿 Uzbekistan</td>
@@ -1158,9 +1252,9 @@
       <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
       <td><input type="number" data-k="gw" value="0"></td>
       <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="gl" value="1"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="3"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="Iraq">
@@ -1172,23 +1266,9 @@
       <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
       <td><input type="number" data-k="gw" value="0"></td>
       <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Congo DR">
-      <td>🇨🇩 Congo DR</td>
-      <td class="owner-tag">#60</td>
-      <td class="owner-tag">Dan Welsh</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="gl" value="1"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="4"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="Jordan">
@@ -1200,37 +1280,9 @@
       <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
       <td><input type="number" data-k="gw" value="0"></td>
       <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Cabo Verde">
-      <td>🇨🇻 Cabo Verde</td>
-      <td class="owner-tag">#71</td>
-      <td class="owner-tag">Richard Blyth</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Bosnia and Herzegovina">
-      <td>🇧🇦 Bosnia and Herzegovina</td>
-      <td class="owner-tag">#74</td>
-      <td class="owner-tag">Laura Ellis</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
+      <td><input type="number" data-k="gl" value="1"></td>
+      <td><input type="number" data-k="gf" value="1"></td>
+      <td><input type="number" data-k="ga" value="3"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="Haiti">
@@ -1245,20 +1297,6 @@
       <td><input type="number" data-k="gl" value="1"></td>
       <td><input type="number" data-k="gf" value="0"></td>
       <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="New Zealand">
-      <td>🇳🇿 New Zealand</td>
-      <td class="owner-tag">#89</td>
-      <td class="owner-tag">Charlotte Dickinson</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
       <td><input type="number" data-k="red" value="0"></td>
       <td class="owner-tag" data-pts="">0</td>
     </tr><tr data-team="Curaçao">
@@ -1282,87 +1320,224 @@
   <!-- FIXTURES -->
   <section class="panel" id="panel-fixtures">
     <div class="grid" style="gap:16px">
-      <div class="card"><div class="pad sec-h"><h2>Now &amp; next</h2><span class="hint">Player-vs-player clashes highlighted</span></div><div id="fixNow"><div class="fix clash">
-    <div class="when">Thu 18 Jun 16:00<br>
-      <span class="clashtag">Nathan Parks v Charlotte Dickinson</span></div>
-    <div class="side">🇨🇿 Czech Republic</div>
-    <div class="vs">v</div>
-    <div class="side right">South Africa 🇿🇦</div>
-  </div></div></div>
-      <div class="card"><div class="pad sec-h"><h2>Recent results</h2></div><div id="fixPast"><div class="fix clash">
-    <div class="when">Mon 15 Jun 19:00<br>
-      <span class="clashtag">Mark Spilsbury v Sean Smith</span></div>
-    <div class="side">🇧🇪 Belgium</div>
-    <div class="sc">1–1</div>
-    <div class="side right">Egypt 🇪🇬</div>
-  </div><div class="fix clash">
-    <div class="when">Mon 15 Jun 22:00<br>
-      <span class="clashtag">Sean Smith v Elliott Holmes</span></div>
-    <div class="side">🇸🇦 Saudi Arabia</div>
-    <div class="sc">1–1</div>
-    <div class="side right">Uruguay 🇺🇾</div>
-  </div><div class="fix clash">
-    <div class="when">Mon 15 Jun 16:00<br>
-      <span class="clashtag">Oliver Padgett-Blackburn v Richard Blyth</span></div>
-    <div class="side">🇪🇸 Spain</div>
-    <div class="sc">0–0</div>
-    <div class="side right">Cape Verde 🇨🇻</div>
-  </div><div class="fix clash">
-    <div class="when">Mon 15 Jun 02:00<br>
-      <span class="clashtag">Elliott Holmes v Laura Ellis</span></div>
-    <div class="side">🇸🇪 Sweden</div>
-    <div class="sc">5–1</div>
-    <div class="side right">Tunisia 🇹🇳</div>
-  </div><div class="fix clash">
-    <div class="when">Sun 14 Jun 01:00<br>
-      <span class="clashtag">Oliver Padgett-Blackburn v Chris Richards</span></div>
-    <div class="side">🇭🇹 Haiti</div>
-    <div class="sc">0–1</div>
-    <div class="side right">Scotland 🏴</div>
-  </div><div class="fix clash">
-    <div class="when">Sun 14 Jun 17:00<br>
-      <span class="clashtag">Adam Spry v Richard Blyth</span></div>
-    <div class="side">🇩🇪 Germany</div>
-    <div class="sc">7–1</div>
-    <div class="side right">Curaçao 🇨🇼</div>
-  </div><div class="fix clash">
-    <div class="when">Sun 14 Jun 23:00<br>
-      <span class="clashtag">Richard Blyth v Elliott Holmes</span></div>
-    <div class="side">🇨🇮 Ivory Coast</div>
-    <div class="sc">1–0</div>
-    <div class="side right">Ecuador 🇪🇨</div>
-  </div><div class="fix clash">
-    <div class="when">Sun 14 Jun 20:00<br>
-      <span class="clashtag">Richard Blyth v Sean Smith</span></div>
-    <div class="side">🇳🇱 Netherlands</div>
-    <div class="sc">2–2</div>
-    <div class="side right">Japan 🇯🇵</div>
-  </div><div class="fix clash">
-    <div class="when">Sun 14 Jun 04:00<br>
-      <span class="clashtag">Nathan Parks v Laura Barker</span></div>
-    <div class="side">🇦🇺 Australia</div>
-    <div class="sc">2–0</div>
-    <div class="side right">Turkey 🇹🇷</div>
-  </div><div class="fix clash">
-    <div class="when">Sat 13 Jun 01:00<br>
-      <span class="clashtag">Dan Welsh v Laura Barker</span></div>
-    <div class="side">🇺🇸 USA</div>
-    <div class="sc">4–1</div>
-    <div class="side right">Paraguay 🇵🇾</div>
-  </div><div class="fix clash">
-    <div class="when">Sat 13 Jun 22:00<br>
-      <span class="clashtag">Oliver Padgett-Blackburn v Nathan Parks</span></div>
-    <div class="side">🇧🇷 Brazil</div>
-    <div class="sc">1–1</div>
-    <div class="side right">Morocco 🇲🇦</div>
-  </div><div class="fix clash">
-    <div class="when">Sat 13 Jun 19:00<br>
-      <span class="clashtag">Charlotte Dickinson v Sean Smith</span></div>
-    <div class="side">🇶🇦 Qatar</div>
-    <div class="sc">1–1</div>
-    <div class="side right">Switzerland 🇨🇭</div>
-  </div></div></div>
+      <div class="card"><div class="pad"><div class="sec-h"><h2>Today's fixtures</h2><span class="hint">Player-vs-player clashes highlighted</span></div></div><div id="fixNow"><div class="fix clash">
+    <div class="when">Thu 18 Jun<br>00:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Ghana <span class="fl">🇬🇭</span></div>
+        <div class="towner ">Adam Spry</div>
+      </div>
+      <div class="score ">1–0</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇵🇦</span> Panama</div>
+        <div class="towner ">Laura Barker</div>
+      </div>
     </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Thu 18 Jun<br>03:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Uzbekistan <span class="fl">🇺🇿</span></div>
+        <div class="towner ">Nathan Parks</div>
+      </div>
+      <div class="score ">1–3</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇨🇴</span> Colombia</div>
+        <div class="towner ">Mark Spilsbury</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Thu 18 Jun<br>17:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Czechia <span class="fl">🇨🇿</span></div>
+        <div class="towner ">Nathan Parks</div>
+      </div>
+      <div class="score pending">v</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇿🇦</span> South Africa</div>
+        <div class="towner ">Charlotte Dickinson</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Thu 18 Jun<br>20:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Switzerland <span class="fl">🇨🇭</span></div>
+        <div class="towner ">Sean Smith</div>
+      </div>
+      <div class="score pending">v</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇧🇦</span> Bosnia-Herzegovina</div>
+        <div class="towner ">Laura Ellis</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Thu 18 Jun<br>23:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Canada <span class="fl">🇨🇦</span></div>
+        <div class="towner ">Mark Spilsbury</div>
+      </div>
+      <div class="score pending">v</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇶🇦</span> Qatar</div>
+        <div class="towner ">Charlotte Dickinson</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div></div></div>
+      <div class="card"><div class="pad"><div class="sec-h"><h2>Recent results</h2><span class="hint">Last games played</span></div></div><div id="fixPast"><div class="fix clash">
+    <div class="when">Thu 18 Jun<br>03:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Uzbekistan <span class="fl">🇺🇿</span></div>
+        <div class="towner ">Nathan Parks</div>
+      </div>
+      <div class="score ">1–3</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇨🇴</span> Colombia</div>
+        <div class="towner ">Mark Spilsbury</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Thu 18 Jun<br>00:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Ghana <span class="fl">🇬🇭</span></div>
+        <div class="towner ">Adam Spry</div>
+      </div>
+      <div class="score ">1–0</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇵🇦</span> Panama</div>
+        <div class="towner ">Laura Barker</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Wed 17 Jun<br>21:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">England <span class="fl">🏴</span></div>
+        <div class="towner ">Chris Richards</div>
+      </div>
+      <div class="score ">4–2</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇭🇷</span> Croatia</div>
+        <div class="towner ">Laura Ellis</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix ">
+    <div class="when">Wed 17 Jun<br>18:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Portugal <span class="fl">🇵🇹</span></div>
+        <div class="towner ">Dan Welsh</div>
+      </div>
+      <div class="score ">1–1</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇨🇩</span> Congo DR</div>
+        <div class="towner ">Dan Welsh</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Wed 17 Jun<br>05:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Austria <span class="fl">🇦🇹</span></div>
+        <div class="towner ">Mark Spilsbury</div>
+      </div>
+      <div class="score ">3–1</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇯🇴</span> Jordan</div>
+        <div class="towner ">Elliott Holmes</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Wed 17 Jun<br>02:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Argentina <span class="fl">🇦🇷</span></div>
+        <div class="towner ">Laura Barker</div>
+      </div>
+      <div class="score ">3–0</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇩🇿</span> Algeria</div>
+        <div class="towner ">Chris Richards</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Tue 16 Jun<br>23:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Iraq <span class="fl">🇮🇶</span></div>
+        <div class="towner ">Chris Richards</div>
+      </div>
+      <div class="score ">1–4</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇳🇴</span> Norway</div>
+        <div class="towner ">Adam Spry</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Tue 16 Jun<br>20:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">France <span class="fl">🇫🇷</span></div>
+        <div class="towner ">Dan Welsh</div>
+      </div>
+      <div class="score ">3–1</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇸🇳</span> Senegal</div>
+        <div class="towner ">Laura Ellis</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Tue 16 Jun<br>02:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Iran <span class="fl">🇮🇷</span></div>
+        <div class="towner ">Adam Spry</div>
+      </div>
+      <div class="score ">2–2</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇳🇿</span> New Zealand</div>
+        <div class="towner ">Charlotte Dickinson</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="fix clash">
+    <div class="when">Mon 15 Jun<br>23:00</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">Saudi Arabia <span class="fl">🇸🇦</span></div>
+        <div class="towner ">Sean Smith</div>
+      </div>
+      <div class="score ">1–1</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">🇺🇾</span> Uruguay</div>
+        <div class="towner ">Elliott Holmes</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+  </div><div class="loadmore" id="pastMore">Scroll for more — 14 earlier games</div></div></div>
+    </div>
+  </section>
+
+  <!-- CHART -->
+  <section class="panel" id="panel-chart">
+    <div id="chartBody"><div class="chart-section"><h2>Knockout bracket</h2><div class="empty"><p>The bracket fills in here once the group stage is done and the Round of 32 kicks off.</p></div></div></div>
   </section>
 
   <!-- SETUP -->
@@ -1370,98 +1545,14 @@
     <div class="grid g-2" style="align-items:start">
 
       <div class="card pad">
-        <div class="sec-h"><h2>Who drew what</h2></div>
-        <p class="note">Paste the draw app's results — CSV, the copied clipboard text, or one player per line. Then preview and apply.</p>
-        <label class="field"><span>Allocation paste</span>
-          <textarea class="txt" id="allocInput" placeholder="Nathan Parks: Argentina, France, Ghana, Qatar
-Laura Ellis, Spain, Brazil, Japan, Haiti
-...or CSV: Participant,Team1,Team2,Team3,Team4"></textarea>
-        </label>
-        <div class="row">
-          <button class="btn" id="allocPreview">Preview</button>
-          <button class="btn primary" id="allocApply" disabled="">Apply allocation</button>
-        </div>
-        <div id="allocReport" class="note" style="margin-top:10px"></div>
-        <details class="help"><summary>Accepted formats</summary>
-          <div>
-            • <b>Name: t1, t2, t3, t4</b> per line<br>
-            • <b>CSV wide</b> — header row then <code>Participant,Team1..Team4</code><br>
-            • <b>CSV long</b> — <code>Participant,Team</code> rows, grouped automatically<br>
-            Team names are matched loosely (e.g. "South Korea" → Korea Republic, "Turkey" → Türkiye).
-          </div>
-        </details>
-      </div>
-
-      <div class="card pad">
-        <div class="sec-h"><h2>Live data source</h2><span class="hint">Set once, then it runs itself</span></div>
-        <p class="note">Once this points at the World Cup and auto-refresh is on, the dashboard updates on its own — no clicking. Best results when the file is <b>hosted</b> (e.g. GitHub Pages); from a local file the browser may block the connection.</p>
-
-        <label class="field"><span>API key</span><input class="txt" id="setKey" placeholder="3"></label>
-
-        <div class="row">
-          <button class="btn primary" id="findLeague">① Find the World Cup</button>
-          <button class="btn" id="testConn">② Test connection</button>
-        </div>
-        <div id="leagueResults" style="margin-top:10px"><span class="warn">No "World Cup" league returned. Try Test connection with the ID you have, or enter results manually.</span></div>
-
-        <div class="row" style="margin-top:6px">
-          <label class="field"><span>League ID</span><input class="txt" id="setLeague" placeholder="4429"></label>
-          <label class="field"><span>Season</span><input class="txt" id="setSeason" placeholder="2026"></label>
-        </div>
-
-        <div class="row" style="align-items:flex-end">
-          <label class="field" style="flex:0 0 auto;display:flex;align-items:center;gap:8px;margin:0 0 12px"><input type="checkbox" id="setAuto" style="width:auto"><span style="margin:0">Auto-refresh</span></label>
-          <label class="field" style="flex:0 0 130px"><span>Every</span>
-            <select class="txt" id="setInterval">
-              <option value="60">60 seconds</option>
-              <option value="90">90 seconds</option>
-              <option value="180">3 minutes</option>
-              <option value="600">10 minutes</option>
-            </select>
-          </label>
-          <button class="btn" id="saveSource" style="flex:0 0 auto;margin-bottom:12px">Save &amp; start</button>
-        </div>
-        <div class="note" id="sourceNote" style="color: var(--good);">✓ Connected — <b>15</b> fixtures, <b>15</b> with results. e.g. Mexico v South Africa. Tick Auto-refresh and Save.</div>
-
-        <details class="help"><summary>How "self-managed" actually works</summary>
-          <div>
-            <b>1.</b> Click <b>Find the World Cup</b> — it lists matching leagues from TheSportsDB; pick the 2026 one and the ID fills itself in.<br>
-            <b>2.</b> Click <b>Test connection</b> — it reports how many fixtures/results it can see, so you know in seconds whether live data exists for that league/season.<br>
-            <b>3.</b> Tick <b>Auto-refresh</b>, Save — from then on it polls and updates with no input from you.<br><br>
-            If the test finds nothing, the free tier doesn't have WC2026 under that league yet — the Teams tab remains a full manual fallback, and your edits are never overwritten. For reliable live data, host the file rather than opening it locally.
-          </div>
-        </details>
-      </div>
-
-      <div class="card pad">
-        <div class="sec-h"><h2>Scoring</h2><span class="hint">Sum across each player's 4 teams</span></div>
-        <p class="note">Group games score per result. Knockout points are awarded for the <b>furthest stage a team reaches</b> (not added per round).</p>
-        <div class="scoregrid" id="scoreGrid">
-    <div class="scorecell"><span>Group win</span>
-      <input type="number" data-sk="groupWin" value="3"></div>
-    <div class="scorecell"><span>Group draw</span>
-      <input type="number" data-sk="groupDraw" value="1"></div>
-    <div class="scorecell"><span>Reach R32</span>
-      <input type="number" data-sk="r32" value="4"></div>
-    <div class="scorecell"><span>Reach R16</span>
-      <input type="number" data-sk="r16" value="6"></div>
-    <div class="scorecell"><span>Reach QF</span>
-      <input type="number" data-sk="qf" value="9"></div>
-    <div class="scorecell"><span>Reach SF</span>
-      <input type="number" data-sk="sf" value="12"></div>
-    <div class="scorecell"><span>Reach Final</span>
-      <input type="number" data-sk="final" value="16"></div>
-    <div class="scorecell"><span>Champions</span>
-      <input type="number" data-sk="winner" value="25"></div></div>
-        <div class="row" style="margin-top:12px">
-          <button class="btn primary" id="saveScore">Save scoring</button>
-          <button class="btn ghost" id="resetScore">Restore defaults</button>
-        </div>
+        <div class="sec-h"><h2>How it updates</h2><span class="hint">No setup needed</span></div>
+        <p class="note">Scores, fixtures, stage progress and red cards sync automatically from ESPN's live World Cup feed. The page refreshes on its own every couple of minutes — or hit <b>Sync</b> in the header any time. Standings, goals, knockouts and reds are all worked out for you.</p>
+        <p class="note" style="margin-top:10px">The Teams tab shows the detail and lets you nudge anything by hand if needed (handy for the odd edge case between syncs).</p>
       </div>
 
       <div class="card pad">
         <div class="sec-h"><h2>Data</h2></div>
-        <p class="note">Everything lives in this browser (localStorage). Export a backup or wipe and start over.</p>
+        <p class="note">Everything lives in this browser (localStorage). Export a backup, or reset to reload the draw and clear results.</p>
         <div class="row">
           <button class="btn" id="exportJson">Export backup</button>
           <button class="btn" id="importJsonBtn">Import backup</button>
@@ -1476,7 +1567,7 @@ Laura Ellis, Spain, Brazil, Japan, Haiti
   </section>
 </div>
 
-<div class="toast" id="toast">Synced — 16 fixtures, 28 team updates</div>
+<div class="toast" id="toast">Synced — 28 matches</div>
 
 <script>
 "use strict";
@@ -1522,7 +1613,7 @@ const SCORE_LABELS = {
   r32:"Reach R32", r16:"Reach R16", qf:"Reach QF", sf:"Reach SF", final:"Reach Final", winner:"Champions"
 };
 
-const DEFAULT_SETTINGS = { apiBase:"https://www.thesportsdb.com/api/v1/json/", apiKey:"3", leagueId:"4429", season:"2026", auto:false, intervalSec:90 };
+const DEFAULT_SETTINGS = { apiBase:"https://www.thesportsdb.com/api/v1/json/", apiKey:"123", leagueId:"4429", season:"2026", auto:false, intervalSec:90 };
 
 /* Map common API / spelling variants onto our canonical names */
 const ALIASES = {
@@ -1572,6 +1663,8 @@ function freshState(){
     allocation:cloneAlloc(), // owner -> [teamName,...]
     teams,                  // name -> team object
     fixtures:[],            // {id,date,time,home,away,hs,as,status,round}
+    matchCache:{},          // eventId -> cached match (incl. red cards)
+    dayDone:{},             // yyyymmdd -> true once all that day's matches are final
     scoring:{...DEFAULT_SCORING},
     settings:{...DEFAULT_SETTINGS},
     lastSync:null
@@ -1597,6 +1690,8 @@ function load(){
     const owned = new Set(Object.values(s.allocation).flat());
     Object.keys(s.teams).forEach(n=>{ if(!refNames.has(n) && !owned.has(n)) delete s.teams[n]; });
     s.fixtures = s.fixtures || [];
+    s.matchCache = s.matchCache || {};
+    s.dayDone = s.dayDone || {};
     s.scoring = Object.assign({}, DEFAULT_SCORING, s.scoring||{});
     s.settings = Object.assign({}, DEFAULT_SETTINGS, s.settings||{});
     s.lastSync = s.lastSync || null;
@@ -1616,21 +1711,38 @@ const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const isTopRated = t => Number(t.rank) <= 5;
+const STOP_WORDS = new Set(["and","the","of","ir","dr","rep","republic","fr"]);
+const normName = x => String(x||"").toLowerCase().normalize("NFD")
+  .replace(/[\u0300-\u036f]/g,"")        // strip accents
+  .replace(/&/g," and ")                 // & -> and
+  .replace(/[^a-z]+/g," ").trim().replace(/\s+/g," ");  // punctuation -> space
+
 function canon(name){
   if(!name) return null;
-  let n = String(name).trim();
-  if(state.teams[n]) return n;                       // exact
+  const n = String(name).trim();
+  if(state.teams[n]) return n;                                  // exact
   const low = n.toLowerCase().replace(/\s+/g," ").trim();
   if(ALIASES[low] && state.teams[ALIASES[low]]) return ALIASES[low];
-  // case-insensitive exact
-  const hit = Object.keys(state.teams).find(k=>k.toLowerCase()===low);
-  if(hit) return hit;
-  // loose: strip accents/punctuation
-  const strip = x => x.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z ]/g,"").trim();
-  const sn = strip(n);
-  if(ALIASES[sn] && state.teams[ALIASES[sn]]) return ALIASES[sn];
-  const loose = Object.keys(state.teams).find(k=>strip(k)===sn);
-  return loose || null;
+  const ciHit = Object.keys(state.teams).find(k=>k.toLowerCase()===low);
+  if(ciHit) return ciHit;
+
+  const nn = normName(n);
+  if(ALIASES[nn] && state.teams[ALIASES[nn]]) return ALIASES[nn];
+  // normalised exact
+  const names = Object.keys(state.teams);
+  const normExact = names.find(k=>normName(k)===nn);
+  if(normExact) return normExact;
+  // one team's normalised name contains the input (or vice versa) — unique only
+  const contains = names.filter(k=>{ const kn=normName(k); return kn.includes(nn) || nn.includes(kn); });
+  if(contains.length===1) return contains[0];
+  // significant-word overlap — unique only (handles "Bosnia", "Korea", abbreviations)
+  const inWords = nn.split(" ").filter(w=>w.length>2 && !STOP_WORDS.has(w));
+  const byWord = names.filter(k=>{
+    const kw = normName(k).split(" ").filter(w=>w.length>2 && !STOP_WORDS.has(w));
+    return inWords.some(w=>kw.includes(w));
+  });
+  if(byWord.length===1) return byWord[0];
+  return null;
 }
 function ownerOf(teamName){
   for(const p in state.allocation){ if((state.allocation[p]||[]).includes(teamName)) return p; }
@@ -1674,7 +1786,7 @@ function toast(msg){
 /* ============================================================
    RENDER
    ============================================================ */
-function renderAll(){ renderStandings(); renderPeople(); renderTeams(); renderFixtures(); renderSyncStatus(); }
+function renderAll(){ renderStandings(); renderPeople(); renderTeams(); renderFixtures(); renderChart(); renderSyncStatus(); }
 
 function teamChip(t){
   const star = isTopRated(t)?' <span class="star">★</span>':'';
@@ -1702,7 +1814,7 @@ function renderStandings(){
 
   const card=(cls,lab,who,meta)=>`<div class="prize ${cls}"><div class="lab">${lab}</div><div class="who">${who}</div><div class="meta">${meta}</div></div>`;
   strip.innerHTML =
-    card("gold","Leading player", esc(leader.name), `${leader.pts} pts`) +
+    card("lead-prize","Leading player", esc(leader.name), `${leader.pts} pts`) +
     card(championTeam?"gold":"","Champions", championTeam?`${championTeam.flag} ${esc(ownerOf(championTeam.name)||"—")}`:"Up for grabs", championTeam?esc(championTeam.name):"Awaiting the final") +
     card("","Most goals", goalsLead&&goalsLead.gf? esc(goalsLead.name):"—", `${goalsLead?goalsLead.gf:0} scored`) +
     card("","Most red cards", redsLead&&redsLead.red? esc(redsLead.name):"—", `${redsLead?redsLead.red:0} reds`);
@@ -1713,9 +1825,10 @@ function renderStandings(){
     </tr></thead><tbody>`;
   rows.forEach((r,i)=>{
     const teams = r.teams.length? r.teams.map(teamChip).join(" ") : '<span class="note">no teams</span>';
-    body += `<tr class="${i===0?'me-top':''}">
+    const knocked = r.teams.length>0 && r.alive===0;
+    body += `<tr class="${i===0?'leader':''} ${knocked?'knocked':''}">
       <td class="rk">${i+1}</td>
-      <td><div style="font-family:var(--disp);font-weight:700">${esc(r.name)}</div></td>
+      <td><div class="pname">${esc(r.name)}</div></td>
       <td><div class="teamchips">${teams}</div></td>
       <td class="num">${r.gf}</td><td class="num">${r.red}</td>
       <td class="num">${r.alive}/${r.teams.length}</td>
@@ -1745,15 +1858,20 @@ function renderPeople(){
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px">${badge}<span class="tpts">${teamPoints(t)}p</span></div>
       </div>`;
     }).join("");
-    return `<div class="card person">
-      <div class="ph"><div class="pname">${esc(r.name)}</div><div class="pscore">${r.pts} pts</div></div>
+    const knocked = r.teams.length>0 && r.alive===0;
+    return `<div class="card person ${knocked?'knocked':''}">
+      <div class="ph"><div class="pname">${esc(r.name)}</div>
+        <div style="display:flex;align-items:center;gap:10px">${knocked?'<span class="knock-ribbon">Knocked out</span>':''}<div class="pscore">${r.pts} pts</div></div></div>
       <div class="teams">${teams || '<div class="trow"><span class="note">No teams allocated</span></div>'}</div>
     </div>`;
   }).join("");
 }
 
 function renderTeams(){
-  const names = Object.keys(state.teams).sort((a,b)=>state.teams[a].rank-state.teams[b].rank);
+  const names = Object.keys(state.teams).sort((a,b)=>{
+    const d = teamPoints(state.teams[b]) - teamPoints(state.teams[a]);
+    return d !== 0 ? d : state.teams[a].rank - state.teams[b].rank;
+  });
   const head = `<div class="scroll"><table class="teamgrid"><thead><tr>
     <th>Team</th><th>Rank</th><th>Owner</th><th>Group</th><th>Stage</th><th>Out?</th>
     <th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>🟥</th><th>Pts</th></tr></thead><tbody>`;
@@ -1795,33 +1913,157 @@ function renderTeams(){
   });
 }
 
+let pastAll=[], pastShown=0;
+const PAST_BATCH=10;
+
 function renderFixtures(){
   const now=$("#fixNow"), past=$("#fixPast");
   if(!state.fixtures.length){
-    now.innerHTML = `<div class="empty"><h3>No fixtures yet</h3><p>Hit “Sync results” to pull the schedule, or they'll appear once your data source is wired up.</p></div>`;
-    past.innerHTML = "";
+    now.innerHTML = `<div class="empty"><h3>Nothing loaded yet</h3><p>Hit Sync in the header to pull the latest from ESPN — fixtures and results appear here once a match is on.</p></div>`;
+    past.innerHTML = ""; pastAll=[]; pastShown=0;
     return;
   }
   const f=[...state.fixtures];
-  const upcoming = f.filter(x=>x.status!=="finished").sort((a,b)=>(a.date||"").localeCompare(b.date||"")).slice(0,12);
-  const recent = f.filter(x=>x.status==="finished").sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,12);
-  now.innerHTML = upcoming.length? upcoming.map(fixRow).join("") : `<div class="empty"><p>No upcoming fixtures.</p></div>`;
-  past.innerHTML = recent.length? recent.map(fixRow).join("") : `<div class="empty"><p>No results in yet.</p></div>`;
+  const t=new Date();
+  const today=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,"0")}-${String(t.getDate()).padStart(2,"0")}`;
+  const todays = f.filter(x=>(x.date||"").slice(0,10)===today)
+                  .sort((a,b)=>(a.time||"").localeCompare(b.time||""));
+  now.innerHTML = todays.length? todays.map(fixRow).join("") : `<div class="empty"><p>No matches scheduled today.</p></div>`;
+
+  // recent results: ALL finished, newest first, lazy-loaded in batches
+  pastAll = f.filter(x=>x.status==="finished")
+             .sort((a,b)=> (b.date||"").localeCompare(a.date||"") || (b.time||"").localeCompare(a.time||""));
+  pastShown=0;
+  past.innerHTML="";
+  if(!pastAll.length){ past.innerHTML=`<div class="empty"><p>No results in yet.</p></div>`; return; }
+  appendPast();
 }
+function appendPast(){
+  const past=$("#fixPast");
+  const more=$("#pastMore"); if(more) more.remove();
+  const next=pastAll.slice(pastShown, pastShown+PAST_BATCH);
+  past.insertAdjacentHTML("beforeend", next.map(fixRow).join(""));
+  pastShown += next.length;
+  if(pastShown < pastAll.length){
+    past.insertAdjacentHTML("beforeend", `<div class="loadmore" id="pastMore">Scroll for more — ${pastAll.length-pastShown} earlier ${pastAll.length-pastShown===1?'game':'games'}</div>`);
+  }
+}
+
 function fixRow(x){
-  const oh=ownerOf(canon(x.home)||x.home), oa=ownerOf(canon(x.away)||x.away);
+  const hc=canon(x.home), ac=canon(x.away);
+  const oh=ownerOf(hc), oa=ownerOf(ac);
   const clash = oh && oa && oh!==oa;
   const live = x.status==="live";
-  const score = (x.status==="finished"||live) ? `${x.hs??0}–${x.as??0}` : "";
-  const th=state.teams[canon(x.home)]||{flag:""}, ta=state.teams[canon(x.away)]||{flag:""};
+  const done = x.status==="finished";
+  const hasScore = done || live;
+  const th=state.teams[hc]||{flag:""}, ta=state.teams[ac]||{flag:""};
+  const score = hasScore ? `${x.hs??0}–${x.as??0}` : "v";
+  const whenTop = live ? `<span class="livetag">● Live</span>` : esc(fmtDate(x.date));
+  const whenBot = (!live && x.time) ? x.time : (x.round ? esc(x.round) : "");
   return `<div class="fix ${clash?'clash':''}">
-    <div class="when">${live?'<span class="livetag">● Live</span>':fmtDate(x.date)+(x.time?' '+x.time:'')}<br>
-      ${clash?`<span class="clashtag">${esc(oh)} v ${esc(oa)}</span>`:(x.round?`<span class="note" style="font-size:10px">${esc(x.round)}</span>`:'')}</div>
-    <div class="side">${th.flag||''} ${esc(x.home)}</div>
-    <div class="${score?'sc':'vs'}">${score||'v'}</div>
-    <div class="side right">${esc(x.away)} ${ta.flag||''}</div>
+    <div class="when">${whenTop}${whenBot?`<br>${whenBot}`:''}</div>
+    <div class="match">
+      <div class="team home">
+        <div class="tname">${esc(x.home)} <span class="fl">${th.flag||''}</span></div>
+        <div class="towner ${oh?'':'none'}">${oh?esc(oh):'—'}</div>
+      </div>
+      <div class="score ${hasScore?'':'pending'}">${score}</div>
+      <div class="team away">
+        <div class="tname"><span class="fl">${ta.flag||''}</span> ${esc(x.away)}</div>
+        <div class="towner ${oa?'':'none'}">${oa?esc(oa):'—'}</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
   </div>`;
 }
+
+/* ============================================================
+   CHART — group tables + knockout wall chart, app-styled
+   ============================================================ */
+function teamMini(name){
+  const t=state.teams[name]; if(!t) return {flag:"",name,owner:null};
+  return {flag:t.flag||"", name, owner:ownerOf(name)};
+}
+function renderChart(){
+  const body=$("#chartBody");
+  const matches=Object.values(state.matchCache||{});
+  let html="";
+
+  // ---- Groups ----
+  const groups={};
+  Object.values(state.teams).forEach(t=>{ if(t.group){ (groups[t.group]=groups[t.group]||[]).push(t); } });
+  const letters=Object.keys(groups).sort();
+  if(letters.length){
+    html += `<div class="chart-section"><h2>Groups</h2><div class="groups">`;
+    letters.forEach(L=>{
+      const teams=groups[L].slice().sort((a,b)=>{
+        const pa=a.gw*3+a.gd, pb=b.gw*3+b.gd;
+        return pb-pa || (b.gf-b.ga)-(a.gf-a.ga) || b.gf-a.gf || a.name.localeCompare(b.name);
+      });
+      html += `<div class="grp"><h3>Group ${esc(L)}</h3><table><tbody>`;
+      teams.forEach((t,i)=>{
+        const pts=t.gw*3+t.gd, owner=ownerOf(t.name);
+        const cls = t.eliminated ? "elimrow" : (i<2 ? "qual" : "");
+        html += `<tr class="${cls}">
+          <td><div class="gt">${t.flag||''} ${esc(t.name)}${isTopRated(t)?' <span class="star">★</span>':''}</div>
+              <div class="go">${owner?esc(owner):'—'}</div></td>
+          <td class="gp">${pts}</td></tr>`;
+      });
+      html += `</tbody></table></div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  // ---- Knockout bracket ----
+  const ROUNDS=[["r32","Round of 32"],["r16","Round of 16"],["qf","Quarter-finals"],["sf","Semi-finals"],["final","Final"]];
+  const anyKO = matches.some(m=>m.round && m.round!=="group" && m.round!=="third");
+  html += `<div class="chart-section"><h2>Knockout bracket</h2>`;
+  if(!anyKO){
+    html += `<div class="empty"><p>The bracket fills in here once the group stage is done and the Round of 32 kicks off.</p></div>`;
+  } else {
+    html += `<div class="bracket">`;
+    ROUNDS.forEach(([key,label])=>{
+      const ms=matches.filter(m=>m.round===key).sort((a,b)=>(a.iso||"").localeCompare(b.iso||""));
+      html += `<div class="bcol"><div class="bcol-h">${label}</div><div class="bcol-body">`;
+      if(!ms.length){ html += tieEmpty(); }
+      else ms.forEach(m=>{ html += tieCard(m); });
+      html += `</div></div>`;
+    });
+    // champion column
+    const finalM=matches.find(m=>m.round==="final" && (m.winHome||m.winAway));
+    let champName=null;
+    if(finalM) champName=finalM.winHome?canon(finalM.home):canon(finalM.away);
+    html += `<div class="champ"><div class="cup">🏆</div>`;
+    if(champName){ const o=ownerOf(champName); html += `<div class="ct">${state.teams[champName]?.flag||''} ${esc(champName)}</div><div class="co">${o?esc(o):'—'}</div>`; }
+    else html += `<div class="bcol-h">Champions</div><div class="pending">To be decided</div>`;
+    html += `</div></div>`;
+
+    // third place
+    const third=matches.find(m=>m.round==="third");
+    if(third){ html += `<div class="thirdwrap"><div class="bcol-h">Third-place play-off</div>${tieCard(third)}</div>`; }
+  }
+  html += `</div>`;
+
+  body.innerHTML = html || `<div class="empty"><p>Sync to populate the chart.</p></div>`;
+}
+function tieLine(name, score, isWin, isLose){
+  const t = name ? teamMini(name) : null;
+  if(!t) return `<div class="tl"><span class="nm">TBD</span></div>`;
+  return `<div class="tl ${isWin?'win':''} ${isLose?'lose':''}">
+    <span class="fl">${t.flag||''}</span>
+    <span style="min-width:0"><span class="nm">${esc(t.name)}</span>${t.owner?` <span class="ow">· ${esc(t.owner)}</span>`:''}</span>
+    <span class="sc">${score==null?'':score}</span></div>`;
+}
+function tieCard(m){
+  const h=canon(m.home), a=canon(m.away);
+  const done=m.state==="post";
+  const hWin = done && (m.winHome || (!m.winAway && m.hs>m.as));
+  const aWin = done && (m.winAway || (!m.winHome && m.as>m.hs));
+  return `<div class="tie">
+    ${tieLine(h, done?m.hs:null, hWin, done&&!hWin)}
+    ${tieLine(a, done?m.as:null, aWin, done&&!aWin)}</div>`;
+}
+function tieEmpty(){ return `<div class="tie empty"><div class="tl">Awaiting teams</div><div class="tl">Awaiting teams</div></div>`; }
 
 function emptyAllocBlock(){
   return `<div class="empty"><h3>No draw loaded yet</h3>
@@ -1913,148 +2155,211 @@ function applyAllocation(){
 }
 
 /* ============================================================
-   SYNC (TheSportsDB best-effort, graceful fallback)
+   SYNC — ESPN public World Cup feed (no key, browser-accessible)
+   Scoreboard per day -> scores/fixtures/W-D-L/goals; bracket -> stage &
+   elimination; match summaries -> red cards. Cached by day/match so
+   refreshes stay light. Falls back to saved data on any failure.
    ============================================================ */
-async function sync(silent){
-  const s=state.settings; const btn=$("#syncBtn");
-  if(!s.leagueId){ if(!silent){ goToSetup(); toast("Set a League ID in Setup first"); } return; }
-  btn.disabled=true; btn.textContent=silent?"Refreshing…":"Syncing…";
-  const base = s.apiBase.replace(/\/$/,"")+"/"+encodeURIComponent(s.apiKey||"3")+"/";
-  let touchedTeams=0, gotFixtures=0, hadError=false;
-  try{
-    // 1) season events (results)
-    const evUrl = `${base}eventsseason.php?id=${encodeURIComponent(s.leagueId)}&s=${encodeURIComponent(s.season)}`;
-    const evRes = await fetchJson(evUrl);
-    const events = (evRes && (evRes.events||evRes.event)) || [];
-    // 2) upcoming
-    let next=[]; try{ const nx=await fetchJson(`${base}eventsnextleague.php?id=${encodeURIComponent(s.leagueId)}`); next=(nx&&nx.events)||[]; }catch(e){}
-    const all=[...events,...next];
-    if(all.length){
-      // reset per-team accumulators we derive from events
-      Object.values(state.teams).forEach(t=>{ t.gw=0;t.gd=0;t.gl=0;t.gf=0;t.ga=0; });
-      const fixtures=[];
-      all.forEach(ev=>{
-        const homeName=canon(ev.strHomeTeam), awayName=canon(ev.strAwayTeam);
-        const hs=numOrNull(ev.intHomeScore), as=numOrNull(ev.intAwayScore);
-        const finished = (ev.strStatus && /match finished|ft|finished/i.test(ev.strStatus)) || (hs!=null && as!=null && (ev.strStatus!=="Live"));
-        const live = ev.strStatus && /live|1st|2nd|half/i.test(ev.strStatus);
-        fixtures.push({
-          id: ev.idEvent || (ev.strEvent+ev.dateEvent),
-          date: ev.dateEvent || ev.dateEventLocal || "",
-          time: (ev.strTime||"").slice(0,5),
-          home: ev.strHomeTeam, away: ev.strAwayTeam,
-          hs, as,
-          status: live?"live":(finished?"finished":"upcoming"),
-          round: ev.strStage || ev.intRound ? (ev.strStage||("Round "+ev.intRound)) : ""
-        });
-        gotFixtures++;
-        // accumulate group results onto teams (group stage only)
-        const isGroup = !ev.strStage || /group/i.test(ev.strStage||"");
-        if(finished && hs!=null && as!=null && homeName && awayName && isGroup){
-          const H=state.teams[homeName], A=state.teams[awayName];
-          H.gf+=hs;H.ga+=as;A.gf+=as;A.ga+=hs;
-          if(hs>as){H.gw++;A.gl++;} else if(as>hs){A.gw++;H.gl++;} else {H.gd++;A.gd++;}
-          touchedTeams+=2;
-        }
-      });
-      state.fixtures = dedupeFixtures(fixtures);
-    }
-    state.lastSync = Date.now();
-    save(); renderAll();
-    if(!silent){
-      if(touchedTeams || gotFixtures) toast(`Synced — ${gotFixtures} fixtures, ${touchedTeams} team updates`);
-      else { toast("Sync returned no data for this league/season"); $("#sourceNote").textContent="Sync connected but found no events. Check League ID / Season, or enter results manually on the Teams tab."; }
-    }
-  }catch(err){
-    hadError=true; console.warn(err);
-    $("#syncDot").className="dot err"; $("#syncMsg").textContent="Sync failed";
-    if(!silent){
-      $("#sourceNote").textContent="Sync couldn't reach the source. From a local file some APIs block browser requests (CORS). Your manual data is untouched — keep using the Teams tab, or host the file and retry.";
-      toast("Sync failed — using your saved data");
-    }
-  }finally{
-    btn.disabled=false; btn.textContent="Sync results";
-    if(!hadError) renderSyncStatus();
-  }
-}
-function numOrNull(v){ if(v==null||v==="") return null; const n=Number(v); return isNaN(n)?null:n; }
-function dedupeFixtures(list){ const m=new Map(); list.forEach(f=>m.set(f.id,f)); return [...m.values()]; }
+const ESPN = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world";
+const WC_START = "2026-06-11";              // tournament opening day
+const KO_RANK = { r32:1, r16:2, qf:3, sf:4, final:5 };
+const RANK_KEY = { 1:"r32", 2:"r16", 3:"qf", 4:"sf", 5:"final" };
+
+const pad2 = n => String(n).padStart(2,"0");
+const ymd = d => `${d.getFullYear()}${pad2(d.getMonth()+1)}${pad2(d.getDate())}`;
+
 async function fetchJson(url){
-  const r=await fetch(url,{cache:"no-store"});
+  const r = await fetch(url, {cache:"no-store"});
   if(!r.ok) throw new Error("HTTP "+r.status);
   return r.json();
 }
 
-/* ---- league auto-discovery: removes the "guess the ID" step ---- */
-async function findLeagues(){
-  const s=state.settings; const box=$("#leagueResults");
-  const base=s.apiBase.replace(/\/$/,"")+"/"+encodeURIComponent($("#setKey").value.trim()||"3")+"/";
-  box.innerHTML='<span class="note">Searching…</span>';
+function classifyRound(text){
+  const s = (text||"").toLowerCase();
+  if(/third place|3rd place|play-?off for third/.test(s)) return {key:"third", label:"Third place"};
+  if(/round of 32/.test(s))                 return {key:"r32",   label:"Round of 32"};
+  if(/round of 16/.test(s))                 return {key:"r16",   label:"Round of 16"};
+  if(/quarter/.test(s))                     return {key:"qf",    label:"Quarter-final"};
+  if(/semi/.test(s))                        return {key:"sf",    label:"Semi-final"};
+  if(/final/.test(s))                       return {key:"final", label:"Final"};
+  if(/group/.test(s))                       return {key:"group", label:"Group stage"};
+  return {key:"group", label:""};
+}
+
+function parseEvent(ev){
+  if(!ev || !ev.id) return null;
+  const comp = (ev.competitions && ev.competitions[0]) || {};
+  const cs = comp.competitors || [];
+  const home = cs.find(c=>c.homeAway==="home") || cs[0];
+  const away = cs.find(c=>c.homeAway==="away") || cs[1];
+  if(!home || !away) return null;
+  const nm = c => (c && c.team && (c.team.displayName||c.team.name||c.team.shortDisplayName||c.team.location)) || "";
+  const num = v => { if(v==null||v==="") return null; const n=Number(v); return isNaN(n)?null:n; };
+  const st = (ev.status && ev.status.type) || (comp.status && comp.status.type) || {};
+  const iso = ev.date || comp.date || "";
+  const dt = iso ? new Date(iso) : null;
+  const localDash = dt ? `${dt.getFullYear()}-${pad2(dt.getMonth()+1)}-${pad2(dt.getDate())}` : "";
+  const time = dt ? `${pad2(dt.getHours())}:${pad2(dt.getMinutes())}` : "";
+  const notes = (comp.notes && comp.notes[0] && comp.notes[0].headline) || "";
+  const cand = [notes, ev.shortName, comp.type&&comp.type.text, ev.season&&ev.season.slug, ev.name].filter(Boolean).join(" | ");
+  const r = classifyRound(cand);
+  const gm = cand.match(/group\s+([a-l])\b/i);
+  return {
+    id:String(ev.id), iso, localDash, time,
+    home:nm(home), away:nm(away),
+    homeId:home.team&&home.team.id, awayId:away.team&&away.team.id,
+    hs:num(home.score), as:num(away.score),
+    winHome:!!home.winner, winAway:!!away.winner,
+    state: st.state || "pre", completed: !!st.completed,
+    round:r.key, roundLabel:r.label || notes || "",
+    group: gm ? gm[1].toUpperCase() : ""
+  };
+}
+
+function parseRedCards(summary){
+  let h=0, a=0;
+  const comp = (summary && ((summary.header && summary.header.competitions && summary.header.competitions[0]) ||
+                            (summary.competitions && summary.competitions[0]))) || {};
+  const side = {};
+  (comp.competitors||[]).forEach(c=>{ if(c && c.team && c.team.id) side[c.team.id] = c.homeAway; });
+  const ke = (summary && (summary.keyEvents || summary.commentary)) || [];
+  ke.forEach(k=>{
+    const txt = (k && k.type && k.type.text) || "";
+    if(/red card/i.test(txt)){            // matches "Red Card" and "Yellow-Red Card"
+      const s = side[k && k.team && k.team.id];
+      if(s==="home") h++; else if(s==="away") a++;
+    }
+  });
+  return {h,a};
+}
+
+async function sync(silent){
+  const btn = $("#syncBtn");
+  btn.disabled = true; btn.textContent = silent ? "Refreshing…" : "Syncing…";
+  let hadError = false;
   try{
-    const data=await fetchJson(base+"all_leagues.php");
-    const leagues=((data&&data.leagues)||[])
-      .filter(l=>/world cup/i.test(l.strLeague||"") && /soccer/i.test(l.strSport||"Soccer"))
-      .slice(0,12);
-    if(!leagues.length){ box.innerHTML='<span class="warn">No "World Cup" league returned. Try Test connection with the ID you have, or enter results manually.</span>'; return; }
-    box.innerHTML=`<div class="note" style="margin-bottom:6px">Tap the right competition — usually the senior FIFA World Cup:</div>`+
-      leagues.map(l=>`<button class="btn sm" data-lg="${esc(l.idLeague)}" style="margin:0 6px 6px 0">${esc(l.strLeague)} <span class="note">#${esc(l.idLeague)}</span></button>`).join("");
-    box.querySelectorAll("[data-lg]").forEach(b=>b.addEventListener("click",()=>{
-      $("#setLeague").value=b.getAttribute("data-lg");
-      state.settings.leagueId=b.getAttribute("data-lg"); save();
-      toast("League set to #"+b.getAttribute("data-lg")+" — now Test connection");
+    state.matchCache = state.matchCache || {};
+    state.dayDone = state.dayDone || {};
+    const now = new Date();
+    const start = new Date(WC_START + "T12:00:00");
+    const end = new Date(now); end.setDate(end.getDate()+1);   // include tomorrow for TZ edges
+    const todayY = ymd(now);
+
+    // which days to fetch: today/tomorrow always, past days only if not yet finalised
+    const days = [];
+    for(let d=new Date(start); d<=end; d.setDate(d.getDate()+1)) days.push(ymd(new Date(d)));
+    const toFetch = days.filter(dy => dy>=todayY || !state.dayDone[dy]);
+
+    await Promise.all(toFetch.map(async dy=>{
+      try{
+        const sb = await fetchJson(`${ESPN}/scoreboard?dates=${dy}`);
+        const events = (sb && sb.events) || [];
+        let allPost = events.length>0;
+        events.forEach(ev=>{
+          const p = parseEvent(ev); if(!p) return;
+          const prev = state.matchCache[p.id] || {};
+          state.matchCache[p.id] = Object.assign(prev, p, {fetchDay:dy});
+          if(p.state!=="post") allPost = false;
+        });
+        if(allPost && events.length && dy<todayY) state.dayDone[dy] = true;
+      }catch(e){ /* one bad day shouldn't sink the sync */ }
     }));
+
+    // red cards: fetch each finished match's summary once
+    const need = Object.values(state.matchCache).filter(m=>m.state==="post" && !m.cardsFetched);
+    for(let i=0;i<need.length;i+=6){
+      await Promise.all(need.slice(i,i+6).map(async m=>{
+        try{
+          const sm = await fetchJson(`${ESPN}/summary?event=${encodeURIComponent(m.id)}`);
+          const r = parseRedCards(sm);
+          m.redHome = r.h; m.redAway = r.a; m.cardsFetched = true;
+        }catch(e){ /* retry next sync */ }
+      }));
+    }
+
+    rebuildFromCache();
+    state.lastSync = Date.now();
+    save(); renderAll();
+    if(!silent){
+      const n = Object.keys(state.matchCache).length;
+      toast(n ? `Synced — ${n} matches` : "Connected, but no matches returned yet");
+    }
   }catch(err){
-    box.innerHTML='<span class="warn">Couldn\'t reach TheSportsDB. From a local file this is usually a browser (CORS) block — host the file, or enter results manually.</span>';
+    hadError = true; console.warn(err);
+    $("#syncDot").className = "dot err"; $("#syncMsg").textContent = "Sync failed";
+    if(!silent) toast("Sync failed — showing last saved data");
+  }finally{
+    btn.disabled = false; btn.textContent = "Sync";
+    if(!hadError) renderSyncStatus();
   }
 }
 
-/* ---- connection test: confirms live data exists in seconds ---- */
-async function testConnection(){
-  const s=state.settings; const note=$("#sourceNote");
-  const key=$("#setKey").value.trim()||"3", id=$("#setLeague").value.trim(), season=$("#setSeason").value.trim();
-  if(!id){ note.textContent="Enter or find a League ID first."; return; }
-  const base=s.apiBase.replace(/\/$/,"")+"/"+encodeURIComponent(key)+"/";
-  note.className="note"; note.textContent="Testing…";
-  try{
-    const data=await fetchJson(`${base}eventsseason.php?id=${encodeURIComponent(id)}&s=${encodeURIComponent(season)}`);
-    const events=(data&&(data.events||data.event))||[];
-    if(!events.length){ note.className="note warn"; note.innerHTML=`Connected, but <b>0</b> events for league #${esc(id)} season ${esc(season)}. Wrong ID/season, or the free tier doesn't list WC2026 yet — use the Teams tab to enter results.`; return; }
-    const finished=events.filter(e=>e.intHomeScore!=null&&e.intHomeScore!=="").length;
-    const sample=events.find(e=>e.strHomeTeam)||events[0];
-    note.className="note"; note.style.color="var(--good)";
-    note.innerHTML=`✓ Connected — <b>${events.length}</b> fixtures, <b>${finished}</b> with results.${sample?` e.g. ${esc(sample.strHomeTeam)} v ${esc(sample.strAwayTeam)}.`:''} Tick Auto-refresh and Save.`;
-  }catch(err){
-    note.className="note warn"; note.style.color="";
-    note.innerHTML="Couldn't connect. Opening the file locally? The browser likely blocked it (CORS) — host it on GitHub Pages and retry. Manual entry on the Teams tab always works.";
+/* Rebuild every team aggregate + the fixtures list from the match cache. */
+function rebuildFromCache(){
+  Object.values(state.teams).forEach(t=>{ t.gw=0;t.gd=0;t.gl=0;t.gf=0;t.ga=0;t.red=0;t.stage="group";t.eliminated=false; });
+  const matches = Object.values(state.matchCache);
+  const knockoutTeams = new Set();
+  const stageOf = {};                 // canonical name -> max KO rank reached
+  let anyKO = false;
+  const bump = (name,key)=>{ const r=KO_RANK[key]; if(r==null||!name) return; if(!(name in stageOf)||r>stageOf[name]) stageOf[name]=r; };
+
+  matches.forEach(m=>{
+    const h = canon(m.home), a = canon(m.away);
+    const ko = m.round && m.round!=="group";
+    if(!ko && m.group){ if(h&&state.teams[h]) state.teams[h].group=m.group; if(a&&state.teams[a]) state.teams[a].group=m.group; }
+    if(ko){ anyKO=true; if(h)knockoutTeams.add(h); if(a)knockoutTeams.add(a); bump(h,m.round); bump(a,m.round); }
+    if(m.state==="post" && h && a && m.hs!=null && m.as!=null){
+      const H=state.teams[h], A=state.teams[a];
+      if(H){ H.gf+=m.hs; H.ga+=m.as; H.red+=(m.redHome||0); }
+      if(A){ A.gf+=m.as; A.ga+=m.hs; A.red+=(m.redAway||0); }
+      if(!ko){
+        if(H&&A){ if(m.hs>m.as){H.gw++;A.gl++;} else if(m.as>m.hs){A.gw++;H.gl++;} else {H.gd++;A.gd++;} }
+      } else {
+        // knockout loser is out (winner flag handles penalty shootouts)
+        let loser=null;
+        if(m.winHome && !m.winAway) loser=a;
+        else if(m.winAway && !m.winHome) loser=h;
+        else if(m.hs!==m.as) loser = m.hs>m.as ? a : h;
+        if(loser && state.teams[loser]) state.teams[loser].eliminated=true;
+      }
+    }
+  });
+
+  // stage labels from furthest knockout round reached
+  Object.keys(stageOf).forEach(name=>{ if(state.teams[name]) state.teams[name].stage = RANK_KEY[stageOf[name]] || "group"; });
+
+  // champion = winner of the final
+  const finalM = matches.find(m=>m.round==="final" && m.state==="post" && (m.winHome||m.winAway || m.hs!==m.as));
+  if(finalM){
+    const w = canon(finalM.winHome ? finalM.home : finalM.winAway ? finalM.away : (finalM.hs>finalM.as?finalM.home:finalM.away));
+    if(w && state.teams[w]){ state.teams[w].stage="winner"; state.teams[w].eliminated=false; }
   }
+
+  // once knockouts exist, any group team that didn't make it is eliminated
+  if(anyKO){
+    Object.keys(state.teams).forEach(name=>{
+      const playedGroup = matches.some(m=>(canon(m.home)===name||canon(m.away)===name) && (!m.round||m.round==="group"));
+      if(playedGroup && !knockoutTeams.has(name)) state.teams[name].eliminated=true;
+    });
+  }
+
+  // fixtures for the Fixtures tab
+  state.fixtures = matches.map(m=>({
+    id:m.id, date:m.localDash || (m.iso||"").slice(0,10), time:m.time||"",
+    home:m.home, away:m.away, hs:m.hs, as:m.as,
+    status: m.state==="in" ? "live" : (m.state==="post" ? "finished" : "upcoming"),
+    round: m.roundLabel || ""
+  }));
 }
 
-/* ---- auto-refresh: turns the button into a hands-off loop ---- */
+/* ---- auto-refresh: light background poll, no configuration ---- */
 let pollTimer=null;
-function startAutoPoll(){
-  stopAutoPoll();
-  if(!state.settings.auto || !state.settings.leagueId) return;
-  const ms=Math.max(60,(+state.settings.intervalSec||90))*1000;
-  pollTimer=setInterval(()=>{ sync(true); }, ms);
-}
+function startAutoPoll(){ stopAutoPoll(); pollTimer=setInterval(()=>sync(true), 120000); }
 function stopAutoPoll(){ if(pollTimer){ clearInterval(pollTimer); pollTimer=null; } }
 
 /* ============================================================
-   SETTINGS / SCORING / DATA
+   SETTINGS / DATA
    ============================================================ */
-function renderScoreGrid(){
-  const g=$("#scoreGrid");
-  g.innerHTML = Object.keys(DEFAULT_SCORING).map(k=>`
-    <div class="scorecell"><span>${SCORE_LABELS[k]}</span>
-      <input type="number" data-sk="${k}" value="${state.scoring[k]}"/></div>`).join("");
-}
-function syncSettingsToForm(){
-  $("#setKey").value=state.settings.apiKey||"";
-  $("#setLeague").value=state.settings.leagueId||"";
-  $("#setSeason").value=state.settings.season||"";
-  $("#setAuto").checked=!!state.settings.auto;
-  $("#setInterval").value=String(state.settings.intervalSec||90);
-}
 function goToSetup(){ $("[data-tab=setup]").click(); }
 
 /* ============================================================
@@ -2069,33 +2374,13 @@ function wireTabs(){
 }
 function wire(){
   wireTabs();
-  $("#syncBtn").addEventListener("click",sync);
+  $("#syncBtn").addEventListener("click",()=>sync(false));
 
-  // allocation
-  $("#allocPreview").addEventListener("click",previewAllocation);
-  $("#allocApply").addEventListener("click",applyAllocation);
-
-  // source
-  $("#findLeague").addEventListener("click",findLeagues);
-  $("#testConn").addEventListener("click",testConnection);
-  $("#saveSource").addEventListener("click",()=>{
-    state.settings.apiKey=$("#setKey").value.trim()||"3";
-    state.settings.leagueId=$("#setLeague").value.trim();
-    state.settings.season=$("#setSeason").value.trim();
-    state.settings.auto=$("#setAuto").checked;
-    state.settings.intervalSec=parseInt($("#setInterval").value,10)||90;
-    save();
-    startAutoPoll();
-    if(state.settings.auto && state.settings.leagueId){ toast("Saved — auto-refresh on. Pulling now…"); sync(false); }
-    else { toast("Data source saved"); }
+  // lazy-load more recent results when scrolled near the bottom
+  $("#fixPast").addEventListener("scroll",e=>{
+    const el=e.target;
+    if(pastShown<pastAll.length && el.scrollTop+el.clientHeight >= el.scrollHeight-60) appendPast();
   });
-
-  // scoring
-  $("#saveScore").addEventListener("click",()=>{
-    $$("#scoreGrid [data-sk]").forEach(i=>{ state.scoring[i.dataset.sk]=Math.max(0,parseInt(i.value||0,10)); });
-    save(); renderAll(); toast("Scoring saved");
-  });
-  $("#resetScore").addEventListener("click",()=>{ state.scoring={...DEFAULT_SCORING}; renderScoreGrid(); save(); renderAll(); toast("Scoring reset"); });
 
   // data backup
   $("#exportJson").addEventListener("click",()=>{
@@ -2107,12 +2392,12 @@ function wire(){
   $("#importJson").addEventListener("change",e=>{
     const f=e.target.files[0]; if(!f) return;
     const rd=new FileReader();
-    rd.onload=()=>{ try{ const obj=JSON.parse(rd.result); state=Object.assign(freshState(),obj); save(); syncSettingsToForm(); renderScoreGrid(); renderAll(); toast("Backup imported"); }catch(err){ toast("Invalid backup file"); } };
+    rd.onload=()=>{ try{ const obj=JSON.parse(rd.result); state=Object.assign(freshState(),obj); save(); renderAll(); toast("Backup imported"); }catch(err){ toast("Invalid backup file"); } };
     rd.readAsText(f); e.target.value="";
   });
   $("#resetAll").addEventListener("click",()=>{
-    if(confirm("Wipe all allocations, results and settings? This can't be undone.")){
-      state=freshState(); save(); syncSettingsToForm(); renderScoreGrid(); renderAll(); toast("Everything reset");
+    if(confirm("Clear all results and reload the draw? This can't be undone.")){
+      state=freshState(); save(); renderAll(); toast("Everything reset"); sync(false);
     }
   });
 }
@@ -2121,10 +2406,9 @@ function wire(){
 function init(){
   state=load();
   wire();
-  syncSettingsToForm();
-  renderScoreGrid();
-  renderAll();
-  if(state.settings.auto && state.settings.leagueId){ sync(false); startAutoPoll(); }
+  renderAll();          // show baked draw / cached data instantly
+  sync(false);          // then pull the latest from ESPN
+  startAutoPoll();      // and keep it fresh in the background
 }
 init();
 </script>
