@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0059)file:///Users/nathanparks/Downloads/tribus-dashboard_9.html -->
+<!-- saved from url=(0060)file:///Users/nathanparks/Downloads/tribus-dashboard_13.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -225,6 +225,46 @@
   .champ .pending{color:var(--ink-faint);font-family:var(--mono);font-size:12px}
   .thirdwrap{margin-top:18px;max-width:240px}
 
+  /* statistics */
+  .stiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+  @media(max-width:680px){.stiles{grid-template-columns:repeat(2,1fr)}}
+  .stile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 15px}
+  .stile .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .stile .val{font-family:var(--disp);font-size:27px;font-weight:800;letter-spacing:-.02em;margin-top:8px;font-variant-numeric:tabular-nums}
+  .movers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+  @media(max-width:680px){.movers{grid-template-columns:1fr}}
+  .mv{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:13px 15px}
+  .mv .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .mv .who{font-weight:600;font-size:14.5px;margin-top:8px;display:flex;align-items:center;gap:8px}
+  .mv .sub{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-top:3px}
+  .up{color:var(--good)} .dn{color:var(--bad)}
+  .tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:16px}
+  .tcard-h{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-2)}
+  .tcard-s{font-size:12px;color:var(--ink-faint);margin:5px 0 14px}
+  .leg{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px;font-size:12px;color:var(--ink-dim)}
+  .leg span{display:flex;align-items:center;gap:6px}
+  .leg i{width:14px;height:3px;border-radius:2px;display:inline-block}
+  .axt{fill:var(--ink-faint);font-family:var(--mono);font-size:10px}
+  .srow{display:flex;align-items:center;gap:11px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.05)}
+  .srow:last-child{border-bottom:none}
+  .srow .sl{font-size:12.5px;color:var(--ink-dim);flex:0 0 120px}
+  .srow .sm{display:flex;flex-direction:column;line-height:1.25;min-width:0;flex:1}
+  .srow .sv{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .srow .so{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint)}
+  .srow .sfig{margin-left:auto;font-family:var(--mono);font-weight:700;font-size:14px;color:var(--gold);font-variant-numeric:tabular-nums}
+  .gbar{display:flex;align-items:center;gap:12px;padding:6px 0}
+  .gbar .gn{flex:0 0 150px;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gbar .gt{flex:1;height:9px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden}
+  .gbar .gf2{display:block;height:100%;background:var(--blue);border-radius:5px;min-width:2px}
+  .gbar .gf2.lead{background:var(--gold)}
+  .gbar .gv{flex:0 0 26px;text-align:right;font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+  .race-wrap{position:relative}
+  .race-wrap svg{display:block}
+  .race-tip{position:absolute;pointer-events:none;display:none;background:#151a2c;border:1px solid var(--line-2);border-radius:var(--r-sm);padding:7px 10px;z-index:5;min-width:92px}
+  .race-tip .rt-n{font-weight:600;font-size:12.5px;white-space:nowrap}
+  .race-tip .rt-v{font-family:var(--mono);font-size:13px;color:var(--gold);font-weight:700;margin-top:2px}
+  .race-tip .rt-d{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:1px}
+
   .empty{padding:40px 22px;text-align:center;color:var(--ink-dim)}
   .empty h3{font-family:var(--disp);font-weight:700;letter-spacing:-.01em;color:var(--ink);margin:0 0 7px;font-size:16px}
   .empty p{margin:0 auto 16px;max-width:44ch;font-size:13.5px;line-height:1.5}
@@ -256,24 +296,25 @@
     </div>
     <div class="syncbox">
       <button class="btn primary" id="syncBtn">Sync</button>
-      <div class="syncline"><span class="dot ok" id="syncDot"></span><span id="syncMsg">Synced Thu 18 Jun 11:36</span></div>
+      <div class="syncline"><span class="dot ok" id="syncDot"></span><span id="syncMsg">Synced Thu 18 Jun 15:14</span></div>
     </div>
   </header>
 
   <nav class="tabs" id="tabs">
-    <button class="tab" data-tab="standings">Standings</button>
+    <button class="tab active" data-tab="standings">Standings</button>
     <button class="tab" data-tab="people">People</button>
-    <button class="tab active" data-tab="teams">Teams</button>
+    <button class="tab" data-tab="teams">Teams</button>
     <button class="tab" data-tab="fixtures">Fixtures</button>
     <button class="tab" data-tab="chart">Chart</button>
+    <button class="tab" data-tab="statistics">Statistics</button>
     <button class="tab" data-tab="setup">Setup</button>
   </nav>
 
   <!-- STANDINGS -->
-  <section class="panel" id="panel-standings">
-    <div class="prizes" id="prizeStrip"><div class="prize lead-prize"><div class="lab">Leading player</div><div class="who">Adam Spry</div><div class="meta">10 pts</div></div><div class="prize "><div class="lab">Champions</div><div class="who">Up for grabs</div><div class="meta">Awaiting the final</div></div><div class="prize "><div class="lab">Most goals</div><div class="who">Adam Spry</div><div class="meta">14 scored</div></div><div class="prize "><div class="lab">Most red cards</div><div class="who">Charlotte Dickinson</div><div class="meta">2 reds</div></div></div>
+  <section class="panel active" id="panel-standings">
+    <div class="prizes" id="prizeStrip"><div class="prize lead-prize"><div class="lab">Leading player</div><div class="who">Adam Spry</div><div class="meta">10 pts</div></div><div class="prize "><div class="lab">Most teams alive</div><div class="who">Adam Spry</div><div class="meta">4/4 still in</div></div><div class="prize "><div class="lab">Most goals</div><div class="who">Adam Spry</div><div class="meta">14 scored</div></div><div class="prize "><div class="lab">Most red cards</div><div class="who">Charlotte Dickinson</div><div class="meta">2 reds</div></div></div>
     <div class="card">
-      <div class="pad sec-h"><h2>Prize standings</h2><span class="hint" id="standHint">Last synced Thu 18 Jun 11:36</span></div>
+      <div class="pad sec-h"><h2>Prize standings</h2><span class="hint" id="standHint">Last synced Thu 18 Jun 15:14</span></div>
       <div id="standBody"><table class="lead"><thead><tr>
       <th class="rk">#</th><th>Player</th><th>Teams</th>
       <th class="num">GF</th><th class="num">🟥</th><th class="num">Alive</th><th class="num">Pts</th>
@@ -374,22 +415,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇮🇷</div>
         <div><div class="tn">IR Iran</div>
-          <div class="tmeta">World Ranking #22</div></div>
+          <div class="tmeta">Group G · World Ranking #22</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇩🇪</div>
         <div><div class="tn">Germany</div>
-          <div class="tmeta">World Ranking #10</div></div>
+          <div class="tmeta">Group E · World Ranking #10</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇳🇴</div>
         <div><div class="tn">Norway</div>
-          <div class="tmeta">World Ranking #27</div></div>
+          <div class="tmeta">Group I · World Ranking #27</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇬🇭</div>
         <div><div class="tn">Ghana</div>
-          <div class="tmeta">World Ranking #32</div></div>
+          <div class="tmeta">Group L · World Ranking #32</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -398,22 +439,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇿🇦</div>
         <div><div class="tn">South Africa</div>
-          <div class="tmeta">World Ranking #56</div></div>
+          <div class="tmeta">Group A · World Ranking #56</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇳🇿</div>
         <div><div class="tn">New Zealand</div>
-          <div class="tmeta">World Ranking #89</div></div>
+          <div class="tmeta">Group G · World Ranking #89</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇶🇦</div>
         <div><div class="tn">Qatar</div>
-          <div class="tmeta">World Ranking #42</div></div>
+          <div class="tmeta">Group B · World Ranking #42</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇰🇷</div>
         <div><div class="tn">Korea Republic</div>
-          <div class="tmeta">World Ranking #23</div></div>
+          <div class="tmeta">Group A · World Ranking #23</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -422,22 +463,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇮🇶</div>
         <div><div class="tn">Iraq</div>
-          <div class="tmeta">World Ranking #58</div></div>
+          <div class="tmeta">Group I · World Ranking #58</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇩🇿</div>
         <div><div class="tn">Algeria</div>
-          <div class="tmeta">World Ranking #38</div></div>
+          <div class="tmeta">Group J · World Ranking #38</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🏴</div>
         <div><div class="tn">Scotland</div>
-          <div class="tmeta">World Ranking #39</div></div>
+          <div class="tmeta">Group C · World Ranking #39</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🏴</div>
         <div><div class="tn">England <span class="star">★</span></div>
-          <div class="tmeta">World Ranking #4</div></div>
+          <div class="tmeta">Group L · World Ranking #4</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -446,22 +487,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇨🇩</div>
         <div><div class="tn">Congo DR</div>
-          <div class="tmeta">World Ranking #60</div></div>
+          <div class="tmeta">Group K · World Ranking #60</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇫🇷</div>
         <div><div class="tn">France <span class="star">★</span></div>
-          <div class="tmeta">World Ranking #1</div></div>
+          <div class="tmeta">Group I · World Ranking #1</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇵🇹</div>
         <div><div class="tn">Portugal <span class="star">★</span></div>
-          <div class="tmeta">World Ranking #5</div></div>
+          <div class="tmeta">Group K · World Ranking #5</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇺🇸</div>
         <div><div class="tn">United States</div>
-          <div class="tmeta">World Ranking #16</div></div>
+          <div class="tmeta">Group D · World Ranking #16</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -470,22 +511,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇸🇪</div>
         <div><div class="tn">Sweden</div>
-          <div class="tmeta">World Ranking #31</div></div>
+          <div class="tmeta">Group F · World Ranking #31</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇪🇨</div>
         <div><div class="tn">Ecuador</div>
-          <div class="tmeta">World Ranking #24</div></div>
+          <div class="tmeta">Group E · World Ranking #24</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇺🇾</div>
         <div><div class="tn">Uruguay</div>
-          <div class="tmeta">World Ranking #13</div></div>
+          <div class="tmeta">Group H · World Ranking #13</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇯🇴</div>
         <div><div class="tn">Jordan</div>
-          <div class="tmeta">World Ranking #62</div></div>
+          <div class="tmeta">Group J · World Ranking #62</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -494,22 +535,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇧🇦</div>
         <div><div class="tn">Bosnia and Herzegovina</div>
-          <div class="tmeta">World Ranking #74</div></div>
+          <div class="tmeta">Group B · World Ranking #74</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇭🇷</div>
         <div><div class="tn">Croatia</div>
-          <div class="tmeta">World Ranking #11</div></div>
+          <div class="tmeta">Group L · World Ranking #11</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇹🇳</div>
         <div><div class="tn">Tunisia</div>
-          <div class="tmeta">World Ranking #44</div></div>
+          <div class="tmeta">Group F · World Ranking #44</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇸🇳</div>
         <div><div class="tn">Senegal</div>
-          <div class="tmeta">World Ranking #15</div></div>
+          <div class="tmeta">Group I · World Ranking #15</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -518,22 +559,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇦🇷</div>
         <div><div class="tn">Argentina <span class="star">★</span></div>
-          <div class="tmeta">World Ranking #3</div></div>
+          <div class="tmeta">Group J · World Ranking #3</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇹🇷</div>
         <div><div class="tn">Türkiye</div>
-          <div class="tmeta">World Ranking #28</div></div>
+          <div class="tmeta">Group D · World Ranking #28</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇵🇦</div>
         <div><div class="tn">Panama</div>
-          <div class="tmeta">World Ranking #29</div></div>
+          <div class="tmeta">Group L · World Ranking #29</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇵🇾</div>
         <div><div class="tn">Paraguay</div>
-          <div class="tmeta">World Ranking #36</div></div>
+          <div class="tmeta">Group D · World Ranking #36</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -542,22 +583,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇨🇦</div>
         <div><div class="tn">Canada</div>
-          <div class="tmeta">World Ranking #30</div></div>
+          <div class="tmeta">Group B · World Ranking #30</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇦🇹</div>
         <div><div class="tn">Austria</div>
-          <div class="tmeta">World Ranking #21</div></div>
+          <div class="tmeta">Group J · World Ranking #21</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇨🇴</div>
         <div><div class="tn">Colombia</div>
-          <div class="tmeta">World Ranking #14</div></div>
+          <div class="tmeta">Group K · World Ranking #14</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇧🇪</div>
         <div><div class="tn">Belgium</div>
-          <div class="tmeta">World Ranking #9</div></div>
+          <div class="tmeta">Group G · World Ranking #9</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -566,22 +607,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇨🇿</div>
         <div><div class="tn">Czechia</div>
-          <div class="tmeta">World Ranking #40</div></div>
+          <div class="tmeta">Group A · World Ranking #40</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇦🇺</div>
         <div><div class="tn">Australia</div>
-          <div class="tmeta">World Ranking #25</div></div>
+          <div class="tmeta">Group D · World Ranking #25</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇲🇦</div>
         <div><div class="tn">Morocco</div>
-          <div class="tmeta">World Ranking #8</div></div>
+          <div class="tmeta">Group C · World Ranking #8</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇺🇿</div>
         <div><div class="tn">Uzbekistan</div>
-          <div class="tmeta">World Ranking #57</div></div>
+          <div class="tmeta">Group K · World Ranking #57</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -590,22 +631,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇭🇹</div>
         <div><div class="tn">Haiti</div>
-          <div class="tmeta">World Ranking #83</div></div>
+          <div class="tmeta">Group C · World Ranking #83</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇧🇷</div>
         <div><div class="tn">Brazil</div>
-          <div class="tmeta">World Ranking #6</div></div>
+          <div class="tmeta">Group C · World Ranking #6</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇲🇽</div>
         <div><div class="tn">Mexico</div>
-          <div class="tmeta">World Ranking #17</div></div>
+          <div class="tmeta">Group A · World Ranking #17</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇪🇸</div>
         <div><div class="tn">Spain <span class="star">★</span></div>
-          <div class="tmeta">World Ranking #2</div></div>
+          <div class="tmeta">Group H · World Ranking #2</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -614,22 +655,22 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇳🇱</div>
         <div><div class="tn">Netherlands</div>
-          <div class="tmeta">World Ranking #7</div></div>
+          <div class="tmeta">Group F · World Ranking #7</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇨🇼</div>
         <div><div class="tn">Curaçao</div>
-          <div class="tmeta">World Ranking #90</div></div>
+          <div class="tmeta">Group E · World Ranking #90</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">0p</span></div>
       </div><div class="trow ">
         <div class="fl">🇨🇮</div>
         <div><div class="tn">Côte d’Ivoire</div>
-          <div class="tmeta">World Ranking #43</div></div>
+          <div class="tmeta">Group E · World Ranking #43</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">3p</span></div>
       </div><div class="trow ">
         <div class="fl">🇨🇻</div>
         <div><div class="tn">Cabo Verde</div>
-          <div class="tmeta">World Ranking #71</div></div>
+          <div class="tmeta">Group H · World Ranking #71</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div></div>
     </div><div class="card person ">
@@ -638,30 +679,330 @@
       <div class="teams"><div class="trow ">
         <div class="fl">🇯🇵</div>
         <div><div class="tn">Japan</div>
-          <div class="tmeta">World Ranking #19</div></div>
+          <div class="tmeta">Group F · World Ranking #19</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇨🇭</div>
         <div><div class="tn">Switzerland</div>
-          <div class="tmeta">World Ranking #18</div></div>
+          <div class="tmeta">Group B · World Ranking #18</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇸🇦</div>
         <div><div class="tn">Saudi Arabia</div>
-          <div class="tmeta">World Ranking #50</div></div>
+          <div class="tmeta">Group H · World Ranking #50</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div><div class="trow ">
         <div class="fl">🇪🇬</div>
         <div><div class="tn">Egypt</div>
-          <div class="tmeta">World Ranking #33</div></div>
+          <div class="tmeta">Group G · World Ranking #33</div></div>
         <div style="margin-left:auto;display:flex;align-items:center;gap:8px"><span class="badge active">Active</span><span class="tpts">1p</span></div>
       </div></div>
     </div></div>
   </section>
 
   <!-- TEAMS -->
-  <section class="panel active" id="panel-teams">
-    <div id="teamsBody"><div class="sec-h"><h2>Group stage</h2><span class="hint">Ranked by points, then goal difference, then goals scored</span></div><div class="card"><div class="empty"><h3>Waiting for kick-off</h3><p>Group tables fill in here as matches are played. Hit Sync to pull the latest from ESPN.</p></div></div></div>
+  <section class="panel" id="panel-teams">
+    <div id="teamsBody"><div class="sec-h"><h2>Group stage</h2><span class="hint">Ranked by points, then goal difference, then goals scored</span></div><div class="gwrap"><div class="card gtable"><div class="gtable-h">Group A</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇲🇽</span>
+          <span class="tnm">Mexico<span class="own">Oliver Padgett-Blackburn</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>2</td><td>0</td><td class="gdc">+2</td>
+        <td class="ptsc">3</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇰🇷</span>
+          <span class="tnm">Korea Republic<span class="own">Charlotte Dickinson</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>2</td><td>1</td><td class="gdc">+1</td>
+        <td class="ptsc">3</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇨🇿</span>
+          <span class="tnm">Czechia<span class="own">Nathan Parks</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>1</td><td>2</td><td class="gdc">-1</td>
+        <td class="ptsc">0</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇿🇦</span>
+          <span class="tnm">South Africa<span class="own">Charlotte Dickinson</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>0</td><td>2</td><td class="gdc">-2</td>
+        <td class="ptsc">0</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group B</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇧🇦</span>
+          <span class="tnm">Bosnia and Herzegovina<span class="own">Laura Ellis</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇨🇦</span>
+          <span class="tnm">Canada<span class="own">Mark Spilsbury</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇶🇦</span>
+          <span class="tnm">Qatar<span class="own">Charlotte Dickinson</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇨🇭</span>
+          <span class="tnm">Switzerland<span class="own">Sean Smith</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group C</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🏴</span>
+          <span class="tnm">Scotland<span class="own">Chris Richards</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>1</td><td>0</td><td class="gdc">+1</td>
+        <td class="ptsc">3</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇧🇷</span>
+          <span class="tnm">Brazil<span class="own">Oliver Padgett-Blackburn</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇲🇦</span>
+          <span class="tnm">Morocco<span class="own">Nathan Parks</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇭🇹</span>
+          <span class="tnm">Haiti<span class="own">Oliver Padgett-Blackburn</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>0</td><td>1</td><td class="gdc">-1</td>
+        <td class="ptsc">0</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group D</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇺🇸</span>
+          <span class="tnm">United States<span class="own">Dan Welsh</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>4</td><td>1</td><td class="gdc">+3</td>
+        <td class="ptsc">3</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇦🇺</span>
+          <span class="tnm">Australia<span class="own">Nathan Parks</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>2</td><td>0</td><td class="gdc">+2</td>
+        <td class="ptsc">3</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇹🇷</span>
+          <span class="tnm">Türkiye<span class="own">Laura Barker</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>0</td><td>2</td><td class="gdc">-2</td>
+        <td class="ptsc">0</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇵🇾</span>
+          <span class="tnm">Paraguay<span class="own">Laura Barker</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>1</td><td>4</td><td class="gdc">-3</td>
+        <td class="ptsc">0</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group E</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇩🇪</span>
+          <span class="tnm">Germany<span class="own">Adam Spry</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>7</td><td>1</td><td class="gdc">+6</td>
+        <td class="ptsc">3</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇨🇮</span>
+          <span class="tnm">Côte d’Ivoire<span class="own">Richard Blyth</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>1</td><td>0</td><td class="gdc">+1</td>
+        <td class="ptsc">3</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇪🇨</span>
+          <span class="tnm">Ecuador<span class="own">Elliott Holmes</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>0</td><td>1</td><td class="gdc">-1</td>
+        <td class="ptsc">0</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇨🇼</span>
+          <span class="tnm">Curaçao<span class="own">Richard Blyth</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>1</td><td>7</td><td class="gdc">-6</td>
+        <td class="ptsc">0</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group F</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇸🇪</span>
+          <span class="tnm">Sweden<span class="own">Elliott Holmes</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>5</td><td>1</td><td class="gdc">+4</td>
+        <td class="ptsc">3</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇯🇵</span>
+          <span class="tnm">Japan<span class="own">Sean Smith</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>2</td><td>2</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇳🇱</span>
+          <span class="tnm">Netherlands<span class="own">Richard Blyth</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>2</td><td>2</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇹🇳</span>
+          <span class="tnm">Tunisia<span class="own">Laura Ellis</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>1</td><td>5</td><td class="gdc">-4</td>
+        <td class="ptsc">0</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group G</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇮🇷</span>
+          <span class="tnm">IR Iran<span class="own">Adam Spry</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>2</td><td>2</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇳🇿</span>
+          <span class="tnm">New Zealand<span class="own">Charlotte Dickinson</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>2</td><td>2</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇧🇪</span>
+          <span class="tnm">Belgium<span class="own">Mark Spilsbury</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇪🇬</span>
+          <span class="tnm">Egypt<span class="own">Sean Smith</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group H</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇸🇦</span>
+          <span class="tnm">Saudi Arabia<span class="own">Sean Smith</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇺🇾</span>
+          <span class="tnm">Uruguay<span class="own">Elliott Holmes</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇨🇻</span>
+          <span class="tnm">Cabo Verde<span class="own">Richard Blyth</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>0</td><td>0</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇪🇸</span>
+          <span class="tnm">Spain <span class="star">★</span><span class="own">Oliver Padgett-Blackburn</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>0</td><td>0</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group I</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇳🇴</span>
+          <span class="tnm">Norway<span class="own">Adam Spry</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>4</td><td>1</td><td class="gdc">+3</td>
+        <td class="ptsc">3</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇫🇷</span>
+          <span class="tnm">France <span class="star">★</span><span class="own">Dan Welsh</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>3</td><td>1</td><td class="gdc">+2</td>
+        <td class="ptsc">3</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇸🇳</span>
+          <span class="tnm">Senegal<span class="own">Laura Ellis</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>1</td><td>3</td><td class="gdc">-2</td>
+        <td class="ptsc">0</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇮🇶</span>
+          <span class="tnm">Iraq<span class="own">Chris Richards</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>1</td><td>4</td><td class="gdc">-3</td>
+        <td class="ptsc">0</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group J</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇦🇷</span>
+          <span class="tnm">Argentina <span class="star">★</span><span class="own">Laura Barker</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>3</td><td>0</td><td class="gdc">+3</td>
+        <td class="ptsc">3</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇦🇹</span>
+          <span class="tnm">Austria<span class="own">Mark Spilsbury</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>3</td><td>1</td><td class="gdc">+2</td>
+        <td class="ptsc">3</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇯🇴</span>
+          <span class="tnm">Jordan<span class="own">Elliott Holmes</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>1</td><td>3</td><td class="gdc">-2</td>
+        <td class="ptsc">0</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇩🇿</span>
+          <span class="tnm">Algeria<span class="own">Chris Richards</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>0</td><td>3</td><td class="gdc">-3</td>
+        <td class="ptsc">0</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group K</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🇨🇴</span>
+          <span class="tnm">Colombia<span class="own">Mark Spilsbury</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>3</td><td>1</td><td class="gdc">+2</td>
+        <td class="ptsc">3</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇨🇩</span>
+          <span class="tnm">Congo DR<span class="own">Dan Welsh</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇵🇹</span>
+          <span class="tnm">Portugal <span class="star">★</span><span class="own">Dan Welsh</span></span></td>
+        <td>1</td><td>0</td><td>1</td><td>0</td>
+        <td>1</td><td>1</td><td class="gdc">0</td>
+        <td class="ptsc">1</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇺🇿</span>
+          <span class="tnm">Uzbekistan<span class="own">Nathan Parks</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>1</td><td>3</td><td class="gdc">-2</td>
+        <td class="ptsc">0</td></tr></tbody></table></div><div class="card gtable"><div class="gtable-h">Group L</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody><tr class="qual">
+        <td class="rk">1</td>
+        <td class="tcell"><span class="fl">🏴</span>
+          <span class="tnm">England <span class="star">★</span><span class="own">Chris Richards</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>4</td><td>2</td><td class="gdc">+2</td>
+        <td class="ptsc">3</td></tr><tr class="qual">
+        <td class="rk">2</td>
+        <td class="tcell"><span class="fl">🇬🇭</span>
+          <span class="tnm">Ghana<span class="own">Adam Spry</span></span></td>
+        <td>1</td><td>1</td><td>0</td><td>0</td>
+        <td>1</td><td>0</td><td class="gdc">+1</td>
+        <td class="ptsc">3</td></tr><tr class="">
+        <td class="rk">3</td>
+        <td class="tcell"><span class="fl">🇵🇦</span>
+          <span class="tnm">Panama<span class="own">Laura Barker</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>0</td><td>1</td><td class="gdc">-1</td>
+        <td class="ptsc">0</td></tr><tr class="">
+        <td class="rk">4</td>
+        <td class="tcell"><span class="fl">🇭🇷</span>
+          <span class="tnm">Croatia<span class="own">Laura Ellis</span></span></td>
+        <td>1</td><td>0</td><td>0</td><td>1</td>
+        <td>2</td><td>4</td><td class="gdc">-2</td>
+        <td class="ptsc">0</td></tr></tbody></table></div></div></div>
   </section>
 
   <!-- FIXTURES -->
@@ -884,7 +1225,186 @@
 
   <!-- CHART -->
   <section class="panel" id="panel-chart">
-    <div id="chartBody"><div class="chart-section"><h2>Knockout bracket</h2><div class="empty"><p>The bracket fills in here once the group stage is done and the Round of 32 kicks off.</p></div></div></div>
+    <div id="chartBody"><div class="chart-section"><h2>Groups</h2><div class="groups"><div class="grp"><h3>Group A</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇲🇽 Mexico</div>
+              <div class="go">Oliver Padgett-Blackburn</div></td>
+          <td class="gp">3</td></tr><tr class="qual">
+          <td><div class="gt">🇰🇷 Korea Republic</div>
+              <div class="go">Charlotte Dickinson</div></td>
+          <td class="gp">3</td></tr><tr class="">
+          <td><div class="gt">🇨🇿 Czechia</div>
+              <div class="go">Nathan Parks</div></td>
+          <td class="gp">0</td></tr><tr class="">
+          <td><div class="gt">🇿🇦 South Africa</div>
+              <div class="go">Charlotte Dickinson</div></td>
+          <td class="gp">0</td></tr></tbody></table></div><div class="grp"><h3>Group B</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇧🇦 Bosnia and Herzegovina</div>
+              <div class="go">Laura Ellis</div></td>
+          <td class="gp">1</td></tr><tr class="qual">
+          <td><div class="gt">🇨🇦 Canada</div>
+              <div class="go">Mark Spilsbury</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇶🇦 Qatar</div>
+              <div class="go">Charlotte Dickinson</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇨🇭 Switzerland</div>
+              <div class="go">Sean Smith</div></td>
+          <td class="gp">1</td></tr></tbody></table></div><div class="grp"><h3>Group C</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🏴 Scotland</div>
+              <div class="go">Chris Richards</div></td>
+          <td class="gp">3</td></tr><tr class="qual">
+          <td><div class="gt">🇧🇷 Brazil</div>
+              <div class="go">Oliver Padgett-Blackburn</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇲🇦 Morocco</div>
+              <div class="go">Nathan Parks</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇭🇹 Haiti</div>
+              <div class="go">Oliver Padgett-Blackburn</div></td>
+          <td class="gp">0</td></tr></tbody></table></div><div class="grp"><h3>Group D</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇺🇸 United States</div>
+              <div class="go">Dan Welsh</div></td>
+          <td class="gp">3</td></tr><tr class="qual">
+          <td><div class="gt">🇦🇺 Australia</div>
+              <div class="go">Nathan Parks</div></td>
+          <td class="gp">3</td></tr><tr class="">
+          <td><div class="gt">🇹🇷 Türkiye</div>
+              <div class="go">Laura Barker</div></td>
+          <td class="gp">0</td></tr><tr class="">
+          <td><div class="gt">🇵🇾 Paraguay</div>
+              <div class="go">Laura Barker</div></td>
+          <td class="gp">0</td></tr></tbody></table></div><div class="grp"><h3>Group E</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇩🇪 Germany</div>
+              <div class="go">Adam Spry</div></td>
+          <td class="gp">3</td></tr><tr class="qual">
+          <td><div class="gt">🇨🇮 Côte d’Ivoire</div>
+              <div class="go">Richard Blyth</div></td>
+          <td class="gp">3</td></tr><tr class="">
+          <td><div class="gt">🇪🇨 Ecuador</div>
+              <div class="go">Elliott Holmes</div></td>
+          <td class="gp">0</td></tr><tr class="">
+          <td><div class="gt">🇨🇼 Curaçao</div>
+              <div class="go">Richard Blyth</div></td>
+          <td class="gp">0</td></tr></tbody></table></div><div class="grp"><h3>Group F</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇸🇪 Sweden</div>
+              <div class="go">Elliott Holmes</div></td>
+          <td class="gp">3</td></tr><tr class="qual">
+          <td><div class="gt">🇯🇵 Japan</div>
+              <div class="go">Sean Smith</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇳🇱 Netherlands</div>
+              <div class="go">Richard Blyth</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇹🇳 Tunisia</div>
+              <div class="go">Laura Ellis</div></td>
+          <td class="gp">0</td></tr></tbody></table></div><div class="grp"><h3>Group G</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇮🇷 IR Iran</div>
+              <div class="go">Adam Spry</div></td>
+          <td class="gp">1</td></tr><tr class="qual">
+          <td><div class="gt">🇳🇿 New Zealand</div>
+              <div class="go">Charlotte Dickinson</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇧🇪 Belgium</div>
+              <div class="go">Mark Spilsbury</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇪🇬 Egypt</div>
+              <div class="go">Sean Smith</div></td>
+          <td class="gp">1</td></tr></tbody></table></div><div class="grp"><h3>Group H</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇸🇦 Saudi Arabia</div>
+              <div class="go">Sean Smith</div></td>
+          <td class="gp">1</td></tr><tr class="qual">
+          <td><div class="gt">🇺🇾 Uruguay</div>
+              <div class="go">Elliott Holmes</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇨🇻 Cabo Verde</div>
+              <div class="go">Richard Blyth</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇪🇸 Spain <span class="star">★</span></div>
+              <div class="go">Oliver Padgett-Blackburn</div></td>
+          <td class="gp">1</td></tr></tbody></table></div><div class="grp"><h3>Group I</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇳🇴 Norway</div>
+              <div class="go">Adam Spry</div></td>
+          <td class="gp">3</td></tr><tr class="qual">
+          <td><div class="gt">🇫🇷 France <span class="star">★</span></div>
+              <div class="go">Dan Welsh</div></td>
+          <td class="gp">3</td></tr><tr class="">
+          <td><div class="gt">🇸🇳 Senegal</div>
+              <div class="go">Laura Ellis</div></td>
+          <td class="gp">0</td></tr><tr class="">
+          <td><div class="gt">🇮🇶 Iraq</div>
+              <div class="go">Chris Richards</div></td>
+          <td class="gp">0</td></tr></tbody></table></div><div class="grp"><h3>Group J</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇦🇷 Argentina <span class="star">★</span></div>
+              <div class="go">Laura Barker</div></td>
+          <td class="gp">3</td></tr><tr class="qual">
+          <td><div class="gt">🇦🇹 Austria</div>
+              <div class="go">Mark Spilsbury</div></td>
+          <td class="gp">3</td></tr><tr class="">
+          <td><div class="gt">🇯🇴 Jordan</div>
+              <div class="go">Elliott Holmes</div></td>
+          <td class="gp">0</td></tr><tr class="">
+          <td><div class="gt">🇩🇿 Algeria</div>
+              <div class="go">Chris Richards</div></td>
+          <td class="gp">0</td></tr></tbody></table></div><div class="grp"><h3>Group K</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🇨🇴 Colombia</div>
+              <div class="go">Mark Spilsbury</div></td>
+          <td class="gp">3</td></tr><tr class="qual">
+          <td><div class="gt">🇨🇩 Congo DR</div>
+              <div class="go">Dan Welsh</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇵🇹 Portugal <span class="star">★</span></div>
+              <div class="go">Dan Welsh</div></td>
+          <td class="gp">1</td></tr><tr class="">
+          <td><div class="gt">🇺🇿 Uzbekistan</div>
+              <div class="go">Nathan Parks</div></td>
+          <td class="gp">0</td></tr></tbody></table></div><div class="grp"><h3>Group L</h3><table><tbody><tr class="qual">
+          <td><div class="gt">🏴 England <span class="star">★</span></div>
+              <div class="go">Chris Richards</div></td>
+          <td class="gp">3</td></tr><tr class="qual">
+          <td><div class="gt">🇬🇭 Ghana</div>
+              <div class="go">Adam Spry</div></td>
+          <td class="gp">3</td></tr><tr class="">
+          <td><div class="gt">🇵🇦 Panama</div>
+              <div class="go">Laura Barker</div></td>
+          <td class="gp">0</td></tr><tr class="">
+          <td><div class="gt">🇭🇷 Croatia</div>
+              <div class="go">Laura Ellis</div></td>
+          <td class="gp">0</td></tr></tbody></table></div></div></div><div class="chart-section"><h2>Knockout bracket</h2><div class="empty"><p>The bracket fills in here once the group stage is done and the Round of 32 kicks off.</p></div></div></div>
+  </section>
+
+  <!-- STATISTICS -->
+  <section class="panel" id="panel-statistics">
+    <div id="statsBody"><div class="sec-h"><h2>Statistics</h2><span class="hint">24 games played · all figures live from the feed</span></div><div class="stiles">
+      <div class="stile"><div class="lab">Goals so far</div><div class="val">75</div></div>
+      <div class="stile"><div class="lab">Goals / game</div><div class="val">3.13</div></div>
+      <div class="stile"><div class="lab">Red cards</div><div class="val">3</div></div>
+      <div class="stile"><div class="lab">Clean sheets</div><div class="val">8</div></div>
+    </div><div class="movers"><div class="mv"><div class="lab">Biggest climber</div><div class="who">Mark Spilsbury <span class="up">▲ 2</span></div><div class="sub">5th → 3rd</div></div><div class="mv"><div class="lab">Biggest faller</div><div class="who">Charlotte Dickinson <span class="dn">▼ 1</span></div><div class="sub">4th → 5th</div></div><div class="mv"><div class="lab">In form</div><div class="who">🇩🇪 Germany</div><div class="sub">W</div></div></div><div class="tcard"><div class="tcard-h">Points race</div><div class="tcard-s">Cumulative sweepstake points by matchday — hover any line to see who's who</div>
+      <div class="leg"><span><i style="background:#e7b54a"></i>Adam Spry</span><span><i style="background:#5b6bff"></i>Dan Welsh</span><span><i style="background:#378ADD"></i>Mark Spilsbury</span><span><i style="background:#85B7EB"></i>Chris Richards</span><span><i style="background:rgba(154,161,184,.6)"></i>8 others</span></div><div class="race-wrap"><svg id="raceSvg" viewBox="0 0 620 190" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="trend chart" style="display:block"><line x1="30" y1="168.0" x2="610" y2="168.0" stroke="rgba(255,255,255,.06)"></line><text x="24" y="171.0" text-anchor="end" class="axt">0</text><line x1="30" y1="89.0" x2="610" y2="89.0" stroke="rgba(255,255,255,.06)"></line><text x="24" y="92.0" text-anchor="end" class="axt">5</text><line x1="30" y1="10.0" x2="610" y2="10.0" stroke="rgba(255,255,255,.06)"></line><text x="24" y="13.0" text-anchor="end" class="axt">10</text><text x="30.0" y="184" text-anchor="start" class="axt">11 Jun</text><text x="610.0" y="184" text-anchor="end" class="axt">18 Jun</text><path d="M30.0 168.0 L112.9 168.0 L195.7 168.0 L278.6 120.6 L361.4 120.6 L444.3 57.4 L527.1 57.4 L610.0 10.0 " fill="none" stroke="#e7b54a" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" opacity="1"></path><circle cx="610.0" cy="10.0" r="2.6" fill="#e7b54a"></circle><path d="M30.0 168.0 L112.9 120.6 L195.7 104.8 L278.6 104.8 L361.4 104.8 L444.3 89.0 L527.1 89.0 L610.0 89.0 " fill="none" stroke="rgba(154,161,184,.6)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.32"></path><path d="M30.0 168.0 L112.9 168.0 L195.7 168.0 L278.6 120.6 L361.4 120.6 L444.3 120.6 L527.1 73.2 L610.0 73.2 " fill="none" stroke="#85B7EB" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" opacity="1"></path><circle cx="610.0" cy="73.2" r="2.6" fill="#85B7EB"></circle><path d="M30.0 168.0 L112.9 168.0 L195.7 120.6 L278.6 120.6 L361.4 120.6 L444.3 73.2 L527.1 41.6 L610.0 41.6 " fill="none" stroke="#5b6bff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" opacity="1"></path><circle cx="610.0" cy="41.6" r="2.6" fill="#5b6bff"></circle><path d="M30.0 168.0 L112.9 168.0 L195.7 168.0 L278.6 168.0 L361.4 104.8 L444.3 104.8 L527.1 104.8 L610.0 104.8 " fill="none" stroke="rgba(154,161,184,.6)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.32"></path><path d="M30.0 168.0 L112.9 152.2 L195.7 152.2 L278.6 152.2 L361.4 152.2 L444.3 152.2 L527.1 152.2 L610.0 152.2 " fill="none" stroke="rgba(154,161,184,.6)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.32"></path><path d="M30.0 168.0 L112.9 168.0 L195.7 168.0 L278.6 168.0 L361.4 168.0 L444.3 168.0 L527.1 120.6 L610.0 120.6 " fill="none" stroke="rgba(154,161,184,.6)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.32"></path><path d="M30.0 168.0 L112.9 152.2 L195.7 152.2 L278.6 152.2 L361.4 136.4 L444.3 136.4 L527.1 89.0 L610.0 41.6 " fill="none" stroke="#378ADD" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" opacity="1"></path><circle cx="610.0" cy="41.6" r="2.6" fill="#378ADD"></circle><path d="M30.0 168.0 L112.9 168.0 L195.7 152.2 L278.6 104.8 L361.4 104.8 L444.3 104.8 L527.1 104.8 L610.0 104.8 " fill="none" stroke="rgba(154,161,184,.6)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.32"></path><path d="M30.0 120.6 L112.9 120.6 L195.7 104.8 L278.6 104.8 L361.4 89.0 L444.3 89.0 L527.1 89.0 L610.0 89.0 " fill="none" stroke="rgba(154,161,184,.6)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.32"></path><path d="M30.0 168.0 L112.9 168.0 L195.7 168.0 L278.6 152.2 L361.4 89.0 L444.3 89.0 L527.1 89.0 L610.0 89.0 " fill="none" stroke="rgba(154,161,184,.6)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.32"></path><path d="M30.0 168.0 L112.9 168.0 L195.7 152.2 L278.6 136.4 L361.4 104.8 L444.3 104.8 L527.1 104.8 L610.0 104.8 " fill="none" stroke="rgba(154,161,184,.6)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="0.32"></path><line id="raceGuide" x1="0" x2="0" y1="10" y2="168.0" stroke="rgba(255,255,255,.3)" stroke-dasharray="3 3" style="display:none"></line><circle id="raceDot" r="4.5" stroke="#0b0e1a" stroke-width="1.5" style="display:none"></circle></svg><div class="race-tip" id="raceTip"></div></div></div><div class="tcard"><div class="tcard-h">Tournament tempo</div><div class="tcard-s">Goals scored per matchday across all teams</div><svg id="" viewBox="0 0 620 190" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="trend chart" style="display:block"><line x1="30" y1="168.0" x2="610" y2="168.0" stroke="rgba(255,255,255,.06)"></line><text x="24" y="171.0" text-anchor="end" class="axt">0</text><line x1="30" y1="89.0" x2="610" y2="89.0" stroke="rgba(255,255,255,.06)"></line><text x="24" y="92.0" text-anchor="end" class="axt">8</text><line x1="30" y1="10.0" x2="610" y2="10.0" stroke="rgba(255,255,255,.06)"></line><text x="24" y="13.0" text-anchor="end" class="axt">15</text><text x="30.0" y="184" text-anchor="start" class="axt">11 Jun</text><text x="610.0" y="184" text-anchor="end" class="axt">18 Jun</text><path d="M30.0 146.9 L112.9 115.3 L195.7 73.2 L278.6 10.0 L361.4 52.1 L444.3 31.1 L527.1 10.0 L610.0 115.3 " fill="none" stroke="#5b6bff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" opacity="1"></path><circle cx="610.0" cy="115.3" r="2.6" fill="#5b6bff"></circle></svg></div><div class="grid g-2" style="align-items:start;margin-bottom:16px"><div class="card"><div class="pad" style="padding-bottom:4px"><h2 class="subhead">On the pitch</h2></div><div class="srow"><div class="sl">Top scorers</div><div class="sm"><span class="sv">🇩🇪 Germany</span><span class="so">Adam Spry</span></div><div class="sfig">7</div></div><div class="srow"><div class="sl">Best defence</div><div class="sm"><span class="sv">🇦🇷 Argentina</span><span class="so">Laura Barker</span></div><div class="sfig">0</div></div><div class="srow"><div class="sl">Biggest win</div><div class="sm"><span class="sv">🇩🇪 Germany 7–1 Curaçao 🇨🇼</span><span class="so"></span></div><div class="sfig">+6</div></div><div class="srow"><div class="sl">Most goals · game</div><div class="sm"><span class="sv">🇩🇪 Germany 7–1 Curaçao 🇨🇼</span><span class="so"></span></div><div class="sfig">8</div></div><div class="srow"><div class="sl">Biggest upset</div><div class="sm"><span class="sv">🇨🇮 Côte d’Ivoire beat Ecuador</span><span class="so">#43 over #24</span></div><div class="sfig">−19</div></div></div><div class="card"><div class="pad" style="padding-bottom:4px"><h2 class="subhead">The sweepstake</h2></div><div class="srow"><div class="sl">Leading player</div><div class="sm"><span class="sv">Adam Spry</span><span class="so">points</span></div><div class="sfig">10</div></div><div class="srow"><div class="sl">Golden boot</div><div class="sm"><span class="sv">Adam Spry</span><span class="so">goals across teams</span></div><div class="sfig">14</div></div><div class="srow"><div class="sl">Most still alive</div><div class="sm"><span class="sv">Adam Spry</span><span class="so">teams in</span></div><div class="sfig">4/4</div></div><div class="srow"><div class="sl">Wooden spoon</div><div class="sm"><span class="sv">Charlotte Dickinson</span><span class="so">red cards</span></div><div class="sfig">2</div></div><div class="srow"><div class="sl">Star power</div><div class="sm"><span class="sv">Dan Welsh ★★</span><span class="so">top-5 teams held</span></div><div class="sfig">2</div></div></div></div><div class="tcard"><div class="tcard-h">Goals by player</div><div class="tcard-s">Combined goals scored by each player's four teams</div><div class="gbar"><span class="gn">Adam Spry</span>
+    <span class="gt"><span class="gf2 lead" style="width:100%"></span></span>
+    <span class="gv">14</span></div><div class="gbar"><span class="gn">Dan Welsh</span>
+    <span class="gt"><span class="gf2 " style="width:64%"></span></span>
+    <span class="gv">9</span></div><div class="gbar"><span class="gn">Mark Spilsbury</span>
+    <span class="gt"><span class="gf2 " style="width:57%"></span></span>
+    <span class="gv">8</span></div><div class="gbar"><span class="gn">Elliott Holmes</span>
+    <span class="gt"><span class="gf2 " style="width:50%"></span></span>
+    <span class="gv">7</span></div><div class="gbar"><span class="gn">Chris Richards</span>
+    <span class="gt"><span class="gf2 " style="width:43%"></span></span>
+    <span class="gv">6</span></div><div class="gbar"><span class="gn">Charlotte Dickinson</span>
+    <span class="gt"><span class="gf2 " style="width:36%"></span></span>
+    <span class="gv">5</span></div><div class="gbar"><span class="gn">Laura Ellis</span>
+    <span class="gt"><span class="gf2 " style="width:36%"></span></span>
+    <span class="gv">5</span></div><div class="gbar"><span class="gn">Nathan Parks</span>
+    <span class="gt"><span class="gf2 " style="width:36%"></span></span>
+    <span class="gv">5</span></div><div class="gbar"><span class="gn">Sean Smith</span>
+    <span class="gt"><span class="gf2 " style="width:36%"></span></span>
+    <span class="gv">5</span></div><div class="gbar"><span class="gn">Laura Barker</span>
+    <span class="gt"><span class="gf2 " style="width:29%"></span></span>
+    <span class="gv">4</span></div><div class="gbar"><span class="gn">Richard Blyth</span>
+    <span class="gt"><span class="gf2 " style="width:29%"></span></span>
+    <span class="gv">4</span></div><div class="gbar"><span class="gn">Oliver Padgett-Blackburn</span>
+    <span class="gt"><span class="gf2 " style="width:21%"></span></span>
+    <span class="gv">3</span></div></div></div>
   </section>
 
   <!-- SETUP -->
@@ -914,7 +1434,7 @@
   </section>
 </div>
 
-<div class="toast" id="toast">Synced — 28 matches</div>
+<div class="toast" id="toast">Synced — 32 matches</div>
 
 <script>
 "use strict";
@@ -1012,6 +1532,7 @@ function freshState(){
     fixtures:[],            // {id,date,time,home,away,hs,as,status,round}
     matchCache:{},          // eventId -> cached match (incl. red cards)
     dayDone:{},             // yyyymmdd -> true once all that day's matches are final
+    groupMap:{},            // canonical team name -> group letter (from ESPN standings)
     scoring:{...DEFAULT_SCORING},
     settings:{...DEFAULT_SETTINGS},
     lastSync:null
@@ -1039,6 +1560,7 @@ function load(){
     s.fixtures = s.fixtures || [];
     s.matchCache = s.matchCache || {};
     s.dayDone = s.dayDone || {};
+    s.groupMap = s.groupMap || {};
     s.scoring = Object.assign({}, DEFAULT_SCORING, s.scoring||{});
     s.settings = Object.assign({}, DEFAULT_SETTINGS, s.settings||{});
     s.lastSync = s.lastSync || null;
@@ -1133,7 +1655,7 @@ function toast(msg){
 /* ============================================================
    RENDER
    ============================================================ */
-function renderAll(){ renderStandings(); renderPeople(); renderTeams(); renderFixtures(); renderChart(); renderSyncStatus(); }
+function renderAll(){ renderStandings(); renderPeople(); renderTeams(); renderFixtures(); renderChart(); renderStatistics(); renderSyncStatus(); }
 
 function teamChip(t){
   const star = isTopRated(t)?' <span class="star">★</span>':'';
@@ -1153,16 +1675,19 @@ function renderStandings(){
 
   // prize cards
   const championTeam = Object.values(state.teams).find(t=>t.stage==="winner");
-  const finalTeams = Object.values(state.teams).filter(t=>t.stage==="final"||t.stage==="winner");
-  const runnerTeam = finalTeams.find(t=>t.eliminated);
   const goalsLead = [...rows].sort((a,b)=>b.gf-a.gf)[0];
   const redsLead  = [...rows].sort((a,b)=>b.red-a.red)[0];
+  const aliveLead = [...rows].sort((a,b)=>b.alive-a.alive || b.pts-a.pts)[0];
   const leader = rows[0];
 
   const card=(cls,lab,who,meta)=>`<div class="prize ${cls}"><div class="lab">${lab}</div><div class="who">${who}</div><div class="meta">${meta}</div></div>`;
+  // second card is "most teams still in" during the tournament, flipping to Champions once the final is won
+  const secondCard = championTeam
+    ? card("gold","Champions", `${championTeam.flag} ${esc(ownerOf(championTeam.name)||"—")}`, esc(championTeam.name))
+    : card("","Most teams alive", aliveLead && aliveLead.alive ? esc(aliveLead.name) : "—", aliveLead ? `${aliveLead.alive}/${aliveLead.teams.length} still in` : "—");
   strip.innerHTML =
     card("lead-prize","Leading player", esc(leader.name), `${leader.pts} pts`) +
-    card(championTeam?"gold":"","Champions", championTeam?`${championTeam.flag} ${esc(ownerOf(championTeam.name)||"—")}`:"Up for grabs", championTeam?esc(championTeam.name):"Awaiting the final") +
+    secondCard +
     card("","Most goals", goalsLead&&goalsLead.gf? esc(goalsLead.name):"—", `${goalsLead?goalsLead.gf:0} scored`) +
     card("","Most red cards", redsLead&&redsLead.red? esc(redsLead.name):"—", `${redsLead?redsLead.red:0} reds`);
 
@@ -1452,6 +1977,248 @@ function tieCard(m){
 }
 function tieEmpty(){ return `<div class="tie empty"><div class="tl">Awaiting teams</div><div class="tl">Awaiting teams</div></div>`; }
 
+/* ============================================================
+   STATISTICS — trends + superlatives, all derived from matches
+   ============================================================ */
+const dateOfMatch = m => m.localDash || (m.iso||"").slice(0,10);
+
+function statSeries(){
+  const finished = Object.values(state.matchCache||{}).filter(m=>m.state==="post" && m.hs!=null && m.as!=null);
+  const dates = [...new Set(finished.map(dateOfMatch).filter(Boolean))].sort();
+  const sc = state.scoring;
+  const stageBonus = {1:sc.r32, 2:sc.r16, 3:sc.qf, 4:sc.sf, 5:sc.final};
+  const series={}; PARTICIPANTS.forEach(p=>series[p]=[]);
+  const tempo=[];
+  dates.forEach(D=>{
+    const agg={}; let goalsToday=0; let champ=null;
+    finished.forEach(m=>{ if(dateOfMatch(m)===D) goalsToday += (m.hs||0)+(m.as||0); });
+    finished.filter(m=>dateOfMatch(m)<=D).forEach(m=>{
+      const h=canon(m.home), a=canon(m.away); if(!h||!a) return;
+      agg[h]=agg[h]||{gw:0,gd:0,sr:0}; agg[a]=agg[a]||{gw:0,gd:0,sr:0};
+      const ko = m.round && m.round!=="group" && m.round!=="third";
+      if(ko){ const r=KO_RANK[m.round]||0; if(r>agg[h].sr)agg[h].sr=r; if(r>agg[a].sr)agg[a].sr=r;
+        if(m.round==="final"){ champ = m.winHome?h : m.winAway?a : (m.hs>m.as?h:a); } }
+      else if(!m.round || m.round==="group"){
+        if(m.hs>m.as) agg[h].gw++; else if(m.as>m.hs) agg[a].gw++; else { agg[h].gd++; agg[a].gd++; }
+      }
+    });
+    const pts={}; PARTICIPANTS.forEach(p=>pts[p]=0);
+    Object.keys(agg).forEach(name=>{
+      const o=ownerOf(name); if(!o||!(o in pts)) return; const A=agg[name];
+      let p = A.gw*sc.groupWin + A.gd*sc.groupDraw + (name===champ ? sc.winner : (stageBonus[A.sr]||0));
+      pts[o]+=p;
+    });
+    PARTICIPANTS.forEach(p=>series[p].push(pts[p]));
+    tempo.push(goalsToday);
+  });
+  return {dates, series, tempo};
+}
+function ranksAt(series, k){
+  const arr=PARTICIPANTS.map(p=>({p, v:series[p][k]||0})).sort((a,b)=>b.v-a.v || a.p.localeCompare(b.p));
+  const r={}; arr.forEach((o,i)=>r[o.p]=i+1); return r;
+}
+function inFormTeam(){
+  const by={};
+  Object.values(state.matchCache||{}).filter(m=>m.state==="post"&&m.hs!=null).forEach(m=>{
+    const h=canon(m.home), a=canon(m.away);
+    if(h){ (by[h]=by[h]||[]).push({d:dateOfMatch(m), gf:m.hs, ga:m.as}); }
+    if(a){ (by[a]=by[a]||[]).push({d:dateOfMatch(m), gf:m.as, ga:m.hs}); }
+  });
+  let best=null;
+  Object.keys(by).forEach(name=>{
+    const ms=by[name].sort((x,y)=>x.d.localeCompare(y.d)).slice(-3);
+    let pts=0, res="", gf=0;
+    ms.forEach(x=>{ gf+=x.gf; if(x.gf>x.ga){pts+=3;res+="W";} else if(x.gf<x.ga){pts+=1*0;res+="L";} else {pts+=1;res+="D";} });
+    const score=pts*100+gf;
+    if(best===null || score>best.score) best={name, res, score, pts};
+  });
+  return best;
+}
+const CHART={W:620,padL:30,padR:10,padT:10,padB:22};
+let _race=null;
+function svgLines(labels, lines, height, opts){
+  opts=opts||{};
+  const {W,padL,padR,padT,padB}=CHART;
+  const H=height, pw=W-padL-padR, ph=H-padT-padB, n=labels.length;
+  let yMax=opts.yMax;
+  if(!yMax){ yMax=1; lines.forEach(l=>l.vals.forEach(v=>{ if(v>yMax)yMax=v; })); yMax=Math.max(5,Math.ceil(yMax/5)*5); }
+  const X=i=> n<=1 ? padL+pw/2 : padL+(i/(n-1))*pw;
+  const Y=v=> padT+ph-(v/yMax)*ph;
+  let g="";
+  [0,0.5,1].forEach(f=>{ const v=yMax*f, y=Y(v);
+    g+=`<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W-padR}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,.06)"/>`;
+    g+=`<text x="${padL-6}" y="${(y+3).toFixed(1)}" text-anchor="end" class="axt">${Math.round(v)}</text>`; });
+  labels.forEach((lb,i)=>{ if(i===0||i===n-1||n<=6){
+    g+=`<text x="${X(i).toFixed(1)}" y="${H-6}" text-anchor="${i===0?'start':i===n-1?'end':'middle'}" class="axt">${esc(lb)}</text>`; }});
+  lines.forEach(l=>{ if(!l.vals.length) return; let d="";
+    l.vals.forEach((v,i)=>{ d+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' '; });
+    g+=`<path d="${d}" fill="none" stroke="${l.color}" stroke-width="${l.width||1.5}" stroke-linejoin="round" stroke-linecap="round" opacity="${l.dim?0.32:1}"/>`;
+    if(!l.dim){ const li=l.vals.length-1; g+=`<circle cx="${X(li).toFixed(1)}" cy="${Y(l.vals[li]).toFixed(1)}" r="2.6" fill="${l.color}"/>`; }
+  });
+  let extra="";
+  if(opts.interactive){
+    extra=`<line id="raceGuide" x1="0" x2="0" y1="${padT}" y2="${(H-padB).toFixed(1)}" stroke="rgba(255,255,255,.3)" stroke-dasharray="3 3" style="display:none"/>`+
+          `<circle id="raceDot" r="4.5" stroke="#0b0e1a" stroke-width="1.5" style="display:none"/>`;
+  }
+  return `<svg id="${opts.id||''}" viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="trend chart" style="display:block">${g}${extra}</svg>`;
+}
+function wireRaceHover(){
+  const svg=$("#raceSvg"); if(!svg || !_race) return;
+  const tip=$("#raceTip"), guide=$("#raceGuide"), dot=$("#raceDot");
+  if(!tip||!guide||!dot) return;
+  const {dates,series,yMax,H,color}=_race;
+  const {W,padL,padR,padT,padB}=CHART;
+  const pw=W-padL-padR, ph=H-padT-padB, n=dates.length;
+  const X=i=> n<=1 ? padL+pw/2 : padL+(i/(n-1))*pw;
+  const Y=v=> padT+ph-(v/yMax)*ph;
+  function move(e){
+    const r=svg.getBoundingClientRect(); if(!r.width) return;
+    const vbX=(e.clientX-r.left)*(W/r.width), vbY=(e.clientY-r.top)*(H/r.height);
+    let i=Math.round((vbX-padL)/pw*(n-1)); i=Math.max(0,Math.min(n-1,i));
+    let best=null;
+    PARTICIPANTS.forEach(p=>{ const v=series[p][i]; const yy=Y(v); const dist=Math.abs(yy-vbY); if(!best||dist<best.dist) best={p,v,yy,dist}; });
+    if(!best) return;
+    const x=X(i);
+    guide.setAttribute("x1",x.toFixed(1)); guide.setAttribute("x2",x.toFixed(1)); guide.style.display="";
+    dot.setAttribute("cx",x.toFixed(1)); dot.setAttribute("cy",best.yy.toFixed(1)); dot.setAttribute("fill",color[best.p]||"#fff"); dot.style.display="";
+    tip.style.display="block";
+    tip.innerHTML=`<div class="rt-n">${esc(best.p)}</div><div class="rt-v">${best.v} pts</div><div class="rt-d">${esc(shortDate(dates[i]))}</div>`;
+    const px=(x/W)*r.width, py=(best.yy/H)*r.height;
+    tip.style.left=Math.max(0, Math.min(r.width - tip.offsetWidth - 2, px+12))+"px";
+    tip.style.top=Math.max(0, py-tip.offsetHeight-8)+"px";
+  }
+  svg.addEventListener("mousemove",move);
+  svg.addEventListener("mouseleave",()=>{ tip.style.display="none"; guide.style.display="none"; dot.style.display="none"; });
+}
+function shortDate(d){ const dt=new Date(d+"T12:00:00"); return isNaN(dt)?d:dt.toLocaleDateString(undefined,{day:"numeric",month:"short"}); }
+
+function renderStatistics(){
+  const body=$("#statsBody");
+  const finished = Object.values(state.matchCache||{}).filter(m=>m.state==="post" && m.hs!=null && m.as!=null);
+  if(!finished.length){
+    body.innerHTML = `<div class="sec-h"><h2>Statistics</h2></div><div class="card"><div class="empty"><h3>No matches played yet</h3><p>Stats and trends appear here once results start coming in. Hit Sync to pull the latest.</p></div></div>`;
+    return;
+  }
+  const rows = participantRows();
+  const played = new Set(); finished.forEach(m=>{ const h=canon(m.home),a=canon(m.away); if(h)played.add(h); if(a)played.add(a); });
+
+  // tiles
+  const totalGoals = finished.reduce((s,m)=>s+(m.hs||0)+(m.as||0),0);
+  const games = finished.length;
+  const gpg = (totalGoals/games).toFixed(2);
+  const reds = Object.values(state.teams).reduce((s,t)=>s+(+t.red||0),0);
+  const cleans = finished.reduce((s,m)=>s+(m.hs===0?1:0)+(m.as===0?1:0),0);
+
+  // series + movers
+  const {dates, series, tempo} = statSeries();
+  let moversHtml="";
+  if(dates.length>=2){
+    const last=dates.length-1;
+    const rNow=ranksAt(series,last), rPrev=ranksAt(series,last-1);
+    let climb={p:null,by:0}, fall={p:null,by:0};
+    PARTICIPANTS.forEach(p=>{ const delta=rPrev[p]-rNow[p];
+      if(delta>climb.by) climb={p,by:delta,from:rPrev[p],to:rNow[p]};
+      if(delta<fall.by) fall={p,by:delta,from:rPrev[p],to:rNow[p]}; });
+    const form=inFormTeam();
+    const ord=n=>{ const v=n%100; return n+(v>=11&&v<=13?"th":(["th","st","nd","rd"][n%10]||"th")); };
+    const mvCard=(lab,inner)=>`<div class="mv"><div class="lab">${lab}</div>${inner}</div>`;
+    moversHtml=`<div class="movers">`+
+      mvCard("Biggest climber", climb.p?`<div class="who">${esc(climb.p)} <span class="up">▲ ${climb.by}</span></div><div class="sub">${ord(climb.from)} → ${ord(climb.to)}</div>`:`<div class="who">—</div>`)+
+      mvCard("Biggest faller", fall.p?`<div class="who">${esc(fall.p)} <span class="dn">▼ ${Math.abs(fall.by)}</span></div><div class="sub">${ord(fall.from)} → ${ord(fall.to)}</div>`:`<div class="who">—</div>`)+
+      (form?mvCard("In form", `<div class="who">${(state.teams[form.name]||{}).flag||''} ${esc(form.name)}</div><div class="sub">${form.res.split('').join(' · ')||'—'}</div>`):mvCard("In form",`<div class="who">—</div>`))+
+      `</div>`;
+  }
+
+  // points race chart — highlight top 4 by current points, mute the rest
+  const order=[...rows].sort((a,b)=>b.pts-a.pts);
+  const topNames=order.slice(0,4).map(r=>r.name);
+  const colors=["#e7b54a","#5b6bff","#378ADD","#85B7EB"];
+  const colorOf={}; PARTICIPANTS.forEach(p=>{ const ti=topNames.indexOf(p); colorOf[p]= ti>=0?colors[ti]:"rgba(154,161,184,.6)"; });
+  const lines = PARTICIPANTS.map(p=>{ const ti=topNames.indexOf(p);
+    return { vals:series[p], color:colorOf[p], width: ti>=0?2.6:1, dim: ti<0 }; });
+  const labels = dates.map(shortDate);
+  let raceMax=1; PARTICIPANTS.forEach(p=>series[p].forEach(v=>{ if(v>raceMax)raceMax=v; }));
+  raceMax=Math.max(5, Math.ceil(raceMax/5)*5);
+  const CHART_H=190;
+  const legend = topNames.map((n,i)=>`<span><i style="background:${colors[i]}"></i>${esc(n)}</span>`).join("")+
+    (PARTICIPANTS.length>4?`<span><i style="background:rgba(154,161,184,.6)"></i>${PARTICIPANTS.length-4} others</span>`:"");
+  let raceCard;
+  if(dates.length>=2){
+    _race={dates, series, yMax:raceMax, H:CHART_H, color:colorOf};
+    const raceSvg=svgLines(labels, lines, CHART_H, {id:"raceSvg", interactive:true, yMax:raceMax});
+    raceCard=`<div class="tcard"><div class="tcard-h">Points race</div><div class="tcard-s">Cumulative sweepstake points by matchday — hover any line to see who's who</div>
+      <div class="leg">${legend}</div><div class="race-wrap">${raceSvg}<div class="race-tip" id="raceTip"></div></div></div>`;
+  } else {
+    _race=null;
+    raceCard=`<div class="tcard"><div class="tcard-h">Points race</div><div class="tcard-s">Builds once a few match dates are in the books</div><div class="empty"><p>Not enough match dates yet for a trend line.</p></div></div>`;
+  }
+
+  const tempoCard = dates.length>=1
+    ? `<div class="tcard"><div class="tcard-h">Tournament tempo</div><div class="tcard-s">Goals scored per matchday across all teams</div>${svgLines(labels, [{vals:tempo, color:"#5b6bff", width:2.6}], CHART_H)}</div>`
+    : "";
+
+  // superlatives
+  const playedTeams = Object.values(state.teams).filter(t=>played.has(t.name));
+  const topScorer = playedTeams.slice().sort((a,b)=>b.gf-a.gf)[0];
+  const bestDef = playedTeams.slice().sort((a,b)=>a.ga-b.ga || b.gf-a.gf)[0];
+  let bigWin=null, mostGoals=null, upset=null;
+  finished.forEach(m=>{
+    const diff=Math.abs((m.hs||0)-(m.as||0)), tot=(m.hs||0)+(m.as||0);
+    if(!bigWin||diff>bigWin.diff) bigWin={m,diff};
+    if(!mostGoals||tot>mostGoals.tot) mostGoals={m,tot};
+    const h=canon(m.home),a=canon(m.away); if(!h||!a) return;
+    let win=null,lose=null;
+    if(m.winHome||m.winAway){ win=m.winHome?h:a; lose=m.winHome?a:h; }
+    else if(m.hs>m.as){ win=h;lose=a; } else if(m.as>m.hs){ win=a;lose=h; }
+    if(win&&lose&&state.teams[win]&&state.teams[lose]){ const gap=state.teams[win].rank-state.teams[lose].rank;
+      if(gap>0 && (!upset||gap>upset.gap)) upset={win,lose,gap}; }
+  });
+  const mTeams=m=>`${(state.teams[canon(m.home)]||{}).flag||''} ${esc(m.home)} ${m.hs}–${m.as} ${esc(m.away)} ${(state.teams[canon(m.away)]||{}).flag||''}`;
+  const sRow=(lab,sv,so,fig)=>`<div class="srow"><div class="sl">${lab}</div><div class="sm"><span class="sv">${sv}</span><span class="so">${so||''}</span></div><div class="sfig">${fig}</div></div>`;
+  const pitch=`<div class="card"><div class="pad" style="padding-bottom:4px"><h2 class="subhead">On the pitch</h2></div>`+
+    (topScorer?sRow("Top scorers", `${topScorer.flag||''} ${esc(topScorer.name)}`, ownerOf(topScorer.name)||'—', topScorer.gf):"")+
+    (bestDef?sRow("Best defence", `${bestDef.flag||''} ${esc(bestDef.name)}`, ownerOf(bestDef.name)||'—', bestDef.ga):"")+
+    (bigWin?sRow("Biggest win", mTeams(bigWin.m), "", "+"+bigWin.diff):"")+
+    (mostGoals?sRow("Most goals · game", mTeams(mostGoals.m), "", mostGoals.tot):"")+
+    (upset?sRow("Biggest upset", `${(state.teams[upset.win]||{}).flag||''} ${esc(upset.win)} beat ${esc(upset.lose)}`, `#${state.teams[upset.win].rank} over #${state.teams[upset.lose].rank}`, "−"+upset.gap):"")+
+    `</div>`;
+
+  const byPts=[...rows].sort((a,b)=>b.pts-a.pts)[0];
+  const byGoals=[...rows].sort((a,b)=>b.gf-a.gf)[0];
+  const byAlive=[...rows].sort((a,b)=>b.alive-a.alive)[0];
+  const byRed=[...rows].sort((a,b)=>b.red-a.red)[0];
+  const starCount=r=>r.teams.filter(t=>isTopRated(t)).length;
+  const byStar=[...rows].sort((a,b)=>starCount(b)-starCount(a))[0];
+  const sweep=`<div class="card"><div class="pad" style="padding-bottom:4px"><h2 class="subhead">The sweepstake</h2></div>`+
+    sRow("Leading player", esc(byPts.name), "points", byPts.pts)+
+    sRow("Golden boot", esc(byGoals.name), "goals across teams", byGoals.gf)+
+    sRow("Most still alive", esc(byAlive.name), "teams in", byAlive.alive+"/"+byAlive.teams.length)+
+    sRow("Wooden spoon", esc(byRed.name), "red cards", byRed.red)+
+    sRow("Star power", `${esc(byStar.name)} ${'★'.repeat(starCount(byStar))}`, "top-5 teams held", starCount(byStar))+
+    `</div>`;
+
+  // goals by player bars
+  const gOrder=[...rows].sort((a,b)=>b.gf-a.gf);
+  const gMax=Math.max(1, gOrder[0].gf);
+  const bars=gOrder.map((r,i)=>`<div class="gbar"><span class="gn">${esc(r.name)}</span>
+    <span class="gt"><span class="gf2 ${i===0?'lead':''}" style="width:${Math.round((r.gf/gMax)*100)}%"></span></span>
+    <span class="gv">${r.gf}</span></div>`).join("");
+
+  body.innerHTML =
+    `<div class="sec-h"><h2>Statistics</h2><span class="hint">${games} games played · all figures live from the feed</span></div>`+
+    `<div class="stiles">
+      <div class="stile"><div class="lab">Goals so far</div><div class="val">${totalGoals}</div></div>
+      <div class="stile"><div class="lab">Goals / game</div><div class="val">${gpg}</div></div>
+      <div class="stile"><div class="lab">Red cards</div><div class="val">${reds}</div></div>
+      <div class="stile"><div class="lab">Clean sheets</div><div class="val">${cleans}</div></div>
+    </div>`+
+    moversHtml + raceCard + tempoCard +
+    `<div class="grid g-2" style="align-items:start;margin-bottom:16px">${pitch}${sweep}</div>`+
+    `<div class="tcard"><div class="tcard-h">Goals by player</div><div class="tcard-s">Combined goals scored by each player's four teams</div>${bars}</div>`;
+
+  wireRaceHover();
+}
+
 function emptyAllocBlock(){
   return `<div class="empty"><h3>No draw loaded yet</h3>
     <p>Head to <b>Setup → Who drew what</b> and paste the results from the draw app. The leaderboard fills in from there.</p>
@@ -1590,7 +2357,8 @@ function parseEvent(ev){
   const notes = (comp.notes && comp.notes[0] && comp.notes[0].headline) || "";
   const cand = [notes, ev.shortName, comp.type&&comp.type.text, ev.season&&ev.season.slug, ev.name].filter(Boolean).join(" | ");
   const r = classifyRound(cand);
-  const gm = cand.match(/group\s+([a-l])\b/i);
+  let gm = cand.match(/group\s+([a-l])\b/i);
+  if(!gm){ try{ gm = JSON.stringify(ev).match(/group[\s_-]+([a-l])\b/i); }catch(e){} }
   return {
     id:String(ev.id), iso, localDash, time,
     home:nm(home), away:nm(away),
@@ -1601,6 +2369,31 @@ function parseEvent(ev){
     round:r.key, roundLabel:r.label || notes || "",
     group: gm ? gm[1].toUpperCase() : ""
   };
+}
+
+/* Authoritative group membership from ESPN's standings endpoint.
+   Walks the whole tree so nested group nodes are all picked up. */
+function parseStandingsGroups(json){
+  const map={};
+  const seen=new Set();
+  const visit=node=>{
+    if(!node || typeof node!=="object" || seen.has(node)) return;
+    seen.add(node);
+    if(Array.isArray(node)){ node.forEach(visit); return; }
+    const nm=(node.name||node.displayName||node.shortName||node.abbreviation||"")+"";
+    const gm=nm.match(/group\s+([a-l])\b/i);
+    const entries=(node.standings && node.standings.entries) || node.entries;
+    if(gm && Array.isArray(entries)){
+      const L=gm[1].toUpperCase();
+      entries.forEach(e=>{
+        const tn = e && e.team && (e.team.displayName||e.team.name||e.team.shortDisplayName||e.team.location);
+        const cn = canon(tn); if(cn) map[cn]=L;
+      });
+    }
+    for(const k in node){ const v=node[k]; if(v && typeof v==="object") visit(v); }
+  };
+  visit(json);
+  return map;
 }
 
 function parseRedCards(summary){
@@ -1663,6 +2456,13 @@ async function sync(silent){
         }catch(e){ /* retry next sync */ }
       }));
     }
+
+    // group membership from the standings endpoint (most reliable source)
+    try{
+      const st = await fetchJson(`${ESPN}/standings`);
+      const map = parseStandingsGroups(st);
+      if(Object.keys(map).length) state.groupMap = map;
+    }catch(e){ /* fall back to per-match detection */ }
 
     rebuildFromCache();
     state.lastSync = Date.now();
@@ -1729,6 +2529,9 @@ function rebuildFromCache(){
       if(playedGroup && !knockoutTeams.has(name)) state.teams[name].eliminated=true;
     });
   }
+
+  // group membership: standings map takes priority, then per-match detection already set above
+  if(state.groupMap){ Object.keys(state.groupMap).forEach(n=>{ if(state.teams[n]) state.teams[n].group = state.groupMap[n]; }); }
 
   // fixtures for the Fixtures tab
   state.fixtures = matches.map(m=>({
