@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0059)file:///Users/nathanparks/Downloads/tribus-dashboard_8.html -->
+<!-- saved from url=(0059)file:///Users/nathanparks/Downloads/tribus-dashboard_9.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -129,17 +129,44 @@
   .person.knocked .pname{text-decoration:line-through;text-decoration-color:rgba(240,106,106,.6)}
   .knock-ribbon{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bad);border:1px solid rgba(240,106,106,.4);border-radius:var(--r-xs);padding:2px 7px}
 
-  /* teams */
-  .teamgrid{width:100%;border-collapse:collapse;font-size:13px}
-  .teamgrid th,.teamgrid td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
-  .teamgrid th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;position:sticky;top:0;background:#0c0f1a;z-index:1}
-  .teamgrid tbody tr:hover td{background:rgba(255,255,255,.02)}
-  .teamgrid input,.teamgrid select{background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--ink);border-radius:var(--r-xs);padding:5px 7px;font-family:var(--mono);font-size:12px;width:52px}
-  .teamgrid select{width:auto}
-  .teamgrid input:focus,.teamgrid select:focus{outline:none;border-color:var(--blue-2)}
-  .teamgrid td[data-pts]{font-family:var(--disp);font-weight:700;font-variant-numeric:tabular-nums}
-  .scroll{overflow:auto;max-height:64vh;border-radius:var(--r-sm);border:1px solid var(--line)}
-  .owner-tag{font-size:12px;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+  /* teams — group tables */
+  .subhead{font-family:var(--disp);font-weight:700;letter-spacing:-.01em;font-size:15px;margin:0}
+  .gwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+  .gtable{overflow:hidden}
+  .gtable-h{padding:11px 15px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-2);border-bottom:1px solid var(--line)}
+  .gtable table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+  .gtable th{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;padding:8px 6px;text-align:center;border-bottom:1px solid var(--line)}
+  .gtable th:nth-child(2){text-align:left}
+  .gtable td{padding:9px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.045)}
+  .gtable tbody tr:last-child td{border-bottom:none}
+  .gtable td:nth-child(2){text-align:left}
+  .gtable th.rk,.gtable td.rk{width:24px;color:var(--ink-faint)}
+  .gtable th:first-child,.gtable th:nth-child(2){padding-left:14px}
+  .gtable td:first-child,.gtable td:nth-child(2){padding-left:14px}
+  .gtable th.ptsc,.gtable td.ptsc{padding-right:14px}
+  .tcell{display:flex;align-items:center;gap:9px;min-width:0}
+  .tcell .fl{font-size:19px;flex:0 0 auto}
+  .tnm{display:flex;flex-direction:column;line-height:1.25;min-width:0;font-weight:600}
+  .tnm .own{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gdc{color:var(--ink-dim)}
+  .ptsc{font-family:var(--disp);font-weight:800}
+  .gtable tr.qual{background:rgba(0,0,255,.08)}
+  .gtable tr.qual td:first-child{box-shadow:inset 3px 0 0 var(--blue)}
+  .gtable tr.elimrow{opacity:.45}
+  .gtable tr.elimrow .tnm{text-decoration:line-through;text-decoration-color:rgba(240,106,106,.5)}
+
+  /* teams — knockout status lists */
+  .statuslist{padding:4px 0 8px}
+  .statsub{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-2);padding:12px 16px 6px}
+  .strow{display:flex;align-items:center;gap:11px;padding:9px 16px}
+  .strow .fl{font-size:20px;flex:0 0 auto}
+  .strow-main{display:flex;flex-direction:column;line-height:1.25;min-width:0;flex:1}
+  .strow-main .tnm{font-weight:600;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .strow-main .own{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint)}
+  .strow-stage{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);border:1px solid var(--line);border-radius:var(--r-xs);padding:2px 7px;white-space:nowrap}
+  .strow-stat{font-family:var(--mono);font-size:12px;color:var(--ink-dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .strow.out{opacity:.62}
+  .strow.out .tnm{text-decoration:line-through;text-decoration-color:rgba(240,106,106,.5)}
 
   /* fixtures */
   .fix{display:flex;align-items:center;gap:14px;padding:13px 17px;border-bottom:1px solid var(--line)}
@@ -229,24 +256,24 @@
     </div>
     <div class="syncbox">
       <button class="btn primary" id="syncBtn">Sync</button>
-      <div class="syncline"><span class="dot ok" id="syncDot"></span><span id="syncMsg">Synced Thu 18 Jun 11:22</span></div>
+      <div class="syncline"><span class="dot ok" id="syncDot"></span><span id="syncMsg">Synced Thu 18 Jun 11:36</span></div>
     </div>
   </header>
 
   <nav class="tabs" id="tabs">
-    <button class="tab active" data-tab="standings">Standings</button>
+    <button class="tab" data-tab="standings">Standings</button>
     <button class="tab" data-tab="people">People</button>
-    <button class="tab" data-tab="teams">Teams</button>
+    <button class="tab active" data-tab="teams">Teams</button>
     <button class="tab" data-tab="fixtures">Fixtures</button>
     <button class="tab" data-tab="chart">Chart</button>
     <button class="tab" data-tab="setup">Setup</button>
   </nav>
 
   <!-- STANDINGS -->
-  <section class="panel active" id="panel-standings">
+  <section class="panel" id="panel-standings">
     <div class="prizes" id="prizeStrip"><div class="prize lead-prize"><div class="lab">Leading player</div><div class="who">Adam Spry</div><div class="meta">10 pts</div></div><div class="prize "><div class="lab">Champions</div><div class="who">Up for grabs</div><div class="meta">Awaiting the final</div></div><div class="prize "><div class="lab">Most goals</div><div class="who">Adam Spry</div><div class="meta">14 scored</div></div><div class="prize "><div class="lab">Most red cards</div><div class="who">Charlotte Dickinson</div><div class="meta">2 reds</div></div></div>
     <div class="card">
-      <div class="pad sec-h"><h2>Prize standings</h2><span class="hint" id="standHint">Last synced Thu 18 Jun 11:22</span></div>
+      <div class="pad sec-h"><h2>Prize standings</h2><span class="hint" id="standHint">Last synced Thu 18 Jun 11:36</span></div>
       <div id="standBody"><table class="lead"><thead><tr>
       <th class="rk">#</th><th>Player</th><th>Teams</th>
       <th class="num">GF</th><th class="num">🟥</th><th class="num">Alive</th><th class="num">Pts</th>
@@ -633,688 +660,8 @@
   </section>
 
   <!-- TEAMS -->
-  <section class="panel" id="panel-teams">
-    <div class="card">
-      <div class="pad sec-h">
-        <h2>Teams &amp; progress</h2>
-        <span class="hint">Edit any cell — saved instantly. Sync fills these for you when it can.</span>
-      </div>
-      <div class="pad" id="teamsBody"><div class="scroll"><table class="teamgrid"><thead><tr>
-    <th>Team</th><th>Rank</th><th>Owner</th><th>Group</th><th>Stage</th><th>Out?</th>
-    <th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>🟥</th><th>Pts</th></tr></thead><tbody><tr data-team="France">
-      <td>🇫🇷 France <span class="star">★</span></td>
-      <td class="owner-tag">#1</td>
-      <td class="owner-tag">Dan Welsh</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="3"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Argentina">
-      <td>🇦🇷 Argentina <span class="star">★</span></td>
-      <td class="owner-tag">#3</td>
-      <td class="owner-tag">Laura Barker</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="3"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="England">
-      <td>🏴 England <span class="star">★</span></td>
-      <td class="owner-tag">#4</td>
-      <td class="owner-tag">Chris Richards</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="4"></td>
-      <td><input type="number" data-k="ga" value="2"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Germany">
-      <td>🇩🇪 Germany</td>
-      <td class="owner-tag">#10</td>
-      <td class="owner-tag">Adam Spry</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="7"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Colombia">
-      <td>🇨🇴 Colombia</td>
-      <td class="owner-tag">#14</td>
-      <td class="owner-tag">Mark Spilsbury</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="3"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="United States">
-      <td>🇺🇸 United States</td>
-      <td class="owner-tag">#16</td>
-      <td class="owner-tag">Dan Welsh</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="4"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Mexico">
-      <td>🇲🇽 Mexico</td>
-      <td class="owner-tag">#17</td>
-      <td class="owner-tag">Oliver Padgett-Blackburn</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="1"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Austria">
-      <td>🇦🇹 Austria</td>
-      <td class="owner-tag">#21</td>
-      <td class="owner-tag">Mark Spilsbury</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="3"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Korea Republic">
-      <td>🇰🇷 Korea Republic</td>
-      <td class="owner-tag">#23</td>
-      <td class="owner-tag">Charlotte Dickinson</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Australia">
-      <td>🇦🇺 Australia</td>
-      <td class="owner-tag">#25</td>
-      <td class="owner-tag">Nathan Parks</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Norway">
-      <td>🇳🇴 Norway</td>
-      <td class="owner-tag">#27</td>
-      <td class="owner-tag">Adam Spry</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="4"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Sweden">
-      <td>🇸🇪 Sweden</td>
-      <td class="owner-tag">#31</td>
-      <td class="owner-tag">Elliott Holmes</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="5"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Ghana">
-      <td>🇬🇭 Ghana</td>
-      <td class="owner-tag">#32</td>
-      <td class="owner-tag">Adam Spry</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Scotland">
-      <td>🏴 Scotland</td>
-      <td class="owner-tag">#39</td>
-      <td class="owner-tag">Chris Richards</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Côte d’Ivoire">
-      <td>🇨🇮 Côte d’Ivoire</td>
-      <td class="owner-tag">#43</td>
-      <td class="owner-tag">Richard Blyth</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="1"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">3</td>
-    </tr><tr data-team="Spain">
-      <td>🇪🇸 Spain <span class="star">★</span></td>
-      <td class="owner-tag">#2</td>
-      <td class="owner-tag">Oliver Padgett-Blackburn</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Portugal">
-      <td>🇵🇹 Portugal <span class="star">★</span></td>
-      <td class="owner-tag">#5</td>
-      <td class="owner-tag">Dan Welsh</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Brazil">
-      <td>🇧🇷 Brazil</td>
-      <td class="owner-tag">#6</td>
-      <td class="owner-tag">Oliver Padgett-Blackburn</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Netherlands">
-      <td>🇳🇱 Netherlands</td>
-      <td class="owner-tag">#7</td>
-      <td class="owner-tag">Richard Blyth</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="2"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Morocco">
-      <td>🇲🇦 Morocco</td>
-      <td class="owner-tag">#8</td>
-      <td class="owner-tag">Nathan Parks</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Belgium">
-      <td>🇧🇪 Belgium</td>
-      <td class="owner-tag">#9</td>
-      <td class="owner-tag">Mark Spilsbury</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Uruguay">
-      <td>🇺🇾 Uruguay</td>
-      <td class="owner-tag">#13</td>
-      <td class="owner-tag">Elliott Holmes</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Switzerland">
-      <td>🇨🇭 Switzerland</td>
-      <td class="owner-tag">#18</td>
-      <td class="owner-tag">Sean Smith</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Japan">
-      <td>🇯🇵 Japan</td>
-      <td class="owner-tag">#19</td>
-      <td class="owner-tag">Sean Smith</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="2"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="IR Iran">
-      <td>🇮🇷 IR Iran</td>
-      <td class="owner-tag">#22</td>
-      <td class="owner-tag">Adam Spry</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="2"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Canada">
-      <td>🇨🇦 Canada</td>
-      <td class="owner-tag">#30</td>
-      <td class="owner-tag">Mark Spilsbury</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Egypt">
-      <td>🇪🇬 Egypt</td>
-      <td class="owner-tag">#33</td>
-      <td class="owner-tag">Sean Smith</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Qatar">
-      <td>🇶🇦 Qatar</td>
-      <td class="owner-tag">#42</td>
-      <td class="owner-tag">Charlotte Dickinson</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Saudi Arabia">
-      <td>🇸🇦 Saudi Arabia</td>
-      <td class="owner-tag">#50</td>
-      <td class="owner-tag">Sean Smith</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Congo DR">
-      <td>🇨🇩 Congo DR</td>
-      <td class="owner-tag">#60</td>
-      <td class="owner-tag">Dan Welsh</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Cabo Verde">
-      <td>🇨🇻 Cabo Verde</td>
-      <td class="owner-tag">#71</td>
-      <td class="owner-tag">Richard Blyth</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="0"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Bosnia and Herzegovina">
-      <td>🇧🇦 Bosnia and Herzegovina</td>
-      <td class="owner-tag">#74</td>
-      <td class="owner-tag">Laura Ellis</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="New Zealand">
-      <td>🇳🇿 New Zealand</td>
-      <td class="owner-tag">#89</td>
-      <td class="owner-tag">Charlotte Dickinson</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="1"></td>
-      <td><input type="number" data-k="gl" value="0"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="2"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">1</td>
-    </tr><tr data-team="Croatia">
-      <td>🇭🇷 Croatia</td>
-      <td class="owner-tag">#11</td>
-      <td class="owner-tag">Laura Ellis</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="2"></td>
-      <td><input type="number" data-k="ga" value="4"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Senegal">
-      <td>🇸🇳 Senegal</td>
-      <td class="owner-tag">#15</td>
-      <td class="owner-tag">Laura Ellis</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="3"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Ecuador">
-      <td>🇪🇨 Ecuador</td>
-      <td class="owner-tag">#24</td>
-      <td class="owner-tag">Elliott Holmes</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Türkiye">
-      <td>🇹🇷 Türkiye</td>
-      <td class="owner-tag">#28</td>
-      <td class="owner-tag">Laura Barker</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="2"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Panama">
-      <td>🇵🇦 Panama</td>
-      <td class="owner-tag">#29</td>
-      <td class="owner-tag">Laura Barker</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Paraguay">
-      <td>🇵🇾 Paraguay</td>
-      <td class="owner-tag">#36</td>
-      <td class="owner-tag">Laura Barker</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="4"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Algeria">
-      <td>🇩🇿 Algeria</td>
-      <td class="owner-tag">#38</td>
-      <td class="owner-tag">Chris Richards</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="3"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Czechia">
-      <td>🇨🇿 Czechia</td>
-      <td class="owner-tag">#40</td>
-      <td class="owner-tag">Nathan Parks</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="2"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Tunisia">
-      <td>🇹🇳 Tunisia</td>
-      <td class="owner-tag">#44</td>
-      <td class="owner-tag">Laura Ellis</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="5"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="South Africa">
-      <td>🇿🇦 South Africa</td>
-      <td class="owner-tag">#56</td>
-      <td class="owner-tag">Charlotte Dickinson</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="2"></td>
-      <td><input type="number" data-k="red" value="2"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Uzbekistan">
-      <td>🇺🇿 Uzbekistan</td>
-      <td class="owner-tag">#57</td>
-      <td class="owner-tag">Nathan Parks</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="3"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Iraq">
-      <td>🇮🇶 Iraq</td>
-      <td class="owner-tag">#58</td>
-      <td class="owner-tag">Chris Richards</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="4"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Jordan">
-      <td>🇯🇴 Jordan</td>
-      <td class="owner-tag">#62</td>
-      <td class="owner-tag">Elliott Holmes</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="3"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Haiti">
-      <td>🇭🇹 Haiti</td>
-      <td class="owner-tag">#83</td>
-      <td class="owner-tag">Oliver Padgett-Blackburn</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="0"></td>
-      <td><input type="number" data-k="ga" value="1"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr><tr data-team="Curaçao">
-      <td>🇨🇼 Curaçao</td>
-      <td class="owner-tag">#90</td>
-      <td class="owner-tag">Richard Blyth</td>
-      <td><input data-k="group" value="" style="width:42px"></td>
-      <td><select data-k="stage"><option value="group" selected="">Group stage</option><option value="r32">Round of 32</option><option value="r16">Round of 16</option><option value="qf">Quarter-final</option><option value="sf">Semi-final</option><option value="final">Final</option><option value="winner">Champions</option></select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" style="width:auto"></td>
-      <td><input type="number" data-k="gw" value="0"></td>
-      <td><input type="number" data-k="gd" value="0"></td>
-      <td><input type="number" data-k="gl" value="1"></td>
-      <td><input type="number" data-k="gf" value="1"></td>
-      <td><input type="number" data-k="ga" value="7"></td>
-      <td><input type="number" data-k="red" value="0"></td>
-      <td class="owner-tag" data-pts="">0</td>
-    </tr></tbody></table></div></div>
-    </div>
+  <section class="panel active" id="panel-teams">
+    <div id="teamsBody"><div class="sec-h"><h2>Group stage</h2><span class="hint">Ranked by points, then goal difference, then goals scored</span></div><div class="card"><div class="empty"><h3>Waiting for kick-off</h3><p>Group tables fill in here as matches are played. Hit Sync to pull the latest from ESPN.</p></div></div></div>
   </section>
 
   <!-- FIXTURES -->
@@ -1547,7 +894,7 @@
       <div class="card pad">
         <div class="sec-h"><h2>How it updates</h2><span class="hint">No setup needed</span></div>
         <p class="note">Scores, fixtures, stage progress and red cards sync automatically from ESPN's live World Cup feed. The page refreshes on its own every couple of minutes — or hit <b>Sync</b> in the header any time. Standings, goals, knockouts and reds are all worked out for you.</p>
-        <p class="note" style="margin-top:10px">The Teams tab shows the detail and lets you nudge anything by hand if needed (handy for the odd edge case between syncs).</p>
+        <p class="note" style="margin-top:10px">The Teams tab adapts to where the tournament is: full group tables during the group stage, then a "still in vs eliminated" view once the knockouts begin.</p>
       </div>
 
       <div class="card pad">
@@ -1867,50 +1214,90 @@ function renderPeople(){
   }).join("");
 }
 
-function renderTeams(){
-  const names = Object.keys(state.teams).sort((a,b)=>{
-    const d = teamPoints(state.teams[b]) - teamPoints(state.teams[a]);
-    return d !== 0 ? d : state.teams[a].rank - state.teams[b].rank;
-  });
-  const head = `<div class="scroll"><table class="teamgrid"><thead><tr>
-    <th>Team</th><th>Rank</th><th>Owner</th><th>Group</th><th>Stage</th><th>Out?</th>
-    <th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>🟥</th><th>Pts</th></tr></thead><tbody>`;
-  let rows="";
-  names.forEach(n=>{
-    const t=state.teams[n]; const owner=ownerOf(n); const star=isTopRated(t)?' <span class="star">★</span>':'';
-    const stageOpts = STAGES.map(([v,l])=>`<option value="${v}" ${t.stage===v?'selected':''}>${l}</option>`).join("");
-    rows += `<tr data-team="${esc(n)}">
-      <td>${t.flag||''} ${esc(n)}${star}</td>
-      <td class="owner-tag">#${t.rank}</td>
-      <td class="owner-tag">${owner?esc(owner):'<span class="note">—</span>'}</td>
-      <td><input data-k="group" value="${esc(t.group||'')}" style="width:42px"/></td>
-      <td><select data-k="stage">${stageOpts}</select></td>
-      <td style="text-align:center"><input type="checkbox" data-k="eliminated" ${t.eliminated?'checked':''} style="width:auto"/></td>
-      <td><input type="number" data-k="gw" value="${t.gw}"/></td>
-      <td><input type="number" data-k="gd" value="${t.gd}"/></td>
-      <td><input type="number" data-k="gl" value="${t.gl}"/></td>
-      <td><input type="number" data-k="gf" value="${t.gf}"/></td>
-      <td><input type="number" data-k="ga" value="${t.ga}"/></td>
-      <td><input type="number" data-k="red" value="${t.red}"/></td>
-      <td class="owner-tag" data-pts>${teamPoints(t)}</td>
-    </tr>`;
-  });
-  $("#teamsBody").innerHTML = head + rows + "</tbody></table></div>";
+const footballPts = t => t.gw*3 + t.gd;
+const goalDiff = t => t.gf - t.ga;
+const STAGE_RANK = { winner:6, final:5, sf:4, qf:3, r16:2, r32:1, group:0 };
 
-  // wire inputs
-  $$("#teamsBody tr[data-team]").forEach(tr=>{
-    const name=tr.getAttribute("data-team");
-    tr.querySelectorAll("[data-k]").forEach(inp=>{
-      inp.addEventListener("change",()=>{
-        const k=inp.getAttribute("data-k"); const t=state.teams[name];
-        if(k==="eliminated") t.eliminated=inp.checked;
-        else if(k==="group"||k==="stage") t[k]=inp.value;
-        else t[k]=Math.max(0, parseInt(inp.value||0,10));
-        tr.querySelector("[data-pts]").textContent=teamPoints(t);
-        save(); renderStandings(); renderPeople(); renderFixtures();
-      });
+function renderTeams(){
+  const container = $("#teamsBody");
+  const matches = Object.values(state.matchCache||{});
+  const anyKO = matches.some(m=>m.round && m.round!=="group" && m.round!=="third");
+  if(anyKO) renderTeamsKnockout(container);
+  else renderTeamsGroups(container);
+}
+
+function renderTeamsGroups(container){
+  const groups={};
+  Object.values(state.teams).forEach(t=>{ if(t.group) (groups[t.group]=groups[t.group]||[]).push(t); });
+  const letters=Object.keys(groups).sort();
+  let html=`<div class="sec-h"><h2>Group stage</h2><span class="hint">Ranked by points, then goal difference, then goals scored</span></div>`;
+  if(!letters.length){
+    html+=`<div class="card"><div class="empty"><h3>Waiting for kick-off</h3><p>Group tables fill in here as matches are played. Hit Sync to pull the latest from ESPN.</p></div></div>`;
+    container.innerHTML=html; return;
+  }
+  html+=`<div class="gwrap">`;
+  letters.forEach(L=>{
+    const teams=groups[L].slice().sort((a,b)=>
+      footballPts(b)-footballPts(a) || goalDiff(b)-goalDiff(a) || b.gf-a.gf || a.name.localeCompare(b.name));
+    html+=`<div class="card gtable"><div class="gtable-h">Group ${esc(L)}</div>
+      <table><thead><tr><th class="rk">#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th class="ptsc">Pts</th></tr></thead><tbody>`;
+    teams.forEach((t,i)=>{
+      const owner=ownerOf(t.name), P=t.gw+t.gd+t.gl, d=goalDiff(t);
+      const cls=t.eliminated?'elimrow':(i<2?'qual':'');
+      html+=`<tr class="${cls}">
+        <td class="rk">${i+1}</td>
+        <td class="tcell"><span class="fl">${t.flag||''}</span>
+          <span class="tnm">${esc(t.name)}${isTopRated(t)?' <span class="star">★</span>':''}<span class="own">${owner?esc(owner):'—'}</span></span></td>
+        <td>${P}</td><td>${t.gw}</td><td>${t.gd}</td><td>${t.gl}</td>
+        <td>${t.gf}</td><td>${t.ga}</td><td class="gdc">${d>0?'+':''}${d}</td>
+        <td class="ptsc">${footballPts(t)}</td></tr>`;
     });
+    html+=`</tbody></table></div>`;
   });
+  html+=`</div>`;
+  container.innerHTML=html;
+}
+
+function renderTeamsKnockout(container){
+  const teams=Object.values(state.teams);
+  const active=teams.filter(t=>!t.eliminated);
+  const out=teams.filter(t=>t.eliminated);
+  const ORDER=[["winner","Champions"],["final","Final"],["sf","Semi-finals"],["qf","Quarter-finals"],["r16","Round of 16"],["r32","Round of 32"],["group","Awaiting draw"]];
+
+  let html=`<div class="sec-h"><h2>Knockouts</h2><span class="hint">${active.length} still in · ${out.length} out</span></div>`;
+  html+=`<div class="grid g-2" style="align-items:start">`;
+
+  // Still in — grouped by the furthest round each team has reached
+  html+=`<div class="card"><div class="pad" style="padding-bottom:6px"><h2 class="subhead">Still in</h2></div><div class="statuslist">`;
+  let any=false;
+  ORDER.forEach(([key,label])=>{
+    const grp=active.filter(t=>t.stage===key).sort((a,b)=>goalDiff(b)-goalDiff(a)||b.gf-a.gf);
+    if(!grp.length) return; any=true;
+    html+=`<div class="statsub">${label}</div>`;
+    grp.forEach(t=>html+=statusRow(t,false));
+  });
+  if(!any) html+=`<div class="empty"><p>No teams remaining.</p></div>`;
+  html+=`</div></div>`;
+
+  // Eliminated — by how far they got
+  const outSorted=out.slice().sort((a,b)=>(STAGE_RANK[b.stage]-STAGE_RANK[a.stage])||goalDiff(b)-goalDiff(a));
+  html+=`<div class="card"><div class="pad" style="padding-bottom:6px"><h2 class="subhead">Eliminated</h2></div><div class="statuslist">`;
+  if(!outSorted.length) html+=`<div class="empty"><p>Nobody's out yet.</p></div>`;
+  else outSorted.forEach(t=>html+=statusRow(t,true));
+  html+=`</div></div></div>`;
+
+  container.innerHTML=html;
+}
+
+function statusRow(t, showReached){
+  const owner=ownerOf(t.name), d=goalDiff(t);
+  const reached = showReached ? `<span class="strow-stage">${STAGE_LABEL[t.stage]||''}</span>` : "";
+  return `<div class="strow ${t.eliminated?'out':''}">
+    <span class="fl">${t.flag||''}</span>
+    <span class="strow-main"><span class="tnm">${esc(t.name)}${isTopRated(t)?' <span class="star">★</span>':''}</span><span class="own">${owner?esc(owner):'—'}</span></span>
+    ${reached}
+    <span class="strow-stat">${t.gf}–${t.ga}<span class="gdc"> ${d>0?'+':''}${d}</span>${t.red?` · 🟥${t.red}`:''}</span>
+  </div>`;
 }
 
 let pastAll=[], pastShown=0;
